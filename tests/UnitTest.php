@@ -2,7 +2,7 @@
 
 class UnitTest{
 
-  public test;
+  public $test;
 
   function __construct(){
     $this->test = new UnitTest;

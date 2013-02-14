@@ -1,15 +1,15 @@
 <?php
-
+require("Controller.php");
 require("../models/Course.php");
-require("../public/router.php");
 
-class UserController extends Controller{
+
+class CourseController extends Controller{
 
   private $course;
 
   //constructor creates a new user instance
   function __construct(){
-    $this->course = new Course;
+    $this->course = new Course();
   }
 
 
@@ -29,7 +29,8 @@ class UserController extends Controller{
   }
 
   //display the new form
-  function new(){
+  //Careful can't override new!
+  function newCourse(){
     require("../views/new_course.php");
   }
 
