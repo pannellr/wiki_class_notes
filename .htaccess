@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule public/^([a-zA-Z]+)/?([a-zA-Z0-9/]*)$ public/app.php?page=$1&query=$2 [L]
