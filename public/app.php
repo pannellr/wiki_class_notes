@@ -1,6 +1,6 @@
 <?php
 
-print_r($query);
+print_r($_GET);
 
    require("../controllers/Controller.php");
    $app = new Controller();
