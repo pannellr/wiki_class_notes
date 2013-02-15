@@ -10,14 +10,7 @@ class DB{
   function __construct(){
     
     // we connect to example.com and port 3307
-    $con = mysql_connect($dbHost, $dbUser, $dbPassword);
-    if (!$con) {
-      die('Could not connect: ' . mysql_error());
-    }
-    
-    mysql_select_db($dbName, $con);
-
-    $this->dbh = $con;
+   $this->dbh = new mysqli($dbHost, $dbUser, $dbPassword, $dbName);
 
   }
 
@@ -63,10 +56,19 @@ class DB{
 
   }
 
-  function delete($id){
+  function delete($where){
+	$query = "DELETE FROM " . $this->tableName;
+	$separater = " WHERE ";
+	
+	foreach ($where as $key => $value){
+	$query .= $separater . $key . "='" . $value . "'";
+	$separater = " AND ";
+	}
+	
+	$query .= ";";
+	return $this->dbh->query($query); 
   }
 
-  function query($q){
-  }
+  
 
 }
