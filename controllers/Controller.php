@@ -28,7 +28,7 @@ class Controller{
     $endpoint = $this->router->lookup($page);
 
     if ($endpoint === false){
-      header("HTTP/1.0 404 Not Found");
+      //  header("HTTP/1.0 404 Not Found");
     } else {
       $this->$endpoint($queryParams);
     }

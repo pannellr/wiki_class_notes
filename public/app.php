@@ -1,4 +1,10 @@
 <?php
+require("../controllers/controllers.php");   
+$page = $_GET['page'];
 
-   require("../controllers/Controller.php");
-   $app = new Controller();
+$action = explode('_', $page);
+
+$controller = ucfirst($action[1]) . "Controller";
+
+$app = new $controller();
+$app->$action[0]();
