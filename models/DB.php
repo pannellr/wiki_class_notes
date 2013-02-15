@@ -21,8 +21,18 @@ class DB{
 
   }
 
-  function select($id, $where = false){
+  function select( $where = false){
 
+	$query="SELECT * FROM ". $this->tableName ;
+	$separator=" WHERE ";
+	foreach($where as $key=>$value)
+	{
+	 $query .= $separator . $key . "='" . $value . "'";
+	 $separator = " AND ";
+	 }
+	 $query .= ";";
+	 return $this->dbh->query($query);
+	
   }
 
   function insert($values){
