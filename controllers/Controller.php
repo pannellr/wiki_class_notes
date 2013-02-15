@@ -1,6 +1,6 @@
 <?php
 
-//require("../public/router.php");
+require("../public/Router.php");
 
 class Controller{
 
