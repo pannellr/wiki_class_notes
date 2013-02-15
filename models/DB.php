@@ -26,10 +26,31 @@ class DB{
   }
 
   function insert($values){
+    
+    $query = "insert into " . $this->tableName . " (";
+    $separator = "";
+
+    foreach ($values as $key => $value){
+      $query .= $separator . "'" . $value . "'";
+      $separator = ", ";
+    }
+      
+    $query .= ") values (";
+    $separator = "";
+
+    foreach ($values as $key => $value){
+      $query .= $separator . "'" . $value . "'";
+      $separator = ", ";
+    }
+
+    $query .= ");";
+
+    $this->db->query($query);
 
   }
 
   function update($id, $values = false){
+
   }
 
   function delete($id){
