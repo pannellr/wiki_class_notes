@@ -18,11 +18,11 @@ unset($_GET['class']);
 unset($_GET['method']);
 
 //Create a controller instance
-$app = new $controller();
+$app = new $controller($method, $_GET);
 
 //Call the method passing the parameters 
 //that remain in the GET request
-$app->$method($_GET);
+//$app->$method($_GET);
 
 //Untility to convert underscore names
 //to camelCase

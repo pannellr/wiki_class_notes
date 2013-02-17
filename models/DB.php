@@ -16,56 +16,56 @@ class DB{
 
   function select( $where = false){
 
-	$query="SELECT * FROM ". $this->tableName ;
-	$separator=" WHERE ";
-	foreach($where as $key=>$value)
-	{
-	 $query .= $separator . $key . "='" . $value . "'";
-	 $separator = " AND ";
-	 }
-	 $query .= ";";
-	 return $this->dbh->query($query);
-	
+    $query="SELECT * FROM ". $this->tableName ;
+    $separator=" WHERE ";
+    foreach($where as $key=>$value){
+	$query .= $separator . $key . "='" . $value . "'";
+	$separator = " AND ";
+    }
+    $query .= ";";
+    return $this->dbh->query($query);
+    
   }
-
+  
   function insert($values){
     
     $query = "insert into " . $this->tableName . " (";
     $separator = "";
-
+    
     foreach ($values as $key => $value){
       $query .= $separator . "'" . $value . "'";
       $separator = ", ";
     }
-      
+    
     $query .= ") values (";
     $separator = "";
-
+    
     foreach ($values as $key => $value){
       $query .= $separator . "'" . $value . "'";
       $separator = ", ";
     }
-
+    
     $query .= ");";
-
+    
     return $this->db->query($query);
-
+    
   }
+  
 
   function update($id, $values = false){
-	$query = " UPDATE " . $this->tableName;
-	$separater = " WHERE ";
-	foreach ( $where as $key=>$value){
-		$query .= $separator . "'" . $value . "'";
-        $separator = ", ";
+    $query = " UPDATE " . $this->tableName;
+    $separater = " WHERE ";
+	foreach ( $where as $key => $value){
+	  $query .= $separator . "'" . $value . "'";
+	  $separator = ", ";
 	}
 	
 	$query .= ");";
-
-    return $this->db->query($query);
+	
+	return $this->db->query($query);
 	
   }
-
+  
   function delete($where){
 	$query = "DELETE FROM " . $this->tableName;
 	$separater = " WHERE ";
@@ -76,7 +76,6 @@ class DB{
 	}
 	
 	$query .= ";";
-	//print_r($query);
 	return $this->dbh->query($query); 
   }
 
