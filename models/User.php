@@ -1,8 +1,9 @@
 <?php 
-require("DB.php");
-class Users extends DB{
-	       
 
+require("DB.php");
+
+class User extends DB{
+	       
   //Constructor
   function __construct(){
     //Initializes private variable

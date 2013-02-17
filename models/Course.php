@@ -1,9 +1,11 @@
 <?php
 
-class Course{
+require("DB.php");
+
+class Course extends DB{
 
   //the table name
-  private $table_name = 'users';
+  private $tableName = 'courses';
 
 
   //default constructor
