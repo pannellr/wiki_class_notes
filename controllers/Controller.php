@@ -1,8 +1,12 @@
 <?php
 
-require("../models/classes.php");
+require_once("../models/classes.php");
+
 
 class Controller{
+
+  //Every Controller will have a corresponding model
+  private $model;
 
   //constructor called by all controller subclasses
   //@param $method is the method from the url

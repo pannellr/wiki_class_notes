@@ -14,7 +14,7 @@ class DB{
     
   }
 
-  function select( $where = false){
+  function select($where = false){
 
     $query="SELECT * FROM ". $this->tableName ;
     $separator=" WHERE ";
