@@ -48,12 +48,22 @@ class DB{
 
     $query .= ");";
 
-    $this->db->query($query);
+    return $this->db->query($query);
 
   }
 
   function update($id, $values = false){
+	$query = " UPDATE " . $this->tableName;
+	$separater = " WHERE ";
+	foreach ( $where as $key=>$value){
+		$query .= $separator . "'" . $value . "'";
+        $separator = ", ";
+	}
+	
+	$query .= ");";
 
+    return $this->db->query($query);
+	
   }
 
   function delete($where){
