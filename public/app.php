@@ -4,8 +4,9 @@
 require("../controllers/controllers.php");
 
 //.htaccess passes the class name through a GET request
-//make the first letter uppercase and store it in controller   
-$controller = ucfirst($_GET['class']) . 'Controller';
+//make the first letter uppercase and store it in controller
+$model = ucfirst($_GET['class']);    
+$controller = $model . 'Controller';
 
 //.htaccess passes the method through a GET request
 //it is in the not_camel_case style
@@ -26,6 +27,8 @@ $app = new $controller($method, $_GET);
 
 //Untility to convert underscore names
 //to camelCase
+//!!Need to add second arg for ucase first this might
+//!!be needed for a two word model like course_sections
 function toCamelCase($string){
   $strings = explode("_", $string);
   

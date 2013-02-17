@@ -56,6 +56,8 @@ hr {
  * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
  */
 
+body { background-color: orange;}
+
 img {
     vertical-align: middle;
 }

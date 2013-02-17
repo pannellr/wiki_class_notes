@@ -4,12 +4,19 @@ require("Controller.php");
 
 class TestController extends Controller{
 
-  function __construct($model, $data){
-    
+  //Call the parent class constructor
+  function __construct($method, $data){
+    parent::__construct($method, $data);
   }
 
-  function test(){
-    echo "<h1>This is a test</h1>";
+  
+  function test($data){
+    //loadView in this case will:
+    //1.load the header
+    //2.load any content at test_show.php
+    //3.load the footer
+    //4.pass any params from the query string as $data
+    $this->loadPage($user = null, "test_show", $data);
   }
 
 

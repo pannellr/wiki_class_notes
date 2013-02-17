@@ -1,53 +1,31 @@
 <?php
 
-require("../public/Router.php");
+require("../models/classes.php");
 
 class Controller{
 
-  private $model;
-  private $router;
-
-  function __construct(){
-    print_r($_GET);
-    //intialize model and router
-    //???may belong in child construct $this->model = new Model();
-    $this->router = new Router();
-    
-    //container for any parameters passed through url
-    $queryParams = false;
-    
-    if (strlen($_GET['query']) > 0){
-      //explode query parameters into an array
-      $queryParams = explode("/", $_GET['query']);
-    }
-    
-    //passed by .htacess
-    $page = $_GET['page'];
-    
-    //Query router hash table
-    $endpoint = $this->router->lookup($page);
-
-    if ($endpoint === false){
-      //  header("HTTP/1.0 404 Not Found");
+  //constructor called by all controller subclasses
+  //@param $method is the method from the url
+  //@param $data is everything that was in the
+  //query string
+  function __construct($method, $data){
+    //first make sure that the method exists
+    if (method_exists($this, $method)){
+      //Call the method passing along the data if any
+      //remember $this in this context refers to the 
+      //subclass calling the constructor
+      $this->$method($data);
     } else {
-      $this->$endpoint($queryParams);
+      //if the method doesn't exist go to an error page
+      header("../errors/error404.html");
     }
   }
-
 
   private function redirect($url){
     header("Location: /" . $url);
   }
 
-  private function loadView($view, $data = null){
-    if (is_array($data)){
-      extract($data);
-    }
-    
-    require("../views/" . $view . ".php");
-  }
-
-  private function loadView($view, $data = null){
+  public function loadView($view, $data = null){
     //if $data is an array(at least one key => value pair
     if (is_array($data)){
       //extract to make the separate keys in $data
@@ -61,7 +39,7 @@ class Controller{
     require("../views/" . $view . ".php");
   }
 
-  private function loadPage($user, $view, $data = null, $flash = false){
+  public function loadPage($user, $view, $data = null, $flash = false){
     //load the header and pass it the $user object
     $this->loadView("header", array('user' => $user));
 
