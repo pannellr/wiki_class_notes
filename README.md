@@ -5,7 +5,8 @@
 
 <h2>The Team of Developers</h2>
 <ul>
-  <li><p>Vivian Kou</p></li>
-  <li><p>Simon Dugas</p></li>
-  <li><p>Richard Pannell</p></li>
+  <li>Meshari Alshammari(Interface/CSS/JS)</li>
+  <li>Richard Pannell(Team Lead/PHP/Testing)</li>
+  <li>Simon Dugas(PHP/Securtiy)</li>
+  <li>Vivian Xinxin Kou(DB/PHP)</li>
 </ul>
