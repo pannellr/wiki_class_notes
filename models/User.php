@@ -1,14 +1,12 @@
 <?php 
 
-require("DB.php");
+require_once("DB.php");
 
 class User extends DB{
 	       
   //Constructor
   function __construct(){
-    //Initializes private variable
-    //Tells database to work in 'Users' table
-    $this->$tableName = 'Users';
+    parent::setTableName("users");
   }
   
   //Methods

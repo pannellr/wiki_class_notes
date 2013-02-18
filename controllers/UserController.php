@@ -1,15 +1,19 @@
 <?php 
-require("../models/User.php");
-class UserController {
-  //Instance variables
-  private $user;
+
+require_once("Controller.php");
+
+class UserController extends Controller {
   
   //Constructor
-  function __construct(){
-    $this->user = new User();
+  function __construct($method, $data){
+    parent::__construct($method, $data);
+    $this->model = new User();
   }
   
   //Methods
+  function signUp(){
+    $this->loadPage($u = null, "new_user");
+  }
   
 }
 ?>

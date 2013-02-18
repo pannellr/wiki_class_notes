@@ -2,7 +2,6 @@
 
 require_once("Controller.php");
 
-
 class TestController extends Controller{
 
   //Call the parent class constructor

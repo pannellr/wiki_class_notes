@@ -8,10 +8,7 @@ class DB{
   private $tableName;
 
   function __construct(){
-    
-    // we connect to example.com and port 3307
-    $this->dbh = new mysqli($dbHost, $dbUser, $dbPassword, $dbName);
-    
+    $this->dbh = new mysqli($dbHost, $dbUser, $dbPassword, $dbName);    
   }
 
   function select($where = false){
