@@ -1,6 +1,6 @@
 <?php
 
-require("../config/db.php");
+require_once("../config/db.php");
 
 class DB{
 
@@ -8,20 +8,23 @@ class DB{
   private $tableName;
 
   function __construct(){
-    $this->dbh = new mysqli($dbHost, $dbUser, $dbPassword, $dbName);    
+    $this->dbh = new mysqli($dbHost, $dbUser, $dbPassword, $dbName); 
+    if ($this->dbh->connect_errno) {
+	echo "Failed to connect to MySQL: " . $this->dbh->connect_error;
+    }
   }
 
   function select($where = false){
-
     $query="SELECT * FROM ". $this->tableName ;
     $separator=" WHERE ";
-    foreach($where as $key=>$value){
+    if ($where){
+      foreach ( $where as $key=>$value){
 	$query .= $separator . $key . "='" . $value . "'";
 	$separator = " AND ";
+      }
     }
     $query .= ";";
-    return $this->dbh->query($query);
-    
+    $result = $this->dbh->query($query);
   }
   
   function insert($values){

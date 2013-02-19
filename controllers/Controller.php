@@ -1,18 +1,18 @@
 <?php
 
 require_once("../models/classes.php");
-
+require_once("ControllerInterface.php");
 
 class Controller{
 
   //Every Controller will have a corresponding model
-  private $model;
+  public $model;
 
   //constructor called by all controller subclasses
   //@param $method is the method from the url
   //@param $data is everything that was in the
   //query string
-  function __construct($method, $data){
+  function __construct($method, $data = null){
     //first make sure that the method exists
     if (method_exists($this, $method)){
       //Call the method passing along the data if any

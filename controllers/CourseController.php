@@ -1,5 +1,5 @@
 <?php
-require("Controller.php");
+require_once("Controller.php");
 
 
 class CourseController extends Controller{
