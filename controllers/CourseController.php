@@ -1,6 +1,5 @@
 <?php
 require("Controller.php");
-require("../models/Course.php");
 
 
 class CourseController extends Controller{

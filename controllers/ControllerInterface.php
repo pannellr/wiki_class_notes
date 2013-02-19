@@ -10,6 +10,6 @@ interface ControllerInterface{
   public function destroy($id);
   public function create($params);
   //capitalize New so we don't make conflict with new keyword
-  public function New();
+  public function fresh();
 
 }
