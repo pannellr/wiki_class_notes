@@ -61,7 +61,7 @@ class DB{
 
   function update($id, $values = false){
     $query = " UPDATE " . $this->tableName;
-    $separater = " SET ";
+    $separator = " SET ";
 	foreach ( $values as $key => $value){
 	  $query .= $separator . $key . "= '" . $value . "'";
 	  $separator = ", ";
