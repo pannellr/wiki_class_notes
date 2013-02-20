@@ -6,5 +6,5 @@ RewriteBase /~pannell/wiki_class_notes
 RewriteRule ^/?css/(.*)$ /$1 [L]
 RewriteRule ^/?js/(.*)$ /$1 [L]
 ##RewriteRule ^$ /home public/app.php?class=institution&method=fresh
-RewriteRule ^(.+)/(.+)/?([a-zA-Z0-9/]*)$ public/app.php?class=$1&method=$2&query=$3 [QSA,L]
+RewriteRule ^(.+)/(.+)/?([a-zA-Z0-9/]*)$ public/app.php?class=$1&method=$2 [QSA,L]
 

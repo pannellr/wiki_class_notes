@@ -36,12 +36,11 @@ class DB{
   }
   
   function insert($values){
-    
     $query = "insert into " . $this->tableName . " (";
     $separator = "";
     
     foreach ($values as $key => $value){
-      $query .= $separator . "'" . $value . "'";
+      $query .= $separator . "`" . $key . "`";
       $separator = ", ";
     }
     
@@ -54,8 +53,8 @@ class DB{
     }
     
     $query .= ");";
-    
-    return $this->db->query($query);
+
+    return $this->dbh->query($query);
     
   }
   

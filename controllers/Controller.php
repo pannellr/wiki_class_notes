@@ -25,7 +25,8 @@ class Controller{
     }
   }
 
-  private function redirect($url){
+  public function redirect($url){
+    print_r($url);
     header("Location: /" . $url);
   }
 
