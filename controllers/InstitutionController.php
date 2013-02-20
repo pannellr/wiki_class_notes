@@ -33,6 +33,9 @@ class InstitutionController extends Controller implements ControllerInterface{
   }
 
   public function update($updates){
+    $this->model = new Institution();
+    $this->model->update($id = 15, array("name" => "rickey", "fun" => "on monday"));
+
   }
 
   public function destroy($id){
