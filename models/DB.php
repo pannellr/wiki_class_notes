@@ -13,7 +13,9 @@ class DB{
 	echo "Failed to connect to MySQL: " . $this->dbh->connect_error;
     }
   }
-
+//selects everything within where parameter and then put them in an array
+//@param where
+//@return array of results
   function select($where = false){
     $query="SELECT * FROM ". $this->tableName ;
     $separator=" WHERE ";
@@ -34,7 +36,8 @@ class DB{
     return $results;
 
   }
-  
+  // inserts the values into the table
+  //@param values
   function insert($values){
     $query = "insert into " . $this->tableName . " (";
     $separator = "";
@@ -54,8 +57,9 @@ class DB{
     
     $query .= ");";
 
-    return $this->dbh->query($query);
+    $this->dbh->query($query);
     
+	return $this->dbh->insert_id;
   }
   
 
