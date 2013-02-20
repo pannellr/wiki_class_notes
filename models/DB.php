@@ -62,7 +62,9 @@ class DB{
 	return $this->dbh->insert_id;
   }
   
-
+//update the values associated with the id
+//@ param id
+//@ param values the values is being chaged
   function update($id, $values = false){
     $query = " UPDATE " . $this->tableName;
     $separator = " SET ";
@@ -76,15 +78,12 @@ class DB{
 	return $this->db->query($query);
 	
   }
-  
-  function delete($where){
+  // delete the record
+  //@ param id
+  function delete($id){
 	$query = "DELETE FROM " . $this->tableName;
 	$separater = " WHERE ";
-	
-	foreach ($where as $key => $value){
-	$query .= $separater . $key . "='" . $value . "'";
-	$separater = " AND ";
-	}
+	$query .= " where id = $id ";
 	
 	$query .= ";";
 	return $this->dbh->query($query); 
