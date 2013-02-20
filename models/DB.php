@@ -61,12 +61,12 @@ class DB{
 
   function update($id, $values = false){
     $query = " UPDATE " . $this->tableName;
-    $separater = " WHERE ";
+    $separater = " SET ";
 	foreach ( $where as $key => $value){
-	  $query .= $separator . "'" . $value . "'";
+	  $query .= $separator . $key . "= '" . $value . "'";
 	  $separator = ", ";
 	}
-	
+	$query .= " where id = $id ";
 	$query .= ");";
 	
 	return $this->db->query($query);
