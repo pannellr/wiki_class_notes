@@ -1,6 +1,6 @@
 <?php
 
-require_once("../config/db.php");
+  //require_once("../config/db.php");
 
 class DB{
 
@@ -8,7 +8,7 @@ class DB{
   private $tableName;
 
   function __construct(){
-    $this->dbh = new mysqli($dbHost, $dbUser, $dbPassword, $dbName); 
+    $this->dbh = new mysqli('db.cs.dal.ca', 'sdugas', 'B00582339', 'sdugas_esarve'); 
     if ($this->dbh->connect_errno) {
 	echo "Failed to connect to MySQL: " . $this->dbh->connect_error;
     }
@@ -24,7 +24,15 @@ class DB{
       }
     }
     $query .= ";";
-    $result = $this->dbh->query($query);
+    $results = array();
+    $res = $this->dbh->query($query);
+
+    while ($row = $res->fetch_assoc()){
+      array_push($results, $row);
+    }
+
+    return $results;
+
   }
   
   function insert($values){

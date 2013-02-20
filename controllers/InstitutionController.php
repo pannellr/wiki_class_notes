@@ -22,8 +22,8 @@ class InstitutionController extends Controller implements ControllerInterface{
 
   public function all(){
     $this->model = new Institution();
-    $allInstitutions = $this->model->select();
-    $this->loadPage($user = null, "all_institutions", $allInstitutions);
+    $all = $this->model->select();
+    $this->loadPage($user = null, "all_institutions", $all);
   }
 
   public function edit($id){

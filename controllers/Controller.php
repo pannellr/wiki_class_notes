@@ -30,16 +30,6 @@ class Controller{
   }
 
   public function loadView($view, $data = null){
-    //if $data is an array(at least one key => value pair
-    if (is_array($data)){
-      //extract to make the separate keys in $data
-      //into their own variables
-      //for example ('id' => 3)
-      //becomes the value 3 assigned to $id
-      //these variables will be available to the view
-      extract($data);
-    }
-
     require("../views/" . $view . ".php");
   }
 

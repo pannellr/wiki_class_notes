@@ -1,10 +1,10 @@
-<h3>Showing all schools</h3>
+<h3>Showing all Schools</h3>
 
 <?php
 
-while ($institution = $all_institutions->fetch_assoc()){
-
-  print_r($instution);
-
+foreach ($data as $school){
+  echo "<h1>" . $school['name'] . "</h1>";
 }
+
+
 ?>
