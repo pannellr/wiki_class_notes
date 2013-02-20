@@ -75,7 +75,8 @@ class DB{
 	$query .= " where id = $id ";
 	$query .= ";";
 	
-	return $this->db->query($query);
+    print_r($query);
+	//return $this->db->query($query);
 	
   }
   // delete the record
