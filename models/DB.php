@@ -8,7 +8,7 @@ class DB{
   private $tableName;
 
   function __construct(){
-    $this->dbh = new mysqli('db.cs.dal.ca', 'sdugas', 'B00582339', 'sdugas_esarve'); 
+    $this->dbh = new mysqli('localhost', 'pannellr', 'Shiwa0k@r', 'sdugas_esarve'); 
     if ($this->dbh->connect_errno) {
 	echo "Failed to connect to MySQL: " . $this->dbh->connect_error;
     }

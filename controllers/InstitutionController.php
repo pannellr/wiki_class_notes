@@ -17,7 +17,7 @@ class InstitutionController extends Controller implements ControllerInterface{
   public function create($params){
     $this->model = new Institution();
     $insert_id = $this->model->insert($params);
-    $this->redirect("~pannell/wiki_class_notes/institution/all");
+    $this->redirect("wiki_class_notes/institution/all");
   }
 
   public function show($id){
