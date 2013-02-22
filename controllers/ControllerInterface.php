@@ -6,7 +6,7 @@ interface ControllerInterface{
   public function show($id);
   public function all();
   public function edit($id);
-  public function update($updates);
+  public function update($id,$updates);
   public function destroy($id);
   public function create($params);
   //use fresh() insead of new so we don't make conflict with new keyword

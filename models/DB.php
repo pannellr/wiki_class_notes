@@ -1,18 +1,19 @@
 <?php
 
-  //require_once("../config/db.php");
+//require_once("../config/db.php");
 
 class DB{
-
+  
   public $dbh;
   private $tableName;
-
+  
   function __construct(){
-    $this->dbh = new mysqli('localhost', 'pannellr', 'Shiwa0k@r', 'sdugas_esarve'); 
+    
     if ($this->dbh->connect_errno) {
-	echo "Failed to connect to MySQL: " . $this->dbh->connect_error;
+      echo "Failed to connect to MySQL: " . $this->dbh->connect_error;
     }
   }
+  
 //selects everything within where parameter and then put them in an array
 //@param where
 //@return array of results
@@ -28,13 +29,13 @@ class DB{
     $query .= ";";
     $results = array();
     $res = $this->dbh->query($query);
-
+    
     while ($row = $res->fetch_assoc()){
       array_push($results, $row);
     }
-
+    
     return $results;
-
+    
   }
   // inserts the values into the table
   //@param values
@@ -56,42 +57,43 @@ class DB{
     }
     
     $query .= ");";
-
+    
     $this->dbh->query($query);
     
-	return $this->dbh->insert_id;
+    return $this->dbh->insert_id;
   }
   
-//update the values associated with the id
-//@ param id
-//@ param values the values is being chaged
+  //update the values associated with the id
+  //@ param id
+  //@ param values the values is being chaged
   function update($id, $values = false){
     $query = " UPDATE " . $this->tableName;
     $separator = " SET ";
-	foreach ( $values as $key => $value){
-	  $query .= $separator . $key . "= '" . $value . "'";
-	  $separator = ", ";
-	}
-	$query .= " where id = $id ";
-	$query .= ";";
-	
+    foreach ( $values as $key => $value){
+      $query .= $separator . $key . "= '" . $value . "'";
+      $separator = ", ";
+    }
+    $query .= " where id = $id ";
+    $query .= ";";
+    
     print_r($query);
-	//return $this->db->query($query);
-	
+    //return $this->db->query($query);
+    
   }
+
   // delete the record
   //@ param id
   function delete($id){
-	$query = "DELETE FROM " . $this->tableName;
-	$separater = " WHERE ";
-	$query .= " where id = $id ";
-	
-	$query .= ";";
-	return $this->dbh->query($query); 
+    $query = "DELETE FROM " . $this->tableName;
+    $separater = " WHERE ";
+    $query .= " where id = " . $id['id'];
+    
+    $query .= ";";
+    return $this->dbh->query($query); 
   }
-
+  
   function setTableName($t){
     $this->tableName = $t;
   }
-
+  
 }
