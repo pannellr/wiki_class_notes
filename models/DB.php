@@ -1,6 +1,7 @@
 <?php
 
 //require_once("../config/db.php");
+require_once("../errors/Exceptions.php");
 
 class DB{
   
@@ -8,10 +9,11 @@ class DB{
   private $tableName;
   
   function __construct(){
-    
-    if ($this->dbh->connect_errno) {
-      echo "Failed to connect to MySQL: " . $this->dbh->connect_error;
+    $this->dbh = new mysqli('localhost', 'pannellr', 'Shiwa0k@r', 'sdugas_esarve');
+    if (mysqli_connect_errno($this->dbh)) {
+	throw new CouldNotEstablishConnectionException("Could not connect to Database");
     }
+   
   }
   
 //selects everything within where parameter and then put them in an array
@@ -21,22 +23,22 @@ class DB{
     $query="SELECT * FROM ". $this->tableName ;
     $separator=" WHERE ";
     if ($where){
-      foreach ( $where as $key=>$value){
-	$query .= $separator . $key . "='" . $value . "'";
+      foreach ( $where as $key => $value){
+	$query .= $separator . $key . " = '" . $value . "'";
 	$separator = " AND ";
       }
     }
     $query .= ";";
+
     $results = array();
     $res = $this->dbh->query($query);
     
     while ($row = $res->fetch_assoc()){
       array_push($results, $row);
     }
-    
     return $results;
-    
   }
+  
   // inserts the values into the table
   //@param values
   function insert($values){
@@ -46,38 +48,40 @@ class DB{
     foreach ($values as $key => $value){
       $query .= $separator . "`" . $key . "`";
       $separator = ", ";
-    }
     
+    }
     $query .= ") values (";
     $separator = "";
     
     foreach ($values as $key => $value){
       $query .= $separator . "'" . $value . "'";
       $separator = ", ";
+  
     }
-    
     $query .= ");";
-    
-    $this->dbh->query($query);
-    
+    $this->dbh->query($query);  
     return $this->dbh->insert_id;
+  
   }
   
   //update the values associated with the id
   //@ param id
   //@ param values the values is being chaged
-  function update($id, $values = false){
+  function update($values){
+
+    $id = $values['id'];
+    unset($values['id']);
     $query = " UPDATE " . $this->tableName;
     $separator = " SET ";
-    foreach ( $values as $key => $value){
-      $query .= $separator . $key . "= '" . $value . "'";
+
+    foreach ($values as $key => $value){
+      $query .= $separator . $key . " = '" . $value . "'";
       $separator = ", ";
+
     }
     $query .= " where id = $id ";
     $query .= ";";
-    
-    print_r($query);
-    //return $this->db->query($query);
+    return $this->dbh->query($query);
     
   }
 

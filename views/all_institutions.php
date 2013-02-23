@@ -3,11 +3,9 @@
 <?php
 
 foreach ($data as $school){
-  echo "<p><h3>" 
-    . $school['name'] 
-    . "</h3> <a href=\"destroy?id=" 
-    . $school['id'] 
-    . "\">Delete</a></p>";
+  echo "<h3>" . $school['name'] . "</h3>";
+  echo "<p><a href=\"destroy?id=" . $school['id'] . "\">Delete</a></p>"
+    . "<a href=\"edit?id=" . $school['id'] . "\">Edit</a>";
 }
 
 

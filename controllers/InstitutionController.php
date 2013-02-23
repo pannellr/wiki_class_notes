@@ -21,8 +21,8 @@ class InstitutionController extends Controller implements ControllerInterface{
 
   public function show($id){
     $this->model = new Institution();
-    $institution = $this->model->select(array("id" => $id));
-    this->loadPage($user = null, "show_insitution", $institution);
+    $institution = $this->model->select($id);
+    $this->loadPage($user = null, "show_institution", $institution);
   }
 
   public function all(){
@@ -32,12 +32,15 @@ class InstitutionController extends Controller implements ControllerInterface{
   }
 
   public function edit($id){
+    $this->model = new Institution();
+    $institution = $this->model->select($id);
+    $this->loadPage($user = null, "edit_institution", $institution);
   }
 
-  public function update($id, $updates){
+  public function update($updates){
     $this->model = new Institution();
-    $this->model->update($id, $updates);
-    
+    $this->model->update($updates);
+    $this->redirect("wiki_class_notes/institution/show?id=" . $updates['id']);
   }
 
   public function destroy($id){

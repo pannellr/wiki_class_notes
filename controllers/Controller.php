@@ -21,7 +21,7 @@ class Controller{
       $this->$method($data);
     } else {
       //if the method doesn't exist go to an error page
-      header("../errors/error404.html");
+      $this->redirect("wiki_class_notes/errors/404");
     }
   }
 
