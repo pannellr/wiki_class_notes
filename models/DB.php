@@ -9,7 +9,7 @@ class DB{
   private $tableName;
   
   function __construct(){
-   
+    
     if (mysqli_connect_errno($this->dbh)) {
 	throw new CouldNotEstablishConnectionException("Could not connect to Database");
     }
@@ -32,7 +32,6 @@ class DB{
 
     $results = array();
     $res = $this->dbh->query($query);
-    
     while ($row = $res->fetch_assoc()){
       array_push($results, $row);
     }

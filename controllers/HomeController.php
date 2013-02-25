@@ -13,7 +13,7 @@ class HomeController extends Controller implements ControllerInterface{
   public function home(){
     //home doesn't need a model
     //it can use all the other models to get its data
-    require("../views/home.php");
+    $this->loadPage($user = null, "home");
   }
 
   //interface methods
