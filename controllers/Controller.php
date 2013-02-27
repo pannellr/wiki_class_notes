@@ -1,18 +1,18 @@
 <?php
 
 require_once("../models/classes.php");
-
+require_once("ControllerInterface.php");
 
 class Controller{
 
   //Every Controller will have a corresponding model
-  private $model;
+  public $model;
 
   //constructor called by all controller subclasses
   //@param $method is the method from the url
   //@param $data is everything that was in the
   //query string
-  function __construct($method, $data){
+  function __construct($method, $data = null){
     //first make sure that the method exists
     if (method_exists($this, $method)){
       //Call the method passing along the data if any
@@ -21,25 +21,15 @@ class Controller{
       $this->$method($data);
     } else {
       //if the method doesn't exist go to an error page
-      header("../errors/error404.html");
+      $this->redirect("wiki_class_notes/errors/404");
     }
   }
 
-  private function redirect($url){
+  public function redirect($url){
     header("Location: /" . $url);
   }
 
   public function loadView($view, $data = null){
-    //if $data is an array(at least one key => value pair
-    if (is_array($data)){
-      //extract to make the separate keys in $data
-      //into their own variables
-      //for example ('id' => 3)
-      //becomes the value 3 assigned to $id
-      //these variables will be available to the view
-      extract($data);
-    }
-
     require("../views/" . $view . ".php");
   }
 

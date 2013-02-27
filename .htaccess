@@ -1,6 +1,8 @@
 RewriteEngine On
-RewriteRule ^/?css/(.*)$ /$1 [L]
-RewriteRule ^/?js/(.*)$ /$1 [L]
-###RewriteRule ^$ /home [redirect]
-RewriteRule ^(.+)/(.+)/?([a-zA-Z0-9/]*)$ public/app.php?class=$1&method=$2&query=$3 [QSA,L]
+#Options +Indexes
+##bluenose only
+RewriteCond %{REQUEST_URI} !/css
+RewriteCond %{REQUEST_URI} !/js
+##RewriteRule ^$ /home public/app.php?class=home&method=home
+RewriteRule ^(.+)/(.+)/?([a-zA-Z0-9/]*)$ public/app.php?class=$1&method=$2 [QSA,L]
 

@@ -8,10 +8,10 @@
 <ul>
   <li>Meshari Alshammari(Interface/CSS/JS)</li>
   <li>Richard Pannell(Team Lead/PHP/Testing)</li>
-  <li>Simon Dugas(PHP/Securtiy)</li>
+  <li>Simon Dugas(PHP/Security)</li>
   <li>Vivian Xinxin Kou(DB/PHP)</li>
 </ul>
-=======
+==============
 WikiClassNotes
 ==============
 

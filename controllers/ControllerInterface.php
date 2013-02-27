@@ -9,7 +9,7 @@ interface ControllerInterface{
   public function update($updates);
   public function destroy($id);
   public function create($params);
-  //capitalize New so we don't make conflict with new keyword
+  //use fresh() insead of new so we don't make conflict with new keyword
   public function fresh();
 
 }

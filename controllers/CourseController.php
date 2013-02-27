@@ -1,58 +1,54 @@
 <?php
-require("Controller.php");
 
+require_once("Controller.php");
 
-class CourseController extends Controller{
+class CourseController extends Controller implements ControllerInterface{
 
-  private $course;
-
-  //constructor creates a new user instance
-  function __construct(){
-    $this->course = new Course();
+  //Call the parent class constructor
+  function __construct($method, $data){
+    parent::__construct($method, $data);
   }
 
-
-  //show method
-  //@params $id the id of the row you would like to return
-  //@params $where other conditions you would like to impose on the query
-  function show($id, $where = false){
-
-    //if the query provides a result
-    if($result = $course->show($id, $where)){
-      //require the view
-      //it will use the $result to populate its data
-      require("../views/show_course.php");
-    } else {
-      //throw an error
-    }
+  public function fresh(){
+    $dept = new Department();
+    $departments = $dept->all();
+    $this->loadPage($user = null, "new_course", $departments);
   }
 
-  //display the new form
-  //Careful can't override new!
-  function newCourse(){
-    require("../views/new_course.php");
+  public function create($params){
+    $this->model = new Course();
+    $insert_id = $this->model->insert($params);
+    $this->redirect("wiki_class_notes/course/all");
   }
 
-  //process the information from new
-  function create(){
+  public function show($id){
+    $this->model = new Course();
+    $course = $this->model->select($id);
+    $this->loadPage($user = null, "show_course", $course);
   }
 
-  //show all records from this table
-  //@params where conditions you would like to add to query
-  function all($where = false){
-
+  public function all(){
+    $this->model = new Course();
+    $all = $this->model->select();
+    $this->loadPage($user = null, "all_courses", $all);
   }
 
-  //select row and put the data into a form for editting
-  //@param $id the id of the row you want to edit
-  function edit($id){
+  public function edit($id){
+    $this->model = new Course();
+    $course = $this->model->select($id);
+    $this->loadPage($user = null, "edit_course", $course);
   }
 
-  function update($id, $params){
+  public function update($updates){
+    $this->model = new Course();
+    $this->model->update($updates);
+    $this->redirect("wiki_class_notes/course/show?id=" . $updates['id']);
   }
 
-  function destory($id){
+  public function destroy($id){
+    $this->model = new Course;
+    $this->model->delete($id);
+    $this->redirect("wiki_class_notes/course/all");
   }
-
-
+  
 }
