@@ -52,4 +52,3 @@ class UserController extends Controller implements ControllerInterface {
 
   
 }
-?>
