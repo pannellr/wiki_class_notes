@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <hgroup>
   <h1>Project Wiki Class Notes</h1>
   <h3>Student Class notes Collaboration application</h3>
@@ -10,3 +11,9 @@
   <li>Simon Dugas(PHP/Securtiy)</li>
   <li>Vivian Xinxin Kou(DB/PHP)</li>
 </ul>
+=======
+WikiClassNotes
+==============
+
+Group Project for INFX 1616
+>>>>>>> 3b89bf55119c8a996aa3b639843cc0956b363e6b
