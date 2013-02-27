@@ -22,8 +22,14 @@ Validations:
 	Date of birth - selection from list
 		between ages 6 and 120
 		Validate for actual date
-	Email - valide email with user, '@', domain, TLD
+	Email - valid email with user, '@', domain, TLD
 		emails must match
+
+Database validations:
+	username does not already exist
+	email does not already exist
+	PHP sanitization of input data
+
 -->
 <h3>Sign Up</h3>
 

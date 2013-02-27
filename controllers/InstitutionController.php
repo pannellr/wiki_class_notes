@@ -44,7 +44,7 @@ class InstitutionController extends Controller implements ControllerInterface{
   }
 
   public function destroy($id){
-    $this->model = new Institution;
+    $this->model = new Institution();
     $this->model->delete($id);
     $this->redirect("wiki_class_notes/institution/all");
   }
