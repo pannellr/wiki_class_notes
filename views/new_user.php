@@ -36,9 +36,42 @@ Database validations:
 <form method="GET" action ="user/create">
 
    <p>
-     <label for="user_name">Choose a user name:</label><br />
+     <label for="user_name">Username:</label><br />
      <input name="user_name" />
   </p>
+
+  <p>
+     <label for="password">Password:</label><br />
+     <input name="password" /><br />
+     <label for="confirm_password">Confirm Password:</label><br />
+     <input name="confirm_password" />
+  </p>
+
+  <p>
+     <label for="first_name">First Name:</label><br />
+     <input name="first_name" />
+  </p>
+
+  <p>
+     <label for="last_name">Last Name:</label><br />
+     <input name="last_name" />
+  </p>
+
+  <p>
+    <label for="date_of_birth">Date of birth:</label><br />
+    <?php require("date_of_birth.php") ?>
+  </p>
+
+  <p>
+     <label for="email">Email:</label><br />
+     <input name="email" />
+  </p>
+
+    <p>
+     <label for="confirm_email">Confirm Email:</label><br />
+     <input name="confirm_email" />
+  </p>
+
 
   <input type="submit" value="Submit" />
 

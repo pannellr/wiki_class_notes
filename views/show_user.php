@@ -1,0 +1,1 @@
+<h3>Show information for user <?php echo($data[0]['name']); ?></h3>
