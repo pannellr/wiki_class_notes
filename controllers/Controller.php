@@ -25,6 +25,7 @@ class Controller{
     }
   }
 
+
   public function redirect($url){
     header("Location: /" . $url);
   }
@@ -48,5 +49,5 @@ class Controller{
     //load the footer
     $this->loadView("footer");
   }
-
+  
 }

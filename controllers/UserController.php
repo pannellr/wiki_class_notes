@@ -10,8 +10,28 @@ class UserController extends Controller implements ControllerInterface {
   }
   
   //Methods
-  function fresh(){
+  public function fresh(){
     $this->loadPage($user = null, "new_user");
+  }
+  //TODO: create authentication system
+  public function login($data){
+    $this->model = new UserAuth();
+    $this->model->attemptLogin($data);
+  }
+
+  public function logout(){
+    $this->model = new UserAuth();
+    $this->model->logoutUser($_COOKIE['Auth']);
+  }
+
+  //Check if user is logged in and pass the user's data to the page
+  private function checkAuth(){
+    $this->model = new UserAuth();
+    if( isset($_COOKIE['Auth']) ) {
+      return $this->model->userForAuth($_COOKIE['Auth']);
+    } else {
+      return  false;
+    }
   }
 
   public function create($params){

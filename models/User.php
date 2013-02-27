@@ -10,4 +10,3 @@ class User extends DB{
   }
   
 }
-?>
