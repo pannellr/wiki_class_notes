@@ -2,22 +2,22 @@
 <nav>
   <ul>
     <li>
-      <a href="/wiki_class_notes/institution/fresh">New Institution</a>
+      <a href="/institution/fresh">New Institution</a>
     </li>
     <li>
-      <a href="/wiki_class_notes/institution/all">All Institutions</a>
+      <a href="/institution/all">All Institutions</a>
     </li>
     <li>
-      <a href="/wiki_class_notes/department/fresh">New Department</a>
+      <a href="/department/fresh">New Department</a>
     </li>
     <li>
-       <a href="/wiki_class_notes/department/all">All Departments</a>
+       <a href="/department/all">All Departments</a>
     </li>
     <li>
-      <a href="/wiki_class_notes/course/fresh">New Course</a>
+      <a href="/course/fresh">New Course</a>
     </li>
     <li>
-       <a href="/wiki_class_notes/course/all">All Courses</a>
+       <a href="/course/all">All Courses</a>
     </li>
   </ul>
 </nav>

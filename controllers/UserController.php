@@ -15,8 +15,9 @@ class UserController extends Controller implements ControllerInterface {
   }
   //TODO: create authentication system
   public function login($data){
-    $this->model = new UserAuth();
-    $this->model->attemptLogin($data);
+   // $this->model = new UserAuth();
+    //$this->model->attemptLogin($data);
+    $this->loadPage($user = null, "login_user");
   }
 
   public function logout(){
@@ -28,22 +29,64 @@ class UserController extends Controller implements ControllerInterface {
   private function checkAuth(){
     $this->model = new UserAuth();
     if( isset($_COOKIE['Auth']) ) {
-      return $this->model->userForAuth($_COOKIE['Auth']);
+      $result =  $this->model->select(array("hash"=>$_COOKIE['Auth']));
+      print_r($result[0]);
+      return $result[0];
     } else {
       return  false;
     }
   }
 
-  public function create($params){
+  //Shows information about logged in user
+  public function me(){
+    $user = $this->checkAuth();
     $this->model = new User();
-    $insert_id = $this->model->insert($params);
-    $this->redirect("wiki_class_notes/user/all");
+    //TODO: get userinfo from USER table, not AUTH table
+    $this->loadPage($user[0], "show_me", $user[0]);
+  }
+
+  public function create($params){
+    //TODO: VALIDATION GOES HERE
+    // echo "<pre>";
+    // print_r($_POST);
+    // echo "</pre>";
+    $birthday = $_POST['birth_year']."-".$_POST['birth_month']."-".$_POST['birth_day'];
+    // echo $birthday;
+
+    $personInfo = array(
+      "first_name" => $_POST['first_name'],
+      "last_name" => $_POST['last_name'],
+      "birthday" => $birthday,
+      "email" => $_POST['email']
+    );
+
+    
+    $this->personModel = new People();
+    $person_id = $this->personModel->insert($personInfo);
+
+    $userInfo = array(
+      "user_name" => $_POST['user_name'],
+      "password" => $_POST['password'],
+      "person_id" => $person_id
+    );
+
+    $this->userModel = new User();
+    $user_id = $this->userModel->insert($userInfo);
+    $user = $this->userModel->select(array("id"=>$user_id));
+    $user = $user[0];
+    //print_r($user);
+
+    //Create authentication hash for user
+    $this->userAuthModel = new UserAuth();
+    $hash = $this->userAuthModel->authorizeUser($user);
+
+    $this->redirect("user/me");
   }
 
   public function show($id){
     $this->model = new User();
-    $user = $this->model->select($id);
-    $this->loadPage($user = null, "show_user", $user);
+    $data = $this->model->select($id);
+    $this->loadPage($user = null, "show_user", $data);
   }
 
   public function all(){
@@ -54,8 +97,8 @@ class UserController extends Controller implements ControllerInterface {
 
   public function edit($id){
     $this->model = new User();
-    $user = $this->model->select($id);
-    $this->loadPage($user = null, "edit_user", $user);
+    $data = $this->model->select($id);
+    $this->loadPage($user = null, "edit_user", $data);
   }
 
   public function update($updates){

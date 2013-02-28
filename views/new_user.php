@@ -33,7 +33,7 @@ Database validations:
 -->
 <h3>Sign Up</h3>
 
-<form method="GET" action ="user/create">
+<form method="POST" action ="create">
 
    <p>
      <label for="user_name">Username:</label><br />
@@ -42,9 +42,9 @@ Database validations:
 
   <p>
      <label for="password">Password:</label><br />
-     <input name="password" /><br />
+     <input type="password" name="password" /><br />
      <label for="confirm_password">Confirm Password:</label><br />
-     <input name="confirm_password" />
+     <input type="password" name="confirm_password" />
   </p>
 
   <p>

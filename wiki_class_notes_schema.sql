@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `sdugas_esarve` /*!40100 DEFAULT CHARACTER SET la
 USE `sdugas_esarve`;
 -- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
--- Host: localhost    Database: sdugas_esarve
+-- Host: localhost    Database: wcn
 -- ------------------------------------------------------
 -- Server version	5.0.95
 

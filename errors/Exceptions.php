@@ -11,7 +11,7 @@ class CouldNotEstablishConnectionException extends Exception{
   }    
   
   public function __toString() { 
-    return "<b style='color:red'>".$this->message."</b>"; 
+    return "<b style='color:red'>" . $this->message . "</b>"; 
   } 
 }
 

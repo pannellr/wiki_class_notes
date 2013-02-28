@@ -10,6 +10,8 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+body{ background-color: orange; }
+
 html,
 button,
 input,
