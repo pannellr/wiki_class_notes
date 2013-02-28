@@ -1,6 +1,6 @@
 <?php
 
-public class Flash(){
+class Flash(){
   //instance variables
   private $type;
   private $message;
