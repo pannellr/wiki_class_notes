@@ -46,7 +46,30 @@ class UserController extends Controller implements ControllerInterface {
   }
 
   public function create($params){
+    //flashArray shows all possible validation errors
+    $flashArray = array(
+      "0" => "Please enter a username.",
+      "1" => "Please enter a password.",
+      "2" => "Please enter a first and last name.",
+      "3" => "Please enter a date of birth.",
+      "4" => "Please enter a valid email address.",
+      "5" => "Invalid username. Characters allowed: alpha-numeric, '_'. Max length is 10 characters.",
+      "6" => "Invalid password. Please enter 6 - 32 characters. Include one letter, one number and character that is not alpha-numeric",
+      "7" => "Invalid First or last name. Only characters allowed are alpha, [ - ], [ ' ] and spaces",
+      "8" => "Invalid email address. Please enter a valid email address",
+      "9" => "Passwords do not match. Please enter a valid password and try again.",
+      "10" => "Emails do not match. Please enter a valid email address and try again. "
+    );
+    print_r($_POST);
+    
+    if( isset($_POST['user_name']) ){
+      
+    }
+
     //TODO: VALIDATION GOES HERE
+
+
+
     // echo "<pre>";
     // print_r($_POST);
     // echo "</pre>";
