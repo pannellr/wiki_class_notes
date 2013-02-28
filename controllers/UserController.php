@@ -54,26 +54,87 @@ class UserController extends Controller implements ControllerInterface {
       "3" => "Please enter a date of birth.",
       "4" => "Please enter a valid email address.",
       "5" => "Invalid username. Characters allowed: alpha-numeric, '_'. Max length is 10 characters.",
-      "6" => "Invalid password. Please enter 6 - 32 characters. Include one letter, one number and character that is not alpha-numeric",
-      "7" => "Invalid First or last name. Only characters allowed are alpha, [ - ], [ ' ] and spaces",
+      "6" => "Invalid password. Please enter 6 - 32 characters. Include one letter, one number and character that is not alpha-numeric. Spaces are not allowed.",
+      "7" => "Invalid first or last name. Only characters allowed are alpha, [ - ], [ ' ] and spaces",
       "8" => "Invalid email address. Please enter a valid email address",
       "9" => "Passwords do not match. Please enter a valid password and try again.",
       "10" => "Emails do not match. Please enter a valid email address and try again. "
     );
     print_r($_POST);
-    
-    if( isset($_POST['user_name']) ){
-      
+
+    //Validate the username
+    if( isset($_POST['user_name']) ) {
+      if( preg_match("/^[a-zA-Z0-9_]{1,10}$/", $_POST['user_name']) === 1 ) {
+        $user_name = $_POST['user_name'];
+      } else {
+        $flash = new Flash($flashArray[5], "error");
+      }
+    } else {
+      $flash = new Flash($flashArray[0], "error");
     }
 
-    //TODO: VALIDATION GOES HERE
+    //Validate the password
+    if( isset($_POST['password']) ) {
+      if( $_POST['password'] === $_POST['confirm_password'] ) {
+        if( preg_match("/^(?=.*\d)(?=.*[^a-zA-Z0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/", $_POST['password']) === 1 ) {
+          $password = hash('sha256', $_POST['password']);
+        } else {
+          $flash = new Flash($flashArray[6], "error");
+        }
+      } else {
+        $flash = new Flash($flashArray[9], "error");
+      }
+    } else {
+      $flash = new Flash($flashArray[1], "error");
+    }
+
+    //Validate the first and last names
+    if( isset($_POST['first_name']) && isset($_POST['last_name']) ) {
+      if( preg_match("/^[ a-zA-ZáêéèêíîóúüÁÉÍÓÚÜ']{1,20}$/", $_POST['first_name']) === 1 
+     && preg_match("/^[ a-zA-ZáêéèêíîóúüÁÉÍÓÚÜ']{1,20}$/", $_POST['last_name']) === 1 ) {
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+      } else {
+        $flash = new Flash($flashArray[7], "error");
+      }
+    } else {
+      $flash = new Flash($flashArray[2], "error");
+    }
+
+    //Validate date of birth
+    if( isset($_POST['birth_year']) && isset($_POST['birth_month']) && isset($_POST['birth_day']) ) {
+      if( preg_match("/^(19|20)[0-9]{2}$/", $_POST['birth_year']) === 1 
+          && preg_match("/^(0[0-9]|[1-9]|1(0|1|2))$/", $_POST['birth_month']) === 1 
+          && preg_match("/^(0[0-9]|[1-9]|(1|2)[0-9]|3(0|1|2))$/", $_POST['birth_day']) === 1 ) {
+        $birthday = $_POST['birth_year']."-".$_POST['birth_month']."-".$_POST['birth_day'];
+      } else {
+        $flash = new Flash($flashArray[3], "error");
+      }
+    } else {
+      $flash = new Flash($flashArray[3], "error");
+    }
+
+    //Validate email address
+    if( isset($_POST['email']) ) {
+      if( $_POST['email'] === $_POST['confirm_email'] ) {
+        if( preg_match("/^[a-zA-Z0-9!\#$%&'*+-/=?^_`{|}~\.]+@[a-zA-Z0-9-.]*\.[a-zA-Z]{2,4}$/", $_POST['email']) === 1 ) {
+          $email = $_POST['email'];
+        } else {
+          $flash = new Flash($flashArray[4], "error");
+        }
+      } else {
+        $flash = new Flash($flashArray[10], "error");
+      }
+    } else {
+      $flash = new Flash($flashArray[4], "error");
+    }
 
 
 
     // echo "<pre>";
     // print_r($_POST);
     // echo "</pre>";
-    $birthday = $_POST['birth_year']."-".$_POST['birth_month']."-".$_POST['birth_day'];
+    
     // echo $birthday;
 
     $personInfo = array(
