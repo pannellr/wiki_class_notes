@@ -2,7 +2,7 @@
 
 require_once("DB.php");
 
-class Institution extends DB{
+class Textbook extends DB{
 
   public function __construct(){
     parent::__construct();
