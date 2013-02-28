@@ -8,3 +8,6 @@ require_once("Course.php");
 require_once("Department.php");
 require_once("People.php");
 require_once("Textbook.php");
+require_once("Section.php");
+require_once("SectionSchedule.php");
+require_once("Note.php");
