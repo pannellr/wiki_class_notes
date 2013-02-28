@@ -2,8 +2,8 @@
 
 <form method="GET" action="create">
 <p>
-	<label for="name"> Textbook name</label><br />
-	<input name="name">	
+	<label for="title"> Textbook name</label><br />
+	<input name="title">	
 </p>
 
 <p>
