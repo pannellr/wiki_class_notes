@@ -1,4 +1,4 @@
-<h3>Show information for user <?php echo($data[0]['user_name']); ?></h3>
+<h3>Showing all Users</h3>
 
 <?php
 echo "<table><tr><td>user_name</td><td>created on</td><td>person id</td></td><td>edit</td><td>delete</td></tr>";

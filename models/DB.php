@@ -9,7 +9,7 @@ class DB{
   private $tableName;
   
   function __construct(){
-    
+    $this->dbh = new mysqli('localhost', 'root', 'root', 'sdugas_esarve');
     if (mysqli_connect_errno($this->dbh)) {
 	throw new CouldNotEstablishConnectionException("Could not connect to Database");
     }
@@ -41,6 +41,7 @@ class DB{
   // inserts the values into the table
   //@param values
   function insert($values){
+
     $query = "insert into " . $this->tableName . " (";
     $separator = "";
     

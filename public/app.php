@@ -1,6 +1,6 @@
 <?php
 
-//Reqire all of the controllers
+//Require all of the controllers
 require("../controllers/controllers.php");
 
 //.htaccess passes the class name through a GET request
