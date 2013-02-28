@@ -6,3 +6,4 @@ require_once("CourseController.php");
 require_once("InstitutionController.php");
 require_once("HomeController.php");
 require_once("DepartmentController.php");
+require_once("TextbookController.php");

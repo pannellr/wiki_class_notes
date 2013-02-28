@@ -7,3 +7,4 @@ require_once("Institution.php");
 require_once("Course.php");
 require_once("Department.php");
 require_once("People.php");
+require_once("Textbook.php");
