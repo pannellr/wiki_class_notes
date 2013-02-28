@@ -29,10 +29,20 @@ class UserController extends Controller implements ControllerInterface {
   private function checkAuth(){
     $this->model = new UserAuth();
     if( isset($_COOKIE['Auth']) ) {
-      return $this->model->userForAuth($_COOKIE['Auth']);
+      $result =  $this->model->select(array("hash"=>$_COOKIE['Auth']));
+      print_r($result[0]);
+      return $result[0];
     } else {
       return  false;
     }
+  }
+
+  //Shows information about logged in user
+  public function me(){
+    $user = $this->checkAuth();
+    $this->model = new User();
+    //TODO: get userinfo from USER table, not AUTH table
+    $this->loadPage($user[0], "show_me", $user[0]);
   }
 
   public function create($params){
@@ -61,9 +71,16 @@ class UserController extends Controller implements ControllerInterface {
     );
 
     $this->userModel = new User();
-    $this->userModel->insert($userInfo);
+    $user_id = $this->userModel->insert($userInfo);
+    $user = $this->userModel->select(array("id"=>$user_id));
+    $user = $user[0];
+    //print_r($user);
 
-    $this->redirect("wiki_class_notes/user/all");
+    //Create authentication hash for user
+    $this->userAuthModel = new UserAuth();
+    $hash = $this->userAuthModel->authorizeUser($user);
+
+    $this->redirect("user/me");
   }
 
   public function show($id){

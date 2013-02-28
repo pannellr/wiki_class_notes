@@ -12,9 +12,8 @@
      <input name="password" /><br />
   </p>
 
-  <a href="#">forgot password</a>
-
-
   <input type="submit" value="Submit" />
 
 </form>
+
+<a href="#">forgot password</a>

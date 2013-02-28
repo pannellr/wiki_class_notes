@@ -19,11 +19,5 @@
     <li>
        <a href="/course/all">All Courses</a>
     </li>
-    <li>
-       <a href="/user/login">login</a>
-    </li>
-    <li>
-       <a href="/user/fresh">New User</a>
-    </li>
   </ul>
 </nav>

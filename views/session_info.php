@@ -1,11 +1,12 @@
  <div id="session_info">
  	<?php
- 		if(isset($user)){ ?>
- 			You are logged in as <em><?php echo $user['user_name'] ?></em>
+ 		if(isset($data['user'])){ ?>
+ 			You are logged in as <em><?php echo $data['user']['user_name'] ?></em>
  	<?php 
- 		} else {
- 			echo "You are not logged in.";
- 			echo ""
- 		}
+ 		} else { ?>
+ 			You are not logged in.
+ 			<a href="/user/login">login</a>
+ 			<a href="/user/fresh">sign up</a>
+ 	<?php 	} ?>
 
  </div>
