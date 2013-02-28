@@ -22,7 +22,7 @@ class TextbookController extends Controller implements ControllerInterface{
   public function show($id){
     $this->model = new Textbook();
     $textbook = $this->model->select($id);
-    $this->loadPage($user = null, "show_textbook", $institution);
+    $this->loadPage($user = null, "show_textbook", $textbook);
   }
 
   public function all(){
@@ -33,7 +33,7 @@ class TextbookController extends Controller implements ControllerInterface{
 
   public function edit($id){
     $this->model = new Textbook();
-    $institution = $this->model->select($id);
+    $textbook = $this->model->select($id);
     $this->loadPage($user = null, "edit_textbook", $textbook);
   }
 
