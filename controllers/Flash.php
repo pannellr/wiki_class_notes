@@ -1,6 +1,6 @@
 <?php
 
-class Flash(){
+class Flash{
   //instance variables
   private $type;
   private $message;
@@ -11,7 +11,7 @@ class Flash(){
   }
   
   public function display(){
-    echo "<div class=\"flash ".$this->type."\">".$this->message."</div>";
+    echo "<div class=\"flash " . $this->type . "\">" . $this->message . "</div>";
   }
   
   
