@@ -11,7 +11,7 @@ Fields:
 	confirm email
 
 Validations:
-	username - min of 1 character, max of 15 characters
+	username - min of 1 character, max of 10 characters
 		screen against list of bad words
 		alpha-numeric and underscore
 	password - min 6 characters, max of 32
