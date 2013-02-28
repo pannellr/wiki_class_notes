@@ -2,6 +2,7 @@
 
 require_once("../models/classes.php");
 require_once("ControllerInterface.php");
+require_once("Flash.php");
 
 class Controller{
 
