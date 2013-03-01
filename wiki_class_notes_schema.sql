@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `sdugas_esarve` /*!40100 DEFAULT CHARACTER SET la
 USE `sdugas_esarve`;
 -- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
--- Host: localhost    Database: wcn
+-- Host: localhost    Database: sdugas_esarve
 -- ------------------------------------------------------
 -- Server version	5.0.95
 
@@ -70,7 +70,7 @@ CREATE TABLE `institutions` (
   `created_on` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `created_by` varchar(40) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,6 +190,22 @@ CREATE TABLE `textbooks` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `userAuth`
+--
+
+DROP TABLE IF EXISTS `userAuth`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `userAuth` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `user_id` int(11) unsigned default NULL,
+  `user_name` varchar(10) default NULL,
+  `hash` varchar(64) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `users`
 --
 
@@ -216,4 +232,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-16 20:55:33
+-- Dump completed on 2013-03-01 12:46:03
