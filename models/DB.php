@@ -1,7 +1,7 @@
 <?php
 
 //require_once("../config/db.php");
-require_once("../errors/Exceptions.php");
+//require_once("../errors/Exceptions.php");
 
 class DB{
   
@@ -9,7 +9,7 @@ class DB{
   private $tableName;
   
   function __construct(){
-     $this->dbh = new mysqli('localhost', 'pannellr', 'Shiwa0k@r', 'sdugas_esarve');
+     $this->dbh = new mysqli('localhost', 'root', '', 'sdugas_esarve');
     if (mysqli_connect_errno($this->dbh)) {
 	throw new CouldNotEstablishConnectionException("Could not connect to Database");
     }
