@@ -10,21 +10,53 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
-body{ background-color: orange; }
+body{ 
+	background-color: #FFFAF0;
+	font-size: 13pt;
+    font-family: Sans-serif, Arial, Verdana;
+    margin: 0; 
+    
 
-html,
-button,
-input,
-select,
-textarea {
-    color: #222;
+ }
+
+    
+nav {
+	position:relative;
+	background-color:#654321;
+	height:50px;
+	width:auto;
+	margin:auto ;
+	
 }
 
-body {
-    font-size: 1em;
-    line-height: 1.4;
+nav ul   {
+list-style-type:none;
+margin:0 30px;
+padding:0;
+	
+}
+nav ul li{
+	display:inline;
+	float:left;
+	margin:20px;
 }
 
+nav ul li a:link,a:visited
+{
+display:block;
+font-weight:bold;
+color:#FFFAF0;
+font-size:12pt;
+text-align:center;
+padding:3px;
+text-decoration:none;
+text-transform:uppercase;
+}
+a:hover,a:active
+{
+background-color:#D2691E;
+border-radius:5px;
+}
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection declarations have to be separate.
@@ -32,12 +64,12 @@ body {
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
+    background: #FFFAF0;
     text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
+    background: #FFFAF0;
     text-shadow: none;
 }
 
@@ -58,7 +90,6 @@ hr {
  * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
  */
 
-body { background-color: orange;}
 
 img {
     vertical-align: middle;
@@ -94,14 +125,55 @@ textarea {
 }
 
 /* ==========================================================================
-   Author's custom styles
+   Sign up form styles
    ========================================================================== */
+#signup {
+	position:relative;
+	width:300px;
+	height:auto;
+	margin-top:60px;
+	margin-left: auto;
+	margin-right:300px;
+	padding:5px;
+	
+}
+#signup p {
+	text-align: center;
+	margin-bottom:0;
+	color:#654321;
+}
+#signup h3{
+	text-align: center;
+	font-style: bolder;
+	color:orange;
+	font-size:20pt;
+	margin: 0;
+	
+}
 
+form{
+	padding:4px;
+	font-size:13pt;
+	position:relative;
+	position:relative;
+   border-style:outset;
+    border-width:4px;
+    border-color:#654321;
+	width:300px;
+	text-align: center;
+	
+	
+}
+.submit {
+	background-color: orange;
+	border-color:orange;
+	width: 100px;
+	font-size: 14pt;
+	border-radius:5px;
+}
 
-
-
-
-
+form label {font-size:10pt;
+            font-style:bold;}
 
 
 
