@@ -9,11 +9,9 @@ class DB{
   private $tableName;
   
   function __construct(){
-<<<<<<< HEAD
+
      $this->dbh = new mysqli('localhost', 'root', '', 'sdugas_esarve');
-=======
-     $this->dbh = new mysqli('localhost', 'root', 'root', 'sdugas_esarve');
->>>>>>> 39a4458d31a27901c32a15b4c194c1b1b29801be
+
     if (mysqli_connect_errno($this->dbh)) {
 	throw new CouldNotEstablishConnectionException("Could not connect to Database");
     }
