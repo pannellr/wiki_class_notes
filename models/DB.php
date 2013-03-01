@@ -100,5 +100,14 @@ class DB{
   function setTableName($t){
     $this->tableName = $t;
   }
-  
+
+ function query($q)
+ {
+	$results = array();
+    $res = $this->dbh->query($q);
+    while ($row = $res->fetch_assoc()){
+      array_push($results, $row);
+    }
+    return $results;
+ }
 }

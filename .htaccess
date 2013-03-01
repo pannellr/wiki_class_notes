@@ -2,10 +2,18 @@
 php_flag display_errors 1
 php_value error_reporting 8191
 
-RewriteEngine On
+#RewriteEngine On
+#bluenose needs the indexing option
 #Options +Indexes
-##bluenose only
+#RewriteCond %{REQUEST_URI} !/css
+#RewriteCond %{REQUEST_URI} !/js
+##RewriteRule ^$ /home public/app.php?class=home&method=home
+#RewriteRule ^(.+)/(.+)/?([a-zA-Z0-9/]*)$ public/app.php?class=$1&method=$2 [QSA,L]
+
+
+##rickey's configuration
+RewriteEngine On
 RewriteCond %{REQUEST_URI} !/css
 RewriteCond %{REQUEST_URI} !/js
-##RewriteRule ^$ /home public/app.php?class=home&method=home
 RewriteRule ^(.+)/(.+)/?([a-zA-Z0-9/]*)$ public/app.php?class=$1&method=$2 [QSA,L]
+RewriteRule ^$ public/app.php?class=home&method=home [QSA,L]

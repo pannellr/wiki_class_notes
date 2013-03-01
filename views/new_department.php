@@ -2,6 +2,7 @@
 
 <form method="GET" action="create" >
   <p>
+    <label for="institution_id">Choose Institution:</label><br />
     <select name="institution_id">
     <?php 
        foreach ($data as $key => $value) {
