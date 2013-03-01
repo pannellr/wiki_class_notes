@@ -2,6 +2,7 @@
 
 <form method="GET" action="create" >
   <p>
+    <label for="department_id">Choose a Department:</label><br />
     <select name="department_id">
 
       <?php
