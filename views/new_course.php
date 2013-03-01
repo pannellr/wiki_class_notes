@@ -1,14 +1,28 @@
-<h3>Create a new school</h3>
+<h3>Create a new Course</h3>
 
 <form method="GET" action="create" >
   <p>
-    <label for="name">Name</label><br />
+    <select name="department_id">
+
+      <?php
+   
+   foreach ($data as $department){
+     echo "<option value=\"" 
+         . $department['id'] 
+         . "\">" 
+         . $department['name'] 
+         . "</option>";
+   }
+      ?>
+
+    </select>
+  <p>
+    <label for="name">Course Name</label><br />
     <input name="name" />
   </p>
   <p>
-    <label for="created_by">Creator User name</label><br />
-    <input name="created_by" />
+    <label for="number">Course Number</label><br />
+    <input name="number">
   </p>
-
   <input type="submit" value="Create" />
 </form>

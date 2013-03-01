@@ -10,7 +10,25 @@ class SectionController extends Controller implements ControllerInterface{
   }
 
   public function fresh(){
-    $this->loadPage($user = null, "new_section");
+    $data = array();
+    
+    $schedule = new SectionSchedule();
+    $shedules = $schedule->select();
+    
+    $textbook = new Textbook();
+    $textbooks = $textbook->select();
+
+    $semester = new Semester();
+    $semesters = $semester->select();
+
+    //add each set a values to an associative array
+    //to make it easy to pull the lists out by the key
+    $data("schedules" => $schedules,
+	  "textbooks" => $textbooks,
+	  "semesters" => $semester
+	  );
+
+    $this->loadPage($user = null, "new_section", $data);
   }
 
   public function create($params){
