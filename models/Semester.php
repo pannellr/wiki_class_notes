@@ -6,7 +6,7 @@ class Semester extends DB{
 
   public function __construct(){
     parent::__construct();
-    parent::setTableName("Semester");
+    parent::setTableName("semester");
   }
 
 } 
