@@ -8,4 +8,5 @@ require_once("HomeController.php");
 require_once("DepartmentController.php");
 require_once("TextbookController.php");
 require_once("SectionController.php");
+require_once("SectionScheduleController.php");
 require_once("SemesterController.php");

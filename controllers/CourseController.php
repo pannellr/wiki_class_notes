@@ -42,13 +42,13 @@ class CourseController extends Controller implements ControllerInterface{
   public function update($updates){
     $this->model = new Course();
     $this->model->update($updates);
-    $this->redirect("wiki_class_notes/course/show?id=" . $updates['id']);
+    $this->redirect("course/show?id=" . $updates['id']);
   }
 
   public function destroy($id){
     $this->model = new Course;
     $this->model->delete($id);
-    $this->redirect("wiki_class_notes/course/all");
+    $this->redirect("course/all");
   }
   
 }
