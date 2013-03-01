@@ -15,7 +15,7 @@ class UserController extends Controller implements ControllerInterface {
   }
   //TODO: create authentication system
   public function login($data){
-   // $this->model = new UserAuth();
+   //$this->model = new UserAuth();
     //$this->model->attemptLogin($data);
     $this->loadPage($user = null, "login_user");
   }
@@ -26,11 +26,10 @@ class UserController extends Controller implements ControllerInterface {
   }
 
   //Check if user is logged in and pass the user's data to the page
-  private function checkAuth(){
+  function checkAuth(){
     $this->model = new UserAuth();
     if( isset($_COOKIE['Auth']) ) {
       $result =  $this->model->select(array("hash"=>$_COOKIE['Auth']));
-      print_r($result[0]);
       return $result[0];
     } else {
       return  false;
