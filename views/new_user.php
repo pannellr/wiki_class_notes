@@ -50,7 +50,7 @@ Database validations:
 
   <p>
     <label for="date_of_birth">Date of birth:</label><br />
-    <?php require("date_of_birth.php") ?>
+    <input type="date" name="date_of_birth" />
   </p>
 
   <p>

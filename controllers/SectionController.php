@@ -10,7 +10,6 @@ class SectionController extends Controller implements ControllerInterface{
   }
 
   public function fresh(){
-    $data = array();
     
     $schedule = new SectionSchedule();
     $shedules = $schedule->select();
@@ -23,10 +22,10 @@ class SectionController extends Controller implements ControllerInterface{
 
     //add each set a values to an associative array
     //to make it easy to pull the lists out by the key
-    $data("schedules" => $schedules,
-	  "textbooks" => $textbooks,
-	  "semesters" => $semester
-	  );
+    $data = array("schedules" => $schedules,
+		  "textbooks" => $textbooks,
+		  "semesters" => $semester
+		  );
 
     $this->loadPage($user = null, "new_section", $data);
   }
