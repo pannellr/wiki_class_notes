@@ -16,7 +16,7 @@ class TextbookController extends Controller implements ControllerInterface{
   public function create($params){
     $this->model = new Textbook();
     $insert_id = $this->model->insert($params);
-    $this->redirect("wiki_class_notes/textbook/all");
+    $this->redirect("textbook/all");
   }
 
   public function show($id){
@@ -40,13 +40,13 @@ class TextbookController extends Controller implements ControllerInterface{
   public function update($updates){
     $this->model = new Textbook();
     $this->model->update($updates);
-    $this->redirect("wiki_class_notes/textbook/show?id=" . $updates['id']);
+    $this->redirect("textbook/show?id=" . $updates['id']);
   }
 
   public function destroy($id){
     $this->model = new Textbook();
     $this->model->delete($id);
-    $this->redirect("wiki_class_notes/textbook/all");
+    $this->redirect("textbook/all");
   }
   
 }
