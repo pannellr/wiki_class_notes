@@ -5,8 +5,8 @@
     <?php 
     } else { ?>
       You are not logged in.
-      <a href="/wiki_class_notes/user/login">login</a>
-      <a href="/wiki_class_notes/user/fresh">sign up</a>
+      <a href="/user/login">login</a>
+      <a href="/user/fresh">sign up</a>
     <?php 	} ?>
 
 </div>
