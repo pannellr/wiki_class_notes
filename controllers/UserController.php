@@ -64,7 +64,9 @@ class UserController extends Controller implements ControllerInterface {
 
     //initially set flash as false
     $flash = false;
-
+    echo "<pre>";
+    echo "flash initially set to false ";
+    print_r($flash);
     //Validate the username
     if( isset($_POST['user_name']) ) {
       if( preg_match("/^[a-zA-Z0-9_]{1,10}$/", $_POST['user_name']) === 1 ) {
@@ -211,7 +213,7 @@ class UserController extends Controller implements ControllerInterface {
   else {
     $this->loadPage(null, "new_user", null, $flash);
   }
-
+  echo "</pre>";
 }//end function create()
 
   public function show($id){
@@ -235,13 +237,13 @@ class UserController extends Controller implements ControllerInterface {
   public function update($updates){
     $this->model = new User();
     $this->model->update($updates);
-    $this->redirect("wiki_class_notes/user/show?id=" . $updates['id']);
+    $this->redirect("show?id=" . $updates['id']);
   }
 
   public function destroy($id){
     $this->model = new User();
     $this->model->delete($id);
-    $this->redirect("wiki_class_notes/user/all");
+    $this->redirect("all");
   }
 
   
