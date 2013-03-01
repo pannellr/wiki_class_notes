@@ -64,9 +64,7 @@ class UserController extends Controller implements ControllerInterface {
 
     //initially set flash as false
     $flash = false;
-    echo "<pre>";
-    echo "flash initially set to false ";
-    print_r($flash);
+  
     //Validate the username
     if( isset($_POST['user_name']) ) {
       if( preg_match("/^[a-zA-Z0-9_]{1,10}$/", $_POST['user_name']) === 1 ) {
@@ -142,7 +140,6 @@ class UserController extends Controller implements ControllerInterface {
     }
 
     //If no flashes, check database
-    print_r($flash);
     if($flash === false) {
       //Create a model for the people table and user table
       $this->personModel = new People();
@@ -155,7 +152,6 @@ class UserController extends Controller implements ControllerInterface {
       $peopleResult = $this->personModel->select($where);
       if( !empty($peopleResult) ) {
         $flash['email'] = new Flash($flashArray[12], "error");
-        echo "ERROR! Email is in database already!!!";
       }
 
       //Check database for user_name already used
@@ -165,14 +161,7 @@ class UserController extends Controller implements ControllerInterface {
       $userResult = $this->userModel->select($where);
       if( !empty($userResult) ) {
         $flash['user_name'] = new Flash($flashArray[11], "error");
-        echo "ERROR! Username is in database already!!!";
       }
-
-      echo "Is email in use? ";
-      print_r(empty($peopleResult));
-
-      echo "Is user_name is use? ";
-      print_r(empty($userResult));
 
       //Insert user into database
       if( empty($peopleResult) && empty($userPeople) ){
@@ -213,7 +202,7 @@ class UserController extends Controller implements ControllerInterface {
   else {
     $this->loadPage(null, "new_user", null, $flash);
   }
-  echo "</pre>";
+
 }//end function create()
 
   public function show($id){
