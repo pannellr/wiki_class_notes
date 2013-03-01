@@ -6,13 +6,14 @@
     <input name="title" />
   </p>
 
-  <form action="demo_form.asp">
-  Start Date: <input type="date" name="start_date">
-</form>
-
-  <form action="demo_form.asp">
-  End Date: <input type="date" name="end_date">
-</form>
+  <p>
+    <label for="start_date">Start Date:</label> 
+    <input type="date" name="start_date">
+  </p>
+  <p>
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date">
+  </p>
   <input type="submit" value="Create" />
   
 </form>
