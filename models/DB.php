@@ -9,20 +9,16 @@ class DB{
   private $tableName;
   
   function __construct(){
-<<<<<<< HEAD
      $this->dbh = new mysqli('localhost', 'pannellr', 'Shiwa0k@r', 'sdugas_esarve');
-=======
-    $this->dbh = new mysqli('localhost', 'root', 'root', 'sdugas_esarve');
->>>>>>> 2d4c96e53fb5871f6cc51bece003fb2fc427e41d
     if (mysqli_connect_errno($this->dbh)) {
 	throw new CouldNotEstablishConnectionException("Could not connect to Database");
     }
    
   }
   
-//selects everything within where parameter and then put them in an array
-//@param where
-//@return array of results
+  //selects everything within where parameter and then put them in an array
+  //@param where
+  //@return array of results
   function select($where = false){
     $query="SELECT * FROM ". $this->tableName ;
     $separator=" WHERE ";
@@ -63,6 +59,7 @@ class DB{
   
     }
     $query .= ");";
+
     $this->dbh->query($query);  
     return $this->dbh->insert_id;
   

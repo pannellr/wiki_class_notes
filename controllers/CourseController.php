@@ -11,7 +11,7 @@ class CourseController extends Controller implements ControllerInterface{
 
   public function fresh(){
     $dept = new Department();
-    $departments = $dept->all();
+    $departments = $dept->select();
     $this->loadPage($user = null, "new_course", $departments);
   }
 

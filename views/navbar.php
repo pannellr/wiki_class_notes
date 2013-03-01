@@ -19,5 +19,11 @@
     <li>
        <a href="/wiki_class_notes/course/all">All Courses</a>
     </li>
+   <li>
+      <a href="/wiki_class_notes/textbook/fresh">New Textbook</a>
+    </li>
+    <li>
+       <a href="/wiki_class_notes/textbook/all">All Textbooks</a>
+    </li>
   </ul>
 </nav>
