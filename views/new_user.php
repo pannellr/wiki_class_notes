@@ -31,29 +31,20 @@ Database validations:
 	PHP sanitization of input data
 
 -->
+<div id="signup">
+	<p>New to wiki class notes?</p>
 <h3>Sign Up</h3>
 
 <form method="POST" action ="create">
 
-   <p>
-     <label for="user_name">Username:</label><br />
-     <input name="user_name" />
-  </p>
-
+   
   <p>
-     <label for="password">Password:</label><br />
-     <input type="password" name="password" /><br />
-     <label for="confirm_password">Confirm Password:</label><br />
-     <input type="password" name="confirm_password" />
-  </p>
-
-  <p>
-     <label for="first_name">First Name:</label><br />
+     <label for="first_name">First Name:</label>
      <input name="first_name" />
   </p>
 
   <p>
-     <label for="last_name">Last Name:</label><br />
+     <label for="last_name">Last Name:</label>
      <input name="last_name" />
   </p>
 
@@ -72,7 +63,19 @@ Database validations:
      <input name="confirm_email" />
   </p>
 
+<p>
+     <label for="user_name">Username:</label><br />
+     <input name="user_name" />
+  </p>
 
-  <input type="submit" value="Submit" />
+  <p>
+     <label for="password">Password:</label>
+     <input type="password" name="password" />
+     <label for="confirm_password"><br />Confirm Password:</label>
+     <input type="password" name="confirm_password" />
+  </p>
+
+  <input class="submit" type="submit" value="Submit" />
 
 </form>
+</div>
