@@ -10,6 +10,11 @@ class DB{
   
   function __construct(){
 <<<<<<< HEAD
+
+     $this->dbh = new mysqli('localhost', 'root', '', 'sdugas_esarve');
+
+=======
+<<<<<<< HEAD
      $this->dbh = new mysqli('localhost', 'pannellr', 'Shiwa0k@r', 'sdugas_esarve');
 =======
 <<<<<<< HEAD
@@ -18,6 +23,7 @@ class DB{
      $this->dbh = new mysqli('localhost', 'root', 'root', 'sdugas_esarve');
 >>>>>>> 39a4458d31a27901c32a15b4c194c1b1b29801be
 >>>>>>> 1c39836f8b6d1e8119cf28168f5aa217a038a5a9
+>>>>>>> 7177b8060851c9327163ef45e19aad1db0e814d2
     if (mysqli_connect_errno($this->dbh)) {
 	throw new CouldNotEstablishConnectionException("Could not connect to Database");
     }
