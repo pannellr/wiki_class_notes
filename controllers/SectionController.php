@@ -33,7 +33,7 @@ class SectionController extends Controller implements ControllerInterface{
   public function create($params){
     $this->model = new Section();
     $insert_id = $this->model->insert($params);
-    $this->redirect("wiki_class_notes/section/all");
+    $this->redirect("section/all");
   }
 
   public function show($id){
@@ -57,13 +57,13 @@ class SectionController extends Controller implements ControllerInterface{
   public function update($updates){
     $this->model = new Section();
     $this->model->update($updates);
-    $this->redirect("wiki_class_notes/section/show?id=" . $updates['id']);
+    $this->redirect("section/show?id=" . $updates['id']);
   }
 
   public function destroy($id){
     $this->model = new Section();
     $this->model->delete($id);
-    $this->redirect("wiki_class_notes/Section/all");
+    $this->redirect("Section/all");
   }
   
 }

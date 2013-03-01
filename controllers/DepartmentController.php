@@ -18,7 +18,7 @@ class DepartmentController extends Controller implements ControllerInterface{
   public function create($params){
     $this->model = new Department();
     $insert_id = $this->model->insert($params);
-    $this->redirect("wiki_class_notes/department/all");
+    $this->redirect("department/all");
   }
 
   public function show($id){
@@ -42,13 +42,13 @@ class DepartmentController extends Controller implements ControllerInterface{
   public function update($updates){
     $this->model = new Department();
     $this->model->update($updates);
-    $this->redirect("wiki_class_notes/department/show?id=" . $updates['id']);
+    $this->redirect("department/show?id=" . $updates['id']);
   }
 
   public function destroy($id){
     $this->model = new Department;
     $this->model->delete($id);
-    $this->redirect("wiki_class_notes/department/all");
+    $this->redirect("department/all");
   }
   
 }

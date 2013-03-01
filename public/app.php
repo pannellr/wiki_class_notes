@@ -6,7 +6,7 @@ require("../controllers/controllers.php");
 //.htaccess passes the class name through a GET request
 //make the first letter uppercase and store it in controller
 $model = ucfirst($_GET['class']);    
-$controller = $model . 'Controller';
+$controller = toCamelCase($model, true) . 'Controller';
 
 //.htaccess passes the method through a GET request
 //it is in the not_camel_case style
@@ -29,10 +29,11 @@ function toCamelCase($string, $first = false){
   $strings = explode("_", $string);
   $camelCased = '';
   if ($first){
-    $camelCased = ucfirst($string[0]);
+    $camelCased .= ucfirst($strings[0]);
   } else {
-    $camelCased = lcfirst($strings[0]);
+    $camelCased .= lcfirst($strings[0]);
   }
+
   //start at 1, skipping the first string
   for ($i = 1; $i < count($strings); $i++){
     $camelCased .= ucfirst($strings[$i]);

@@ -16,7 +16,7 @@ class SectionScheduleController extends Controller implements ControllerInterfac
   public function create($params){
     $this->model = new SectionSchedule();
     $insert_id = $this->model->insert($params);
-    $this->redirect("wiki_class_notes/section_schedule/all");
+    $this->redirect("section_schedule/all");
   }
 
   public function show($id){
@@ -40,13 +40,13 @@ class SectionScheduleController extends Controller implements ControllerInterfac
   public function update($updates){
     $this->model = new SectionSchedule();
     $this->model->update($updates);
-    $this->redirect("wiki_class_notes/section_schedule/show?id=" . $updates['id']);
+    $this->redirect("section_schedule/show?id=" . $updates['id']);
   }
 
   public function destroy($id){
     $this->model = new SectionSchedule();
     $this->model->delete($id);
-    $this->redirect("wiki_class_notes/section_schedule/all");
+    $this->redirect("section_schedule/all");
   }
   
 }

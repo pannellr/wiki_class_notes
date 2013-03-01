@@ -16,7 +16,7 @@ class InstitutionController extends Controller implements ControllerInterface{
   public function create($params){
     $this->model = new Institution();
     $insert_id = $this->model->insert($params);
-    $this->redirect("wiki_class_notes/institution/all");
+    $this->redirect("institution/all");
   }
 
   public function show($id){
@@ -40,7 +40,7 @@ class InstitutionController extends Controller implements ControllerInterface{
   public function update($updates){
     $this->model = new Institution();
     $this->model->update($updates);
-    $this->redirect("wiki_class_notes/institution/show?id=" . $updates['id']);
+    $this->redirect("institution/show?id=" . $updates['id']);
   }
 
   public function destroy($id){
