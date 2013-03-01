@@ -41,9 +41,14 @@ class Controller{
 
     //The flash class is our way of passing a message to our page
     if ($flash !== false){
+      echo "<pre>";
+      print_r($flash);
+      echo "</pre>";
       foreach ($flash as $key => $value) {
-        $flash[$key]->display();
-      }      
+        if( is_object($flash[$key]) ){
+          $flash[$key]->display();
+        }
+      }
     }
 
     //load our content
