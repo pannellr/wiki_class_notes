@@ -1,6 +1,6 @@
 ##Show php errors on screen for debugging purposes
-php_flag display_errors 1
-php_value error_reporting 8191
+#php_flag display_errors 1
+#php_value error_reporting 8191
 
 #RewriteEngine On
 #bluenose needs the indexing option
