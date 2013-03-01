@@ -9,7 +9,7 @@ class DB{
   private $tableName;
   
   function __construct(){
-     $this->dbh = new mysqli('localhost', 'pannellr', 'Shiwa0k@r', 'sdugas_esarve');
+     $this->dbh = new mysqli('localhost', 'root', 'root', 'sdugas_esarve');
     if (mysqli_connect_errno($this->dbh)) {
 	throw new CouldNotEstablishConnectionException("Could not connect to Database");
     }
