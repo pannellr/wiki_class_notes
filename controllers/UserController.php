@@ -3,7 +3,31 @@
 require_once("Controller.php");
 
 class UserController extends Controller implements ControllerInterface {
-  
+    //flashArray shows all possible validation errors
+    private $flashArray = array(
+      "0" => "Please enter a username.",
+      "1" => "Please enter a password.",
+      "2" => "Please enter a first name.",
+      "3" => "Please enter a date of birth.",
+      "4" => "Please enter a valid email address.",
+      "5" => "Invalid username. Characters allowed: alpha-numeric, '_'. 
+        Max length is 10 characters.",
+      "6" => "Invalid password. Please enter 6 - 32 characters. Include one letter, 
+        one number and character that is not alpha-numeric. 
+          Spaces are not allowed.",
+      "7" => "Invalid first or last name. Only characters allowed are alpha, 
+        [ - ], [ ' ] and spaces.",
+      "8" => "Invalid email address. Please enter a valid email address",
+      "9" => "Passwords do not match. Please enter a valid password and try again.",
+      "10" => "Emails do not match. Please enter a valid email address and try again. ",
+      "11" => "Username is not available. Please choose another username.",
+      "12" => "Email is already in use. Please choose another one 
+        or recover your account.",
+      "13" => "Please enter a last name.",
+      "14" => "Invalid last name. Only characters allowed are alpha, 
+        [ - ], [ ' ] and spaces."
+    );
+
   //Constructor
   function __construct($method, $data){
     parent::__construct($method, $data);
@@ -44,140 +68,151 @@ class UserController extends Controller implements ControllerInterface {
     $this->loadPage($user[0], "show_me", $user[0]);
   }
 
+  public function validate($post, &$output, $key, $on_no_match, $on_empty, $regex){
+    if( !empty($post) ) {
+      if( preg_match($regex, $post) === 1 ) {
+        //Validation passed!
+        $output[$key] = $post;
+      } else {
+        $flash[$name] = new Flash($this->flashArray[$on_no_match], "error");
+        return $flash[$name];
+      }
+    } else {
+      $flash[$name] = new Flash($this->flashArray[$on_empty], "error");
+      return $flash[$name];
+    }
+  }
   public function create($params) {
-    //flashArray shows all possible validation errors
-    $flashArray = array(
-      "0" => "Please enter a username.",
-      "1" => "Please enter a password.",
-      "2" => "Please enter a first and last name.",
-      "3" => "Please enter a date of birth.",
-      "4" => "Please enter a valid email address.",
-      "5" => "Invalid username. Characters allowed: alpha-numeric, '_'. Max length is 10 characters.",
-      "6" => "Invalid password. Please enter 6 - 32 characters. Include one letter, one number and character that is not alpha-numeric. Spaces are not allowed.",
-      "7" => "Invalid first or last name. Only characters allowed are alpha, [ - ], [ ' ] and spaces",
-      "8" => "Invalid email address. Please enter a valid email address",
-      "9" => "Passwords do not match. Please enter a valid password and try again.",
-      "10" => "Emails do not match. Please enter a valid email address and try again. ",
-      "11" => "Username is not available. Please choose another username.",
-      "12" => "Email is already in use. Please choose another one or recover your account."
-    );
-
     //initially set flash as false
     $flash = false;
-  
+
+    //create an input array that will hold sanitized values
+    $output = array(
+      "user_name" => "",
+      "password" => "",
+      "first_name" => "",
+      "last_name" => "",
+      "date_of_birth" => "",
+      "email" => ""
+      );
+
+    //DEBUG!!
+    // echo "<pre>";
+    // print_r($_POST);
+    // echo "</pre>";
+
     //Validate the username
-    if( isset($_POST['user_name']) ) {
-      if( preg_match("/^[a-zA-Z0-9_]{1,10}$/", $_POST['user_name']) === 1 ) {
-        //Validation passed!
-        $user_name = $_POST['user_name'];
-        $flash['user_name'] = false;
-      } else {
-        $flash['user_name'] = new Flash($flashArray[5], "error");
-      }
-    } else {
-      $flash['user_name'] = new Flash($flashArray[0], "error");
-    }
+    $flash['user_name'] = $this->validate($_POST['user_name'], $output, "user_name", 5, 0, "/^[a-zA-Z0-9_]{1,10}$/");
     
     //Validate the password
-    if( isset($_POST['password']) ) {
-      if( $_POST['password'] === $_POST['confirm_password'] ) {
-        if( preg_match("/^(?=.*\d)(?=.*[^a-zA-Z0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/", $_POST['password']) === 1 ) {
-          //Validation passed!
-          $password = hash('sha256', $_POST['password']);
-          $flash['password'] = false;
-        } else {
-          $flash['password'] = new Flash($flashArray[6], "error");
-        }
-      } else {
-        $flash['password'] = new Flash($flashArray[9], "error");
-      }
-    } else {
-      $flash['password'] = new Flash($flashArray[1], "error");
+    $flash['password'] = $this->validate($_POST['password'], $output, "password", 6, 1, "/^(?=.*\d)(?=.*[^a-zA-Z0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/");
+    if( $_POST['password'] !== $_POST['confirm_password']  ) {
+      $flash['password'] = new Flash($this->flashArray[9], "error");
     }
 
     //Validate the first and last names
-    if( isset($_POST['first_name']) && isset($_POST['last_name']) ) {
-      if( preg_match("/^[ a-zA-ZáêéèêíîóúüÁÉÍÓÚÜ']{1,20}$/", $_POST['first_name']) === 1 
-     && preg_match("/^[ a-zA-ZáêéèêíîóúüÁÉÍÓÚÜ']{1,20}$/", $_POST['last_name']) === 1 ) {
-        //Validation passed!
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $flash['name'] = false;
-      } else {
-        $flash['name'] = new Flash($flashArray[7], "error");
-      }
-    } else {
-      $flash['name'] = new Flash($flashArray[2], "error");
-    }
+    $flash['first_name'] = $this->validate($_POST['first_name'], $output, "first_name", 7, 2, "/^[ a-zA-ZáêéèêíîóúüÁÉÍÓÚÜ']{1,20}$/");
+    $flash['last_name'] = $this->validate($_POST['last_name'], $output, "last_name", 14, 13, "/^[ a-zA-ZáêéèêíîóúüÁÉÍÓÚÜ']{1,20}$/");
 
     //Validate date of birth
-    if( isset($_POST['date_of_birth']) ) {
-      if( preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/", $_POST['date_of_birth']) === 1 ) {
-        //Validation passed!
-        $birthday = $_POST['date_of_birth'];
-        $flash['date_of_birth'] = false;
-      } else {
-        $flash['date_of_birth'] = new Flash($flashArray[3], "error");
-      }
-    } else {
-      $flash['date_of_birth'] = new Flash($flashArray[3], "error");
-    }
+    $flash['date_of_birth'] = $this->validate($_POST['date_of_birth'], $output, "date_of_birth", 3, 3, "/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/");
 
     //Validate email address
-    if( isset($_POST['email']) ) {
-      if( $_POST['email'] === $_POST['confirm_email'] ) {
-        if( preg_match("/^[a-zA-Z0-9!\#$%&'*+-\/=?^_`{|}~\.]+@[a-zA-Z0-9-.]*\.[a-zA-Z]{2,4}$/", $_POST['email']) === 1 ) {
-          $email = $_POST['email'];
-          $flash['email'] = false;
-        } else {
-          $flash['email'] = new Flash($flashArray[4], "error");
-        }
-      } else {
-        $flash['email'] = new Flash($flashArray[10], "error");
+    $flash['email'] = $this->validate($_POST['email'], $output, "email", 4, 4, "/^[a-zA-Z0-9!\#$%&'*+-\/=?^_`{|}~\.]+@[a-zA-Z0-9-.]*\.[a-zA-Z]{2,4}$/");
+    if( $_POST['email'] !== $_POST['confirm_email']  ) {
+      $flash['email'] = new Flash($this->flashArray[10], "error");
+    }
+    
+    //Check if all flashes are empty
+    $flash_is_empty = true;
+    foreach ($flash as $key => $value) {
+      if( !empty($flash[$key]) ) {
+        $flash_is_empty = false;
       }
-    } else {
-      $flash['email'] = new Flash($flashArray[4], "error");
     }
 
+    //DEBUG!!
+    // echo "<pre>";
+    // echo "Are there flashes? ";
+    // if( !$flash_is_empty ){
+    //   echo "Yes!\n";
+    // } else {
+    //   echo "No!\n";
+    // }
+    // print_r($flash);
+    // echo "</pre>";
+
+
     //If no flashes, check database
-    if($flash === false) {
+    if( $flash_is_empty ) {
+      //DEBUG!!
+      // echo "<pre>\n";
+      // echo " - - Checking the database - - \n";
+      // echo "</pre>";
+
       //Create a model for the people table and user table
       $this->personModel = new People();
       $this->userModel = new User();
-      
+
       //Check database for email already used
       $where = array(
-        "email" => $email
+        "email" => $output['email']
       );
       $peopleResult = $this->personModel->select($where);
       if( !empty($peopleResult) ) {
-        $flash['email'] = new Flash($flashArray[12], "error");
+        $flash['email'] = new Flash($this->flashArray[12], "error");
       }
+      //DEBUG!!
+      // echo "<pre>\n";
+      // echo " Does person exist? \n";
+      // if( empty($peopleResult) ){
+      //   echo "no\n";
+      // } else {
+      //   echo "yes\n";
+      //   print_r($peopleResult);
+      // }
+      // echo "</pre>";
+
 
       //Check database for user_name already used
       $where = array(
-        "user_name" => $user_name
+        "user_name" => $output['user_name']
       );
       $userResult = $this->userModel->select($where);
       if( !empty($userResult) ) {
-        $flash['user_name'] = new Flash($flashArray[11], "error");
+        $flash['user_name'] = new Flash($this->flashArray[11], "error");
       }
+      //DEBUG!!
+      // echo "<pre>\n";
+      // echo " Does user exist? \n";
+      // if( empty($userResult) ){
+      //   echo "no\n";
+      // } else {
+      //   echo "yes\n";
+      //   print_r($userResult);
+      // }
+      // echo "</pre>";
 
       //Insert user into database
-      if( empty($peopleResult) && empty($userPeople) ){
+      if( empty($peopleResult) && empty($userResult) ){
+        //DEBUG!!
+        // echo "<pre>\n";
+        // echo " - - - READY to enter values in database - - \n";
+        // echo "</pre>";
+
         //Enter values into people database
         $personInfo = array(
-          "first_name" => $first_name,
-          "last_name" => $last_name,
-          "date_of_birth" => $date_of_birth,
-          "email" => $email
+          "first_name" => $output['first_name'],
+          "last_name" => $output['last_name'],
+          "birthday" => $output['date_of_birth'],
+          "email" => $output['email']
         );
 
         $person_id = $this->personModel->insert($personInfo);
 
         $userInfo = array(
-        "user_name" => $_POST['user_name'],
-        "password" => $_POST['password'],
+        "user_name" => $output['user_name'],
+        "password" => $output['password'],
         "person_id" => $person_id
         );
 
@@ -185,6 +220,12 @@ class UserController extends Controller implements ControllerInterface {
         $user_id = $this->userModel->insert($userInfo);
         $user = $this->userModel->select(array("id"=>$user_id));
         $user = $user[0];
+
+        //DEBUG!!
+        // echo "<pre>\n";
+        // echo " - - - USER CREATED - - \n";
+        // print_r($user);
+        // echo "</pre>";
 
         //Create authentication hash for user
         $this->userAuthModel = new UserAuth();
