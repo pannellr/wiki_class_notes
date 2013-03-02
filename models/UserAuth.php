@@ -40,19 +40,26 @@ class UserAuth extends DB{
     for($i=0; $i<12; $i++) {
       $hash .= $chars[rand(0, 60)];
     }
+
+    //Delete user if it exists
+    $where = array(
+      "id" => $user['id']
+    );
+    $result = $this->delete($where);
+
+    //Insert userAuth
     $clause = array(
       "hash" => $hash,
       "user_name" => $user["user_name"],
       "user_id" => $user['id']
     );
-    //print_r($clause);
     //Store in the database
     $this->insert($clause);
 
     //Set cookie for user
     setcookie("Auth", $hash);
 
-    return $hash;
+    return $hash;   
 
   }
   
