@@ -10,3 +10,4 @@ require_once("TextbookController.php");
 require_once("SectionController.php");
 require_once("SectionScheduleController.php");
 require_once("SemesterController.php");
+require_once("NoteController.php");
