@@ -11,7 +11,7 @@
    ========================================================================== */
 
 body{ 
-	background-color: #FFFAF0;
+	background-color: #F8F8FF;
 	font-size: 13pt;
     font-family: Sans-serif, Arial, Verdana;
     margin: 0; 
@@ -19,43 +19,60 @@ body{
 
  }
 
-    
+#session_info{
+	background-color:black;
+	color:silver;
+	font-size: 10pt;
+	height:20px;
+	margin:0;
+}
+#session_info a:hover,a:active
+{
+color:#FF9900;
+}
+
 nav {
 	position:relative;
-	background-color:#654321;
-	height:50px;
+	background-color:black;
+	height:37px;
 	width:auto;
 	margin:auto ;
-	
+	border-bottom-style: solid;
+	border-bottom-color:#FF9900 ;
+	border-bottom-width: 2px;
 }
 
 nav ul   {
+position:relative;
+width:1300px;
 list-style-type:none;
-margin:0 30px;
+margin:auto;
 padding:0;
+text-align: center;
 	
 }
 nav ul li{
 	display:inline;
 	float:left;
-	margin:20px;
+	margin:8px;
+	
 }
 
 nav ul li a:link,a:visited
 {
 display:block;
 font-weight:bold;
-color:#FFFAF0;
-font-size:12pt;
+
+font-size:10pt;
 text-align:center;
-padding:3px;
+padding:2px;
 text-decoration:none;
 text-transform:uppercase;
+color:#fff;
 }
-a:hover,a:active
+nav ul li a:hover,a:active
 {
-background-color:#D2691E;
-border-radius:5px;
+color:#FF9900;
 }
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
@@ -91,9 +108,7 @@ hr {
  */
 
 
-img {
-    vertical-align: middle;
-}
+
 
 /*
  * Remove default fieldset styles.
@@ -127,6 +142,7 @@ textarea {
 /* ==========================================================================
    Sign up form styles
    ========================================================================== */
+
 #signup {
 	position:relative;
 	width:300px;
@@ -140,40 +156,66 @@ textarea {
 #signup p {
 	text-align: center;
 	margin-bottom:0;
-	color:#654321;
+	color:#000;
+	font-style: italic;
+	
 }
 #signup h3{
 	text-align: center;
 	font-style: bolder;
-	color:orange;
+	color:#FF9900;
 	font-size:20pt;
-	margin: 0;
+	margin: 3px;
+
 	
 }
 
-form{
-	padding:4px;
+#signup form{
+	padding:8px;
 	font-size:13pt;
 	position:relative;
 	position:relative;
-   border-style:outset;
-    border-width:4px;
-    border-color:#654321;
-	width:300px;
+    border-style:outset;
+    border-width:2px;
+    border-color:#000;
+    border-radius:25px;
+	width:280px;
 	text-align: center;
+	background-color: #fff;
 	
 	
+}
+.field{
+	width:150px;
+	border-style:inset;
+	border-width:1px;
+	border-radius: 5px;
+	float:right;
+	margin-left: 0;
+	
+
+
 }
 .submit {
-	background-color: orange;
-	border-color:orange;
-	width: 100px;
-	font-size: 14pt;
+	background-color: #FF9900;
+	border-color:#FF9900;
+	border-style:groove;
+	width: 80px;
+	font-size: 12pt;
 	border-radius:5px;
+	margin-top:15px;
+	font-weight: bold;
+	padding:4px;
 }
-
-form label {font-size:10pt;
-            font-style:bold;}
+input:focus{
+	background-color:#FFFAFA;
+}
+form label {font-size:11pt;
+            font-style:bold;
+            float:left;
+            margin-right:0;
+           
+            }
 
 
 
