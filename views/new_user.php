@@ -31,6 +31,7 @@ Database validations:
 	PHP sanitization of input data
 
 -->
+
 <div id="signup">
 	<p>New to wiki class notes?</p>
 <h3>Sign Up</h3>
@@ -40,39 +41,39 @@ Database validations:
    
   <p>
      <label for="first_name">First Name:</label>
-     <input name="first_name" />
+     <input class="field" name="first_name" /><br />
   </p>
 
   <p>
      <label for="last_name">Last Name:</label>
-     <input name="last_name" />
+     <input class="field" name="last_name" /><br />
   </p>
 
   <p>
-    <label for="date_of_birth">Date of birth:</label><br />
-    <input type="date" name="date_of_birth" />
+    <label for="date_of_birth">Date of birth:</label>
+    <input class="field" type="date" name="date_of_birth" /><br />
   </p>
 
   <p>
-     <label for="email">Email:</label><br />
-     <input name="email" />
+     <label for="email">Email:</label>
+     <input class="field" name="email" /><br />
   </p>
 
     <p>
-     <label for="confirm_email">Confirm Email:</label><br />
-     <input name="confirm_email" />
+     <label for="confirm_email">Confirm Email:</label>
+     <input class="field" name="confirm_email" /><br />
   </p>
 
 <p>
-     <label for="user_name">Username:</label><br />
-     <input name="user_name" />
+     <label for="user_name">Username:</label>
+     <input class="field" name="user_name" /><br />
   </p>
 
   <p>
      <label for="password">Password:</label>
-     <input type="password" name="password" />
-     <label for="confirm_password"><br />Confirm Password:</label>
-     <input type="password" name="confirm_password" />
+     <input class="field" type="password" name="password" /><br /><br />
+     <label for="confirm_password">Confirm Password:</label> 
+     <input class="field"type="password" name="confirm_password" /><br />
   </p>
 
   <input class="submit" type="submit" value="Submit" />
