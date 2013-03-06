@@ -45,7 +45,7 @@ class SectionController extends Controller implements ControllerInterface{
   public function all(){
     $this->model = new Section();
     $all = $this->model->select();
-    $this->loadPage($user = null, "all_sectionss", $all);
+    $this->loadPage($user = null, "all_sections", $all);
   }
 
   public function edit($id){
