@@ -41,9 +41,11 @@ class Controller{
 
     //The flash class is our way of passing a message to our page
     if ($flash !== false){
+
       // echo "<pre>FLASH!";
       // print_r($flash);
       // echo "</pre>";
+
       foreach ($flash as $key => $value) {
         if( is_object($flash[$key]) ){
           $flash[$key]->display();
@@ -56,6 +58,10 @@ class Controller{
 
     //load the footer
     $this->loadView("footer");
+  }
+
+  public function setModel($model){
+    $this->model = $model;
   }
   
 }

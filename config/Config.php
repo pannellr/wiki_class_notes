@@ -10,7 +10,7 @@ class Config{
 	function __construct(){
 	 $this->host="localhost";
 	 $this->username="root";
-	 $this->password="";
+	 $this->password="root";
 	 $this->DBname="sdugas_esarve";
 	}
 	

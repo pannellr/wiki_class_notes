@@ -34,7 +34,6 @@ class DB{
       }
     }
     $query .= ";";
-
     $results = array();
     $res = $this->dbh->query($query);
     while ($row = $res->fetch_assoc()){
@@ -64,7 +63,10 @@ class DB{
   
     }
     $query .= ");";
-
+    //DEBUG!!
+    // echo "<pre>";
+    // echo $query;
+    // echo "</pre>";
     $this->dbh->query($query);  
     return $this->dbh->insert_id;
   

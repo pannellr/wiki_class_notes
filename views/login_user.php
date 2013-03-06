@@ -4,15 +4,16 @@
 
    <p>
      <label for="user_name">Username:</label><br />
-     <input name="user_name" />
+     <input name="user_name">
   </p>
 
   <p>
      <label for="password">Password:</label><br />
      <input type="password" name="password" /><br />
+
   </p>
 
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Submit">
 
 </form>
 

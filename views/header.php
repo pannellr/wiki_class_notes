@@ -22,4 +22,3 @@
         <![endif]-->
    <?php require_once("session_info.php"); ?>
    <?php require_once('navbar.php'); ?>
-   

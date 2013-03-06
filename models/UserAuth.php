@@ -9,13 +9,32 @@ class UserAuth extends DB{
     parent::setTableName("userAuth");
   }
 
-  //Checks to see if a user exists, if so, it authorizes the user
-  public function attemptLogin($user){
+  //Checks to see if a user exists with valid credentials
+  public function attemptLogin($user_name, $password){
+    $this->setTableName("users");
+
+    $where = array(
+      "user_name" => $user_name,
+      "password" => $password
+    );
+
+    $result = $this->select($where);
+
+    $this->setTableName("userAuth");
+
+    return $result;
 
   }
   
   //This unsets the authorization cookie
   public function logoutUser($hash){
+    $where = array(
+      "hash" => $hash
+      );
+    $user = $this->select($where);
+    if( !empty($user) ){
+      $this->delete($user[0]);
+    }
 
   }
   

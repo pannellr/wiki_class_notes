@@ -25,7 +25,11 @@ class UserController extends Controller implements ControllerInterface {
         or recover your account.",
       "13" => "Please enter a last name.",
       "14" => "Invalid last name. Only characters allowed are alpha, 
-        [ - ], [ ' ] and spaces."
+        [ - ], [ ' ] and spaces.",
+        "15" => "You are already logged in. Please log out.",
+        "16" => "The credentials you have entered are invalid. Please try again.",
+        "17" => "Please enter a valid username.",
+        "18" => "Please enter a valid password."
     );
 
   //Constructor
@@ -37,20 +41,60 @@ class UserController extends Controller implements ControllerInterface {
   public function fresh(){
     $this->loadPage($user = null, "new_user");
   }
-  //TODO: create authentication system
-  public function login($data){
-   //$this->model = new UserAuth();
-    //$this->model->attemptLogin($data);
+
+  public function login(){
+   $user = $this->checkAuth();
+   if( $user !== false ) {
+    $flash['logged_in'] = new Flash($this->flashArray[15], "error");
+    $this->loadPage($user, "logout_user", false, $flash);
+   } else {
     $this->loadPage($user = null, "login_user");
+   }
+  }
+
+  public function authenticate(){
+    //check if post is not empty
+    if( !empty($_POST) ){
+      //Validate the login
+      $flash['user_name'] = $this->validate($_POST['user_name'], $output, "user_name", 17, 17, "/^[a-zA-Z0-9_]{1,10}$/");
+
+      //Validate the password
+      $flash['password'] = $this->validate($_POST['password'], $output, "password", 18, 18, "/^(?=.*\d)(?=.*[^a-zA-Z0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/");
+
+      $flash_is_empty = true;
+      
+      foreach ($flash as $key => $value) {
+        if( !empty($flash[$key]) ) {
+          $flash_is_empty = false;
+        }
+      }
+
+      if( $flash_is_empty ){
+        $this->model = new UserAuth();
+        $user = $this->model->attemptLogin($output['user_name'], $output['password']);
+        if( !empty($user) ) {
+          $this->model->authorizeUser($user[0]);
+          $this->loadPage($user[0], "show_me", array("user" => $user[0]));
+        } else {
+          $flash['no_match'] = new Flash($this->flashArray[16], "error");
+          $this->loadPage($user, "login_user", flash, $flash);
+        }
+      }
+    }
   }
 
   public function logout(){
     $this->model = new UserAuth();
-    $this->model->logoutUser($_COOKIE['Auth']);
+    if( isset($_COOKIE['Auth']) ){
+      $this->model->logoutUser($_COOKIE['Auth']);
+      setcookie("Auth", "", time() - 3600);
+    }
+    
+    $this->redirect("user/login");
   }
 
   //Check if user is logged in and pass the user's data to the page
-  function checkAuth(){
+  public function checkAuth(){
     $this->model = new UserAuth();
     if( isset($_COOKIE['Auth']) ) {
       $result =  $this->model->select(array("hash"=>$_COOKIE['Auth']));
