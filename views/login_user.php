@@ -1,6 +1,6 @@
 <h3>Login</h3>
 
-<form method="GET" action ="checkAuth">
+<form method="POST" action ="authenticate">
 
    <p>
      <label for="user_name">Username:</label><br />
@@ -9,7 +9,7 @@
 
   <p>
      <label for="password">Password:</label><br />
-     <input name="password" /><br />
+     <input type="password" name="password" /><br />
   </p>
 
   <input type="submit" value="Submit" />
