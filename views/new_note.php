@@ -23,11 +23,11 @@
   </p>
   <p>
     <label for="summary">Note Summary</label><br />
-    <input name="summary">
+    <textarea name="summary" cols="80"></textarea>
   </p>
   <p>
     <label for="content">Note Content</label><br />
-    <input name="content">
+    <textarea name="content" cols="80" rows="10"></textarea>
   </p>
   <input type="submit" value="Create" />
 </form>

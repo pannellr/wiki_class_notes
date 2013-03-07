@@ -10,7 +10,9 @@ class NoteController extends Controller implements ControllerInterface{
   }
 
   public function fresh(){
-    $this->loadPage($user = null, "new_note");
+    $course = new Course();
+    $courses = $course->select();
+    $this->loadPage($user = null, "new_note", $courses);
   }
 
   public function create($params){
