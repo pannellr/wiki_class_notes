@@ -19,8 +19,11 @@ unset($_GET['class']);
 unset($_GET['method']);
 
 //Create a controller instance
-$app = new $controller($method, $_GET);
-
+if (class_exists($controller){
+    $app = new $controller($method, $_GET);
+  } else {
+    throw new Exception("Invalid Controller");
+  }
 //Untility to convert underscore names
 //to camelCase
 //!!Need to add second arg for ucase first this might
