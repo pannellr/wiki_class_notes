@@ -19,7 +19,7 @@ unset($_GET['class']);
 unset($_GET['method']);
 
 //Create a controller instance
-if (class_exists($controller){
+if (class_exists($controller)){
     $app = new $controller($method, $_GET);
   } else {
     throw new Exception("Invalid Controller");
