@@ -18,3 +18,5 @@
 </form>
 
 <a href="#">forgot password</a>
+
+<?php require "new_user.php" ?>
