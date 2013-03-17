@@ -13,7 +13,9 @@ class HomeController extends Controller implements ControllerInterface{
   public function home(){
     //home doesn't need a model
     //it can use all the other models to get its data
-    $this->loadPage($user = null, "home");
+    $user = new User;
+    $u = $user->checkAuth();
+    $this->loadPage($u, "home");
   }
 
   //interface methods
