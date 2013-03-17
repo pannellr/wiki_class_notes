@@ -75,7 +75,8 @@ class UserController extends Controller implements ControllerInterface {
         $user = $this->model->attemptLogin($output['user_name'], $output['password']);
         if( !empty($user) ) {
           $this->model->authorizeUser($user[0]);
-          $this->loadPage($user[0], "show_me", array("user" => $user[0]));
+          $this->redirect("home/home");
+          //$this->loadPage($user[0], "show_me", array("user" => $user[0]));
         } else {
           $flash['no_match'] = new Flash($this->flashArray[16], "error");
           $this->loadPage($user, "login_user", false, $flash);
