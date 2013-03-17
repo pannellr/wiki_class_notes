@@ -41,5 +41,13 @@ class StudentController extends Controller implements ControllerInterface{
       $this->loadPage($u, "student_classes", $classes);
     }
   }
+
+  public function addClass(){
+    $user = new UserAuth();
+    $u = $user->checkAuth();
+    $student = new Student;
+    $courses = $student->availableCourses();
+    $this->loadPage($u, "student_join_class", $courses);
+  }
   
 }
