@@ -81,4 +81,4 @@ Database validations:
 </form>
 </div>
 <div>Already singed up?</div>
-<?php require "login_user.php" ?>s
+<?php require_once "login_user.php" ?>s
