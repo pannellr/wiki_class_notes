@@ -43,7 +43,8 @@ class UserController extends Controller implements ControllerInterface {
   }
 
   public function login(){
-   $user = $this->checkAuth();
+   $this->model = new UserAuth();
+   $user = $this->model->checkAuth();
    if( $user !== false ) {
     $flash['logged_in'] = new Flash($this->flashArray[15], "error");
     $this->loadPage($user, "logout_user", false, $flash);
@@ -93,20 +94,9 @@ class UserController extends Controller implements ControllerInterface {
     $this->redirect("user/login");
   }
 
-  //Check if user is logged in and pass the user's data to the page
-  public function checkAuth(){
-    $this->model = new UserAuth();
-    if( isset($_COOKIE['Auth']) ) {
-      $result =  $this->model->select(array("hash"=>$_COOKIE['Auth']));
-      return $result[0];
-    } else {
-      return  false;
-    }
-  }
-
   //Shows information about logged in user
   public function me(){
-    $user = $this->checkAuth();
+    $user = $this->model->checkAuth();
     $this->model = new User();
     //TODO: get userinfo from USER table, not AUTH table
     $this->loadPage($user[0], "show_me", $user[0]);
