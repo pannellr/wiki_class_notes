@@ -24,13 +24,13 @@
   <input type="checkbox" name="sunday" value="1">
 
   <p>
-    <label for="start_date">Start Date:</label><br />
-    <input type="date" name="start_date">
+    <label for="start_time">Start Date:</label><br />
+    <input type="time" name="start_time">
   </p>
  
   <p>
-    <label for="end_date">End Date:</label><br />
-    <input type="date" name="end_date">
+    <label for="end_time">End Date:</label><br />
+    <input type="time" name="end_time">
   </p>
 
   <input type="submit" value="Create" />

@@ -1,8 +1,25 @@
-<?php extract($data); ?>
+<?php extract($data);  ?>
 
 <h3>Create a new Course Section</h3>
 
 <form method="GET" action="create" >
+
+ <p>
+     <label for="course_id">Choose the Course:</label><br />
+     <select name="course_id">
+       <?php
+
+   foreach ($courses as $course){
+     echo "<option value="
+     . $course['id']
+     . "\">"
+     . $course['name']
+     . "</option>";
+   }
+   ?>
+      </select>
+  </p>
+
   <p>
    <label for="number">Section Number(Different than course number)</label><br />
     <input name="name" />
@@ -25,8 +42,9 @@
   <p>
      <label for="text_id">Choose a Textbook:</label><br />
      <select name="text_id">
+  
        <?php
-   foreach ($texbooks as $textbook){
+   foreach ($textbooks as $textbook){
      echo "<option value="
      . $textbook['id']
      . "\">"
@@ -40,6 +58,8 @@
      <label for="semester_id">Choose a Semester:</label><br />
      <select name="semester_id">
   <?php
+   print_r($semesters);
+
    foreach ($semesters as $semester){
        echo "<option value="
        . $semester['id']

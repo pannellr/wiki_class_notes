@@ -1,5 +1,8 @@
  <div id="session_info">
     <?php
+
+    print_r($user);
+
     if(isset($user)){ ?>
       You are logged in as <em><?php echo $user['user_name'] ?></em>
       <a href="logout">Logout</a>

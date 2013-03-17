@@ -11,9 +11,12 @@ class HomeController extends Controller implements ControllerInterface{
 
 
   public function home(){
-    $user = new UserAuth;
+    $user = new UserAuth();
+    //print_r($user);
+    print_r($user->checkAuth());
     $u = $user->checkAuth();
-    $this->loadPage($u, "home");
+    print_r($u);
+    //$this->loadPage($u, "home");
   }
 
   //interface methods
