@@ -33,7 +33,7 @@ class UserController extends Controller implements ControllerInterface {
     );
 
   //Constructor
-  function __construct($method, $data){
+  function __construct($method = null, $data = null){
     parent::__construct($method, $data);
   }
   
