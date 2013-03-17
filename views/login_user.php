@@ -19,4 +19,5 @@
 
 <a href="#">forgot password</a>
 
-<?php require "new_user.php" ?>
+<div>New User?</div>
+<a href="/user/fresh">sign up</a>

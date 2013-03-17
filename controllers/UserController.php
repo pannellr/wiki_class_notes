@@ -78,7 +78,7 @@ class UserController extends Controller implements ControllerInterface {
           $this->loadPage($user[0], "show_me", array("user" => $user[0]));
         } else {
           $flash['no_match'] = new Flash($this->flashArray[16], "error");
-          $this->loadPage($user, "login_user", flash, $flash);
+          $this->loadPage($user, "login_user", false, $flash);
         }
       }
     }
