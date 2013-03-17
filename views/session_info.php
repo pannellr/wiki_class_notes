@@ -5,7 +5,7 @@
 
     if(!empty($data['user'])){ ?>
       You are logged in as <em><?php echo $data['user']['user_name'] ?></em>
-      <a href="logout">Logout</a>
+      <a href="/user/logout">Logout</a>
     <?php 
     } else { ?>
       You are not logged in.
