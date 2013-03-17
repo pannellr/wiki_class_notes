@@ -1,7 +1,7 @@
  <div id="session_info">
     <?php
-    if(isset($data['user'])){ ?>
-      You are logged in as <em><?php echo $data['user']['user_name'] ?></em>
+    if(isset($user)){ ?>
+      You are logged in as <em><?php echo $user['user_name'] ?></em>
       <a href="logout">Logout</a>
     <?php 
     } else { ?>
