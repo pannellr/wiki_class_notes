@@ -87,7 +87,12 @@ class UserAuth extends DB{
     if( isset($_COOKIE['Auth']) ) {
       print_r($_COOKIE['Auth']);
       $result =  $this->select(array("hash"=>$_COOKIE['Auth']));
-      return $result[0];
+      if(!empty($result)){
+        return $result[0];
+      } else {
+        return false;
+      }
+      
     } else {
       return  false;
     }
