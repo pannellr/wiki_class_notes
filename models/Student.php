@@ -21,7 +21,7 @@ join courses c
   on c.id = s.course_id
 join users u 
   on u.person_id = p.id
-where u.id = $id
+where u.id = $user_id
 
 SQL;
 
