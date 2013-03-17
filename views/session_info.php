@@ -1,10 +1,10 @@
  <div id="session_info">
     <?php
 
-    print_r($user);
+    print_r($data['user']);
 
-    if(isset($user)){ ?>
-      You are logged in as <em><?php echo $user['user_name'] ?></em>
+    if(!empty($data['user'])){ ?>
+      You are logged in as <em><?php echo $data['user']['user_name'] ?></em>
       <a href="logout">Logout</a>
     <?php 
     } else { ?>
