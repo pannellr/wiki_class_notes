@@ -6,8 +6,8 @@ echo "<table><tr><td>user_name</td><td>created on</td><td>person id</td></td><td
 
 echo "<tr><td>".$data['user']['id']."</td><td>" . $data['user']['user_name'] . "</td>";
 echo "<td>".$data['user']['created_at']."</td>";
-echo "<td><a href=\"edit?id=" . $user['id'] . "\">Edit</a></td>";
-echo "<td><a href=\"destroy?id=" . $user['id'] . "\">Delete</a></td></tr>";
+echo "<td><a href=\"edit?id=" . $data['user']['id'] . "\">Edit</a></td>";
+echo "<td><a href=\"destroy?id=" . $data['user']['id'] . "\">Delete</a></td></tr>";
 echo "</table>";
 
 } else { ?>
