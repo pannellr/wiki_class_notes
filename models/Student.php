@@ -13,7 +13,7 @@ class Student extends DB{
 
     $query =<<<SQL
 
-select * 
+      select c.id, c.name 
 from students s
 join people p
   on p.id = s.person_id
