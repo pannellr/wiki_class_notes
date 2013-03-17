@@ -84,7 +84,6 @@ class UserAuth extends DB{
 
   //Check if the user is logged in
   public function checkAuth(){
-    echo "here";
     if( isset($_COOKIE['Auth']) ) {
       print_r($_COOKIE['Auth']);
       $result =  $this->select(array("hash"=>$_COOKIE['Auth']));
