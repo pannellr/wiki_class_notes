@@ -12,11 +12,12 @@ class HomeController extends Controller implements ControllerInterface{
 
   public function home(){
     $user = new UserAuth();
-    //print_r($user);
-    print_r($user->checkAuth());
     $u = $user->checkAuth();
-    print_r($u);
-    //$this->loadPage($u, "home");
+    if (empty($u)){
+      $this->loadPage($u = null, "login_user");
+    } else {
+      $this->redirect("student/classes");
+    }
   }
 
   //interface methods

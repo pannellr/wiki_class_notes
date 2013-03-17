@@ -29,5 +29,17 @@ class StudentController extends Controller implements ControllerInterface{
 
   public function destroy($id){
   }
+
+  public function classes(){
+    $user = new UserAuth();
+    $u = $user->checkAuth();
+    if (empty($u)){
+      $this->loadPage($u = null, "login_user");
+    } else {
+      $student = new Student;
+      $classes = $student->classes($u['user_id']);
+      $this->loadPage($u, "student_classes", $classes);
+    }
+  }
   
 }

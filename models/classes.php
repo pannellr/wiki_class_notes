@@ -12,3 +12,4 @@ require_once("Section.php");
 require_once("SectionSchedule.php");
 require_once("Note.php");
 require_once("Semester.php");
+require_once("Student.php");
