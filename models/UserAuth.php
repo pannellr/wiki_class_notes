@@ -27,16 +27,16 @@ class UserAuth extends DB{
   }
   
   //This unsets the authorization cookie
-  // public function logoutUser($hash){
-  //   $where = array(
-  //     "hash" => $hash
-  //     );
-  //   $user = $this->select($where);
-  //   if( !empty($user) ){
-  //     $this->delete($user[0]);
-  //   }
+  public function logoutUser($hash){
+    $where = array(
+      "hash" => $hash
+      );
+    $user = $this->select($where);
+    if( !empty($user) ){
+      $this->delete($user[0]);
+    }
 
-  // }
+  }
   
   //Returns a user object for a specified hash key stored as cookie
   // public function userForAuth($hash){
