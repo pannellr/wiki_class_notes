@@ -19,4 +19,4 @@
 
 <a href="#">forgot password</a>
 
-<?php require "new_user.php" ?>
+<?php require_once "new_user.php" ?>
