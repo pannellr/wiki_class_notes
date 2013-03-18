@@ -27,8 +27,8 @@ class CourseController extends Controller implements ControllerInterface{
 			    'section_number' => '00'
 			    );
     $section->insert($section_params);
-
-    $this->redirect("student/classes");
+  
+    $this->redirect("student/courses");
   }
 
   public function show($id){
