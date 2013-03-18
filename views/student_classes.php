@@ -9,12 +9,12 @@ if (!empty($data['courses'])){ ?>
     echo "<a class=\"class_link\" href=\"class/show?id=" 
       . $class['id']
       . "\">"
-      .$class['shortname']
-      .$class['number']
-      ." - "
+      . $class['shortname']
+      . $class['number']
+      . " - "
       . $class['name']
-      ." - "
-      .$class['section_number']
+      . " - "
+      . $class['section_number']
       . "</a>";
     echo "</li>";
       }
@@ -24,5 +24,5 @@ if (!empty($data['courses'])){ ?>
 <?php 
 }
 ?>
-<a href="/student/add_course">Join a course</a>
+<a href="/student/add_course?person_id=<?php echo $data['person_id']; ?>">Join a course</a>
 <a href="/course/fresh">Create a course</a>
