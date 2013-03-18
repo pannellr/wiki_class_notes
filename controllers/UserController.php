@@ -97,10 +97,15 @@ class UserController extends Controller implements ControllerInterface {
 
   //Shows information about logged in user
   public function me(){
+    $this->model = new UserAuth();
     $user = $this->model->checkAuth();
-    $this->model = new User();
-    //TODO: get userinfo from USER table, not AUTH table
-    $this->loadPage($user[0], "show_me", $user[0]);
+
+    if(!empty($user)){
+      $this->loadPage($user, "user_profile");
+    } else {
+      $this->loadPage(false, "login_user");
+    }
+    
   }
 
   public function validate($post, &$output, $key, $on_no_match, $on_empty, $regex){
@@ -266,7 +271,7 @@ class UserController extends Controller implements ControllerInterface {
         $this->userAuthModel = new UserAuth();
         $hash = $this->userAuthModel->authorizeUser($user);
 
-        $this->loadPage($user, "show_me", array("user" => $user));
+        $this->loadPage($user, "user_profile", array("user" => $user));
 
       }//end if validated, insert into database
 
