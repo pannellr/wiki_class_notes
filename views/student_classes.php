@@ -1,7 +1,4 @@
-<pre>
-<?php print_r($data); ?>
-</pre>
-<h1>Showing all Courses</h1>
+<h1>Your courses</h1>
  <?php
 
 echo "<a href=\"/student/add_class?person_id=" 
