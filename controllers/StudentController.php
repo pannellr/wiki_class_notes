@@ -42,13 +42,13 @@ class StudentController extends Controller implements ControllerInterface{
     } else {
       //fetch student courses
       $student = new Student;
-      $courses = $student->courses($u['user_id']);
+      $courses = $student->courses($user['user_id']);
       //fetch person_id using user
       $this->userModel = new User();
-      $person_id = $this->userModel->select(array('id' => $u['user_id']));
+      $person_id = $this->userModel->select(array('id' => $user['user_id']));
 
       $data = ['courses' => $courses, 'person_id' => $person_id[0]['person_id']];
-      $this->loadPage($u, "student_classes", $data);
+      $this->loadPage($user, "student_classes", $data);
     }
   }
 
