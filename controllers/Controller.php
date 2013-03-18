@@ -36,8 +36,15 @@ class Controller{
   }
 
   public function loadPage($user, $view, $data = null, $flash = false){
+    //the sendData array contains user key and other keys in data
+    if(!empty($data)){
+      $sendData = array_merge(array('user' => $user), $data);
+    } else {
+      $sendData = array('user' => $user);
+    }
+
     //load the header and pass it the $user object
-    $this->loadView("header", array('user' => $user));
+    $this->loadView("header", $sendData);
 
     //The flash class is our way of passing a message to our page
     if ($flash !== false){
@@ -54,7 +61,7 @@ class Controller{
     }
 
     //load our content
-    $this->loadView($view, $data);
+    $this->loadView($view, $sendData);
 
     //load the footer
     $this->loadView("footer");
