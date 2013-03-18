@@ -113,7 +113,7 @@ class UserController extends Controller implements ControllerInterface {
       //select user's classes
       $this->studentModel = new Student();
       $where = $user['user_id'];
-      $data['courses'] = $this->studentModel->classes($where);
+      $data['courses'] = $this->studentModel->courses($where);
 
       $this->loadPage($user, "user_profile", $data);
 

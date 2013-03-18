@@ -30,29 +30,31 @@ class StudentController extends Controller implements ControllerInterface{
   public function destroy($id){
   }
 
-  public function classes(){
+  public function courses(){
     $userAuth = new UserAuth();
     $u = $userAuth->checkAuth();
     if (empty($u)){
       $this->loadPage($u = null, "login_user");
     } else {
-      //fetch student classes
+      //fetch student courses
       $student = new Student;
-      $classes = $student->classes($u['user_id']);
+      $courses = $student->courses($u['user_id']);
       //fetch person_id using user
       $user = new User();
       $person_id = $user->select(array('id' => $u['user_id']));
 
-      $data = ['classes' => $classes, 'person_id' => $person_id[0]['person_id']];
+      $data = ['courses' => $courses, 'person_id' => $person_id[0]['person_id']];
       $this->loadPage($u, "student_classes", $data);
     }
   }
 
-  public function addClass(){
-    $user = new UserAuth();
-    $u = $user->checkAuth();
-    $student = new Student;
-    $courses = $student->availableCourses();
+  public function addCourse(){
+    $this->userAuthModel = new UserAuth();
+    $user = $this->userAuthModel->checkAuth();
+    
+    $this->studentModel = new Student();
+    $courses = $this->studentModel->availableCourses();
+
     $this->loadPage($u, "student_join_class", $courses);
   }
   

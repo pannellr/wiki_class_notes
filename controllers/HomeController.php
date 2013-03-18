@@ -18,7 +18,7 @@ class HomeController extends Controller implements ControllerInterface{
     if (empty($u)){
       $this->loadPage($u = null, "login_user");
     } else {
-      $this->redirect("student/classes");
+      $this->redirect("student/courses");
     }
   }
 
