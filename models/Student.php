@@ -38,7 +38,7 @@ SQL;
 
   }
 
-  public function availableCourses(){
+  public function availableCourses($user_id){
     
 //     $query =<<<SQL
 //  select c.id as course_id,
@@ -80,7 +80,7 @@ join users u
   on u.person_id = p.id
 join departments d
   on d.id=c.department_id
-where u.id = 39
+where u.id = $user_id
 );
 SQL;
 

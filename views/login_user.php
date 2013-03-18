@@ -1,6 +1,6 @@
 <h3>Login</h3>
 
-<form method="POST" action ="authenticate">
+<form method="POST" action ="/user/authenticate">
 
    <p>
      <label for="user_name">Username:</label><br />
