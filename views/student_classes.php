@@ -6,8 +6,10 @@ if (!empty($data['courses'])){ ?>
   <?php
   foreach ($data['courses'] as $class){
     echo "<li>";
-    echo "<a class=\"class_link\" href=\"class/show?id=" 
+    echo "<a class=\"class_link\" href=\"/course/show?id=" 
       . $class['id']
+      ."&section="
+      .$class['section_id']
       . "\">"
       .$class['shortname']
       .$class['number']
