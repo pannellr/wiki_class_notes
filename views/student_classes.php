@@ -4,17 +4,17 @@
 if (!empty($data['courses'])){ ?>
   <ul id="course-list" class="courses">
   <?php
-  foreach ($data['courses'] as $class){
+  foreach ($data['courses'] as $course){
     echo "<li>";
-    echo "<a class=\"class_link\" href=\"class/show?id=" 
-      . $class['id']
+    echo "<a class=\"course_link\" href=\"/course/show?id=" 
+      . $course['id']
       . "\">"
-      . $class['shortname']
-      . $class['number']
+      . $course['shortname']
+      . $course['number']
       . " - "
-      . $class['name']
+      . $course['name']
       . " - "
-      . $class['section_number']
+      . $course['section_number']
       . "</a>";
     echo "</li>";
       }
