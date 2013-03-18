@@ -1,4 +1,7 @@
-<h1>Showing all Classes</h1>
+<pre>
+<?php print_r($data); ?>
+</pre>
+<h1>Showing all Courses</h1>
  <?php
 
 echo "<a href=\"/student/add_class?person_id=" 
@@ -7,8 +10,8 @@ echo "<a href=\"/student/add_class?person_id="
 
 echo "<br />";
 
-if (!empty($data['classes'])){
-  foreach ($data['classes'] as $class){
+if (!empty($data['courses'])){
+  foreach ($data['courses'] as $class){
     echo "<a class=\"class_link\" href=\"class/show?id=" 
       . $class['id']
       . "\">"
