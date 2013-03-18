@@ -252,7 +252,7 @@ class UserController extends Controller implements ControllerInterface {
 
         $userInfo = array(
         "user_name" => $output['user_name'],
-        "password" => $output['password'],
+        "password" => hash("sha256", $output['password']),
         "person_id" => $person_id
         );
 
