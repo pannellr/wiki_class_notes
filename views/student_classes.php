@@ -1,21 +1,23 @@
-<h1>Your courses</h1>
+<h3>Your courses</h3>
  <?php
 
-echo "<a href=\"/student/add_class?person_id=" 
-    . $data['person_id'] 
-    . "\">Join a class</a>";
-
-echo "<br />";
-
-if (!empty($data['courses'])){
+if (!empty($data['courses'])){ ?>
+  <ul id="course-list" class="courses">
+  <?php
   foreach ($data['courses'] as $class){
+    echo "<li>";
     echo "<a class=\"class_link\" href=\"class/show?id=" 
       . $class['id']
       . "\">"
       . $class['name']
       . "</a>";
-    echo "<br />";
+    echo "</li>";
       }
-}
+    ?>
+  </ul>
 
+<?php 
+}
 ?>
+<a href="/student/add_course?person_id=<?php echo $data['user_info']['person_id'] ?>">Join a course</a>
+<a href="/course/fresh">Create a course</a>
