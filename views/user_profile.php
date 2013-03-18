@@ -9,8 +9,8 @@
 		<?php if(!empty($data['courses'])) { ?>
 		<ul id="course-list" class="courses">
 			<?php 
-				foreach ($data['course'] as $key => $value) { ?>
-				<li><?php echo $key; ?></li>
+				foreach ($data['courses'] as $key => $value) { ?>
+				<li><?php echo $value['name']; ?></li>
 			<?php } ?>
 		</ul>
 		<?php } else { ?>
