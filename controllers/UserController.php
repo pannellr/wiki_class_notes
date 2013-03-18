@@ -72,10 +72,11 @@ class UserController extends Controller implements ControllerInterface {
 
       if( $flash_is_empty ){
         $this->model = new UserAuth();
-        $user = $this->model->attemptLogin($output['user_name'], $output['password']);
+        $user = $this->model->attemptLogin($output['user_name'], hash("sha256", $output['password']));
         if( !empty($user) ) {
           $this->model->authorizeUser($user[0]);
-          $this->loadPage($user[0], "show_me", array("user" => $user[0]));
+          $this->redirect("home/home");
+          //$this->loadPage($user[0], "show_me", array("user" => $user[0]));
         } else {
           $flash['no_match'] = new Flash($this->flashArray[16], "error");
           $this->loadPage($user, "login_user", false, $flash);
@@ -96,10 +97,33 @@ class UserController extends Controller implements ControllerInterface {
 
   //Shows information about logged in user
   public function me(){
-    $user = $this->model->checkAuth();
-    $this->model = new User();
-    //TODO: get userinfo from USER table, not AUTH table
-    $this->loadPage($user[0], "show_me", $user[0]);
+    //check cookie for authentication
+    $this->userAuthModel = new UserAuth();
+    $user = $this->userAuthModel->checkAuth();
+    
+    if(!empty($user)){
+      $data = array();
+
+      //select user data from users table
+      $this->userModel = new User();
+      $where = array('id' => $user['user_id']);
+      $result = $this->userModel->select($where);
+      $data['user_info'] = $result[0];
+
+      //select user's classes
+      $this->studentModel = new Student();
+      $where = $user['user_id'];
+      $data['courses'] = $this->studentModel->courses($where);
+
+      //add person_id
+      $data['person_id'] = $data['user_info']['person_id'];
+
+      $this->loadPage($user, "user_profile", $data);
+
+    } else {
+      $this->loadPage(false, "login_user");
+    }
+    
   }
 
   public function validate($post, &$output, $key, $on_no_match, $on_empty, $regex){
@@ -246,7 +270,7 @@ class UserController extends Controller implements ControllerInterface {
 
         $userInfo = array(
         "user_name" => $output['user_name'],
-        "password" => $output['password'],
+        "password" => hash("sha256", $output['password']),
         "person_id" => $person_id
         );
 
@@ -265,7 +289,7 @@ class UserController extends Controller implements ControllerInterface {
         $this->userAuthModel = new UserAuth();
         $hash = $this->userAuthModel->authorizeUser($user);
 
-        $this->loadPage($user, "show_me", array("user" => $user));
+        $this->loadPage($user, "user_profile", array("user" => $user));
 
       }//end if validated, insert into database
 
