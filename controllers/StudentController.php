@@ -31,17 +31,21 @@ class StudentController extends Controller implements ControllerInterface{
   }
 
   public function courses(){
-    $userAuth = new UserAuth();
-    $u = $userAuth->checkAuth();
-    if (empty($u)){
-      $this->loadPage($u = null, "login_user");
+    $this->userAuthModel = new UserAuth();
+    $user = $this->userAuthModel->checkAuth();
+
+    // $userAuth = new UserAuth();
+    // $u = $userAuth->checkAuth();
+
+    if (empty($user)){
+      $this->loadPage($user = null, "login_user");
     } else {
       //fetch student courses
       $student = new Student;
       $courses = $student->courses($u['user_id']);
       //fetch person_id using user
-      $user = new User();
-      $person_id = $user->select(array('id' => $u['user_id']));
+      $this->userModel = new User();
+      $person_id = $this->userModel->select(array('id' => $u['user_id']));
 
       $data = ['courses' => $courses, 'person_id' => $person_id[0]['person_id']];
       $this->loadPage($u, "student_classes", $data);
@@ -55,7 +59,7 @@ class StudentController extends Controller implements ControllerInterface{
     $this->studentModel = new Student();
     $courses = $this->studentModel->availableCourses();
 
-    $this->loadPage($u, "student_join_class", $courses);
+    $this->loadPage($user, "student_join_class", $courses);
   }
   
 }
