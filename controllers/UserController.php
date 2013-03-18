@@ -97,11 +97,26 @@ class UserController extends Controller implements ControllerInterface {
 
   //Shows information about logged in user
   public function me(){
-    $this->model = new UserAuth();
-    $user = $this->model->checkAuth();
-
+    //check cookie for authentication
+    $this->userAuthModel = new UserAuth();
+    $user = $this->userAuthModel->checkAuth();
+    
     if(!empty($user)){
-      $this->loadPage($user, "user_profile");
+      $data = array();
+
+      //select user data from users table
+      $this->userModel = new User();
+      $where = array('id' => $user['user_id']);
+      $result = $this->userModel->select($where);
+      $data['user_info'] = $result[0];
+
+      //select user's classes
+      $this->studentModel = new Student();
+      $where = $user['user_id'];
+      $data['courses'] = $this->studentModel->classes($where);
+
+      $this->loadPage($user, "user_profile", $data);
+
     } else {
       $this->loadPage(false, "login_user");
     }
