@@ -72,7 +72,7 @@ class UserController extends Controller implements ControllerInterface {
 
       if( $flash_is_empty ){
         $this->model = new UserAuth();
-        $user = $this->model->attemptLogin($output['user_name'], $output['password']);
+        $user = $this->model->attemptLogin($output['user_name'], hash("sha256", $output['password']));
         if( !empty($user) ) {
           $this->model->authorizeUser($user[0]);
           $this->redirect("home/home");
