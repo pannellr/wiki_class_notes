@@ -1,6 +1,8 @@
 <h1>Join a class</h1>
 
 <form method="GET" action="create">
+
+   <input type="hidden" name="person_id" value="<?php echo $_GET['person_id']; ?>">
    
    <p>
      <select name="section_id">
