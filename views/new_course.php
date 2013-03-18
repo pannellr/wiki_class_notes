@@ -17,6 +17,8 @@
       ?>
 
     </select>
+    <br />
+    <a href="/department/fresh">Create a department</a>
   <p>
     <label for="name">Course Name</label><br />
     <input name="name" />

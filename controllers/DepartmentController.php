@@ -18,7 +18,7 @@ class DepartmentController extends Controller implements ControllerInterface{
   public function create($params){
     $this->model = new Department();
     $insert_id = $this->model->insert($params);
-    $this->redirect("department/all");
+    $this->redirect("course/fresh");
   }
 
   public function show($id){
