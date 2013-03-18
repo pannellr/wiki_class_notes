@@ -16,6 +16,6 @@
 		<?php } else { ?>
 			<p>You are not subscribed to any courses.</p>
 		<?php } ?>
-	<a href="/student/add_class?person_id=<?php echo $data['user_info']['person_id'] ?>">Join a course</a>
+	<a href="/student/add_course?person_id=<?php echo $data['user_info']['person_id'] ?>">Join a course</a>
 	<a href="/course/fresh">Create a course</a>
 <?php } ?>
