@@ -11,8 +11,10 @@ class HomeController extends Controller implements ControllerInterface{
 
 
   public function home(){
-    $user = new UserAuth();
-    $u = $user->checkAuth();
+    $this->model = new UserAuth();
+    $u = $this->model->checkAuth();
+    // $user = new UserAuth();
+    // $u = $user->checkAuth();
     if (empty($u)){
       $this->loadPage($u = null, "login_user");
     } else {
