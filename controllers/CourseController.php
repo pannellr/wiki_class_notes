@@ -18,13 +18,26 @@ class CourseController extends Controller implements ControllerInterface{
   public function create($params){
     $this->model = new Course();
     $insert_id = $this->model->insert($params);
-    $this->redirect("wiki_class_notes/course/all");
+    $this->redirect("course/all");
   }
 
-  public function show($id){
+  public function show($params){
     $this->model = new Course();
-    $course = $this->model->select($id);
-    $this->loadPage($user = null, "show_course", $course);
+    $data = array();
+    //add course info
+    $data['course'] = $this->model->getCourseData($params['section']);
+
+    //add dates
+    $data['dates'] = $this->model->getCourseNoteDates($params['section']);
+
+    //add notes
+    foreach ($data['dates'] as $key => $value) {
+      $date = $data['dates'][$key]['date'];
+      $data['dates'][$key]['notes'] = $this->model->getNotesForDate($params['section'], $date);
+    }
+
+
+    $this->loadPage($user = null, "show_course", $data);
   }
 
   public function all(){

@@ -1,8 +1,13 @@
+<pre>
+  <?php print_r($data); ?>
+</pre>
 <h1>Join a course</h1>
 
-<form method="GET" action="create">
+<form method="GET" action="join">
 
-   <input type="hidden" name="person_id" value="<?php echo $_GET['person_id']; ?>">
+   <!-- 
+    Not needed, because the current user can be obtained from the session $data['user']
+   <input type="hidden" name="person_id" value="<?php echo $_GET['person_id']; ?>"> -->
    
    <p>
      <select name="section_id">

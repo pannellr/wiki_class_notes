@@ -12,7 +12,7 @@ class SectionController extends Controller implements ControllerInterface{
   public function fresh(){
     
     $schedule = new SectionSchedule();
-    $shedules = $schedule->select();
+    $schedules = $schedule->select();
     
     $textbook = new Textbook();
     $textbooks = $textbook->select();

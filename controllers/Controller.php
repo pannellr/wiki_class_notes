@@ -22,7 +22,9 @@ class Controller{
       $this->$method($data);
     } else {
       //if the method doesn't exist go to an error page
-      $this->redirect("wiki_class_notes/errors/404");
+      echo "Method does not exist: ";
+      print_r($method);
+      //$this->redirect("errors/404");
     }
   }
 
