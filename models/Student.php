@@ -9,7 +9,7 @@ class Student extends DB{
     parent::setTableName("students");
   }
 
-  public function classes($user_id){
+  public function courses($user_id){
 
     $query =<<<SQL
 select * 
