@@ -13,6 +13,9 @@ class StudentController extends Controller implements ControllerInterface{
   }
 
   public function create($params){
+    $this->model = new Student();
+    $insert_id = $this->model->insert($params);
+    $this->redirect("student/classes");
   }
 
   public function show($id){

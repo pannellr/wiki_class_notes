@@ -16,9 +16,19 @@ class CourseController extends Controller implements ControllerInterface{
   }
 
   public function create($params){
+    //insert course
     $this->model = new Course();
     $insert_id = $this->model->insert($params);
-    $this->redirect("wiki_class_notes/course/all");
+
+    //insert section
+    $section = new Section();
+    $section_params = array(
+			    'course_id' => $insert_id, 
+			    'section_number' => '00'
+			    );
+    $section->insert($section_params);
+
+    $this->redirect("student/classes");
   }
 
   public function show($id){
