@@ -1,3 +1,4 @@
+@import url('/css/custom.css');
 /*
  * HTML5 Boilerplate
  *
@@ -58,7 +59,7 @@ nav ul li{
 	
 }
 
-nav ul li a:link,a:visited
+nav ul li a:link,nav ul li a:visited
 {
 display:block;
 font-weight:bold;
