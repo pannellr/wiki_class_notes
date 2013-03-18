@@ -1,9 +1,21 @@
 <h1>Showing all Classes</h1>
+ <?php
 
-<?php
+echo "<a href=\"/student/add_class?person_id=" 
+    . $data['person_id'] 
+    . "\">Join a class</a>";
 
-foreach ($data[0] as $class){
-  print($class);
+echo "<br />";
+
+if (!empty($data['classes'])){
+  foreach ($data['classes'] as $class){
+    echo "<a class=\"class_link\" href=\"class/show?id=" 
+      . $class['id']
+      . "\">"
+      . $class['name']
+      . "</a>";
+    echo "<br />";
+      }
 }
 
 ?>

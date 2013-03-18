@@ -31,15 +31,29 @@ class StudentController extends Controller implements ControllerInterface{
   }
 
   public function classes(){
-    $user = new UserAuth();
-    $u = $user->checkAuth();
+    $userAuth = new UserAuth();
+    $u = $userAuth->checkAuth();
     if (empty($u)){
       $this->loadPage($u = null, "login_user");
     } else {
+      //fetch student classes
       $student = new Student;
       $classes = $student->classes($u['user_id']);
-      $this->loadPage($u, "student_classes", $classes);
+      //fetch person_id using user
+      $user = new User();
+      $person_id = $user->select(array('id' => $u['user_id']));
+
+      $data = ['classes' => $classes, 'person_id' => $person_id[0]['person_id']];
+      $this->loadPage($u, "student_classes", $data);
     }
+  }
+
+  public function addClass(){
+    $user = new UserAuth();
+    $u = $user->checkAuth();
+    $student = new Student;
+    $courses = $student->availableCourses();
+    $this->loadPage($u, "student_join_class", $courses);
   }
   
 }
