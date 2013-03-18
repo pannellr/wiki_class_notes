@@ -1,4 +1,4 @@
-<h1>Join a class</h1>
+<h1>Join a course</h1>
 
 <form method="GET" action="create">
 
@@ -10,12 +10,12 @@
 <?php
    
    if (!empty($data)){
-     foreach ($data as $class){
+     foreach ($data as $course){
        echo "<option"
        .  " value=\"" 
-       . $class['section_id']
+       . $course['section_id']
        .  "\">"
-       . $class['name'] . " " . $class['number'] . "-" . $class['section_number'] 
+       . $course['name'] . " " . $course['number'] . "-" . $course['section_number'] 
        . "</option>";
      }
    }
