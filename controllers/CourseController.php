@@ -19,9 +19,8 @@ class CourseController extends Controller implements ControllerInterface{
     //insert course
     $this->model = new Course();
     $insert_id = $this->model->insert($params);
-<<<<<<< HEAD
+
     $this->redirect("course/all");
-=======
 
     //insert section
     $section = new Section();
@@ -32,7 +31,6 @@ class CourseController extends Controller implements ControllerInterface{
     $section->insert($section_params);
   
     $this->redirect("student/courses");
->>>>>>> 128559149d9929c33d0f30fae0bd257a804b6717
   }
 
   public function show($params){
