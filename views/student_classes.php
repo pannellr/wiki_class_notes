@@ -9,7 +9,12 @@ if (!empty($data['courses'])){ ?>
     echo "<a class=\"class_link\" href=\"class/show?id=" 
       . $class['id']
       . "\">"
+      .$class['shortname']
+      .$class['number']
+      ." - "
       . $class['name']
+      ." - "
+      .$class['section_number']
       . "</a>";
     echo "</li>";
       }
