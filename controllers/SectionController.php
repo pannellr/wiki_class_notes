@@ -33,7 +33,7 @@ class SectionController extends Controller implements ControllerInterface{
   public function create($params){
     $this->model = new Section();
     $insert_id = $this->model->insert($params);
-    $this->redirect("section/all");
+    //$this->redirect("section/all");
   }
 
   public function show($id){

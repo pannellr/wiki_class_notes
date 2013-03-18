@@ -13,6 +13,9 @@ class StudentController extends Controller implements ControllerInterface{
   }
 
   public function create($params){
+    $this->model = new Student();
+    $insert_id = $this->model->insert($params);
+    $this->redirect("student/courses");
   }
 
   public function show($id){
@@ -30,32 +33,6 @@ class StudentController extends Controller implements ControllerInterface{
   public function destroy($id){
   }
 
-  public function join(){
-    $this->userAuthModel = new UserAuth();
-    $user = $this->userAuthModel->checkAuth();
-    if( !empty($user) ){
-      //get person id
-      $this->userModel = new User();
-      $where = array('id' => $user['user_id']);
-      $result = $this->userModel->select($where);
-      
-      $person_id = $result[0]['person_id'];
-
-      if(!empty($_GET['section_id'])){
-        $this->studentModel = new Student();
-
-        $clause = array(
-          "person_id" => $person_id,
-          "section_id" => $_GET['section_id']
-          );
-
-        $this->studentModel->insert($clause);
-
-        $this->redirect("user/me");
-
-      }
-    }
-  }
 
   public function courses(){
     $this->userAuthModel = new UserAuth();
@@ -80,9 +57,11 @@ class StudentController extends Controller implements ControllerInterface{
   }
 
   public function addCourse(){
-    $this->userAuthModel = new UserAuth();
-    $user = $this->userAuthModel->checkAuth();
+    //check user authentication
+    $userAuth = new UserAuth();
+    $user = $userAuth->checkAuth();
     
+    //get courses available to students
     $this->studentModel = new Student();
     $courses = $this->studentModel->availableCourses();
 
