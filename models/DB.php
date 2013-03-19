@@ -1,7 +1,6 @@
 <?php
 
 require_once("../config/Config.php");
-//require_once("../errors/Exceptions.php");
 
 class DB{
   
@@ -11,9 +10,12 @@ class DB{
   function __construct(){
 
 	 $config=new Config();
-     $this->dbh = new mysqli($config->getHost(), $config->getUsername(), $config->getPassword(), $config->getDBname());
-
-
+     $this->dbh = new mysqli(
+			     $config->getHost(), 
+			     $config->getUsername(), 
+			     $config->getPassword(), 
+			     $config->getDBname()
+			     );
 
     if (mysqli_connect_errno($this->dbh)) {
 	throw new CouldNotEstablishConnectionException("Could not connect to Database");
@@ -34,6 +36,7 @@ class DB{
       }
     }
     $query .= ";";
+
     $results = array();
     $res = $this->dbh->query($query);
     while ($row = $res->fetch_assoc()){
@@ -63,10 +66,7 @@ class DB{
   
     }
     $query .= ");";
-    //DEBUG!!
-    // echo "<pre>";
-    // echo $query;
-    // echo "</pre>";
+
     $this->dbh->query($query);  
     return $this->dbh->insert_id;
   
@@ -108,13 +108,12 @@ class DB{
     $this->tableName = $t;
   }
 
- function query($q)
- {
-	$results = array();
-    $res = $this->dbh->query($q);
-    while ($row = $res->fetch_assoc()){
-      array_push($results, $row);
-    }
-    return $results;
+ function query($q){
+   $results = array();
+   $res = $this->dbh->query($q);
+   while ($row = $res->fetch_assoc()){
+     array_push($results, $row);
+   }
+   return $results;
  }
 }

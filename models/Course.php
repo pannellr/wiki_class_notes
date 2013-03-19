@@ -9,6 +9,22 @@ class Course extends DB{
     parent::setTableName("courses");
   }
 
+
+  //returns all available courses as an array
+  public function allWithSectionId(){
+
+    $query =<<<SQL
+      select * 
+      from courses c
+      join sections s
+      on s.course_id = c.id;
+SQL;
+
+  return $this->query($query);
+
+  }
+
+
   public function getCourseData($section_id){
     
 $query = <<<SQL

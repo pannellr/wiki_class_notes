@@ -10,6 +10,9 @@ class StudentController extends Controller implements ControllerInterface{
   }
 
   public function fresh(){
+    $course = new Course;
+    $courses = $course->allWithSectionId();
+    $this->loadPage($this->user, "student/fresh", $courses);
   }
 
   public function create($params){
@@ -32,66 +35,33 @@ class StudentController extends Controller implements ControllerInterface{
 
   public function destroy($id){
   }
-
-  public function join(){
-    $userAuthModel = new UserAuth();
-    $user = $userAuthModel->checkAuth();
-    if( !empty($user) ){
-      //get person id
-      $userModel = new User();
-      $where = array('id' => $user['user_id']);
-      $result = $userModel->select($where);
-      
-      $person_id = $result[0]['person_id'];
-
-      if(!empty($_GET['section_id'])){
-        $this->model = new Student();
-
-        $clause = array(
-          "person_id" => $person_id,
-          "section_id" => $_GET['section_id']
-          );
-
-        $this->model->insert($clause);
-
-        $this->redirect("user/me");
-
-      }
-    }
-  }
   
   public function courses(){
-    $this->userAuthModel = new UserAuth();
-    $user = $this->userAuthModel->checkAuth();
-
-    // $userAuth = new UserAuth();
-    // $u = $userAuth->checkAuth();
-
-    if (empty($user)){
-      $this->loadPage($user = null, "login_user");
+    //$this->userAuthModel = new UserAuth();
+    //$user = $this->userAuthModel->checkAuth();
+    if (empty($this->user)){
+      $this->loadPage($this->user, "login_user");
     } else {
       //fetch student courses
       $student = new Student;
-      $courses = $student->courses($user['user_id']);
+      $courses = $student->courses($this->user['user_id']);
       //fetch person_id using user
-      $this->userModel = new User();
-      $person_id = $this->userModel->select(array('id' => $user['user_id']));
+      $this->model = new User();
+      $person_id = $this->model->select(array('id' => $this->user['user_id']));
 
-      $data = ['courses' => $courses, 'person_id' => $person_id[0]['person_id']];
-      $this->loadPage($user, "student_classes", $data);
+      $data = [
+	       'courses' => $courses, 
+	       'person_id' => $person_id[0]['person_id']
+	       ];
+      $this->loadPage($this->user, "student_classes", $data);
     }
   }
 
-  public function addCourse(){
-    //check user authentication
-    $userAuth = new UserAuth();
-    $user = $userAuth->checkAuth();
-    
+  public function addCourse(){    
     //get courses available to students
-    $this->studentModel = new Student();
-    $courses = $this->studentModel->availableCourses($user['id']);
-
-    $this->loadPage($user, "student_join_class", $courses);
+    $this->model = new Student();
+    $courses = $this->model->availableCourses($user['id']);
+    $this->loadPage($this->user, "student_join_class", $courses);
   }
   
 }
