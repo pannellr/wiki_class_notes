@@ -10,7 +10,7 @@ class InstitutionController extends Controller implements ControllerInterface{
   }
 
   public function fresh(){
-    $this->loadPage($user = null, "new_institution");
+    $this->loadPage($this->user, "new_institution");
   }
 
   public function create($params){
@@ -22,19 +22,19 @@ class InstitutionController extends Controller implements ControllerInterface{
   public function show($id){
     $this->model = new Institution();
     $institution = $this->model->select($id);
-    $this->loadPage($user = null, "show_institution", $institution);
+    $this->loadPage($this->user, "show_institution", $institution);
   }
 
   public function all(){
     $this->model = new Institution();
     $all = $this->model->select();
-    $this->loadPage($user = null, "all_institutions", $all);
+    $this->loadPage($this->user, "all_institutions", $all);
   }
 
   public function edit($id){
     $this->model = new Institution();
     $institution = $this->model->select($id);
-    $this->loadPage($user = null, "edit_institution", $institution);
+    $this->loadPage($this->user, "edit_institution", $institution);
   }
 
   public function update($updates){

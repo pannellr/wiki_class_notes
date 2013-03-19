@@ -12,11 +12,19 @@ class StudentController extends Controller implements ControllerInterface{
   public function fresh(){
     $course = new Course;
     $courses = $course->allWithSectionId();
-    $this->loadPage($this->user, "student/fresh", $courses);
+    $data['courses'] = $courses;
+    $this->loadPage($this->user, "new_student", $data);
   }
 
   public function create($params){
     $this->model = new Student();
+
+    //get person_id using user_id
+    $u = new User();
+    $person_id = $u->select(array('id' => $this->user['user_id']));
+    //add user_id to $params
+    $params['person_id'] = $person_id[0]['person_id'];
+
     $insert_id = $this->model->insert($params);
     $this->redirect("student/courses");
   }
@@ -37,24 +45,18 @@ class StudentController extends Controller implements ControllerInterface{
   }
   
   public function courses(){
-    //$this->userAuthModel = new UserAuth();
-    //$user = $this->userAuthModel->checkAuth();
-    if (empty($this->user)){
-      $this->loadPage($this->user, "login_user");
-    } else {
-      //fetch student courses
-      $student = new Student;
-      $courses = $student->courses($this->user['user_id']);
-      //fetch person_id using user
-      $this->model = new User();
-      $person_id = $this->model->select(array('id' => $this->user['user_id']));
-
-      $data = [
-	       'courses' => $courses, 
-	       'person_id' => $person_id[0]['person_id']
-	       ];
-      $this->loadPage($this->user, "student_classes", $data);
-    }
+    //fetch student courses
+    $student = new Student;
+    $courses = $student->courses($this->user['user_id']);
+    //fetch person_id using user
+    $this->model = new User();
+    $person_id = $this->model->select(array('id' => $this->user['user_id']));
+    
+    $data = [
+	     'courses' => $courses, 
+	     'person_id' => $person_id[0]['person_id']
+	     ];
+    $this->loadPage($this->user, "student_classes", $data);
   }
 
   public function addCourse(){    

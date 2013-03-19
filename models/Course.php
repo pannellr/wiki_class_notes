@@ -14,13 +14,21 @@ class Course extends DB{
   public function allWithSectionId(){
 
     $query =<<<SQL
-      select * 
+      select c.id
+      ,  se.id as section_id 
+      ,  d.shortname
+      ,  c.number
+      ,  c.name
+      ,  se.section_number 
       from courses c
-      join sections s
-      on s.course_id = c.id;
+      join sections se
+      on se.course_id = c.id
+      join departments d
+      on d.id = c.department_id
 SQL;
 
-  return $this->query($query);
+  $result = $this->query($query);
+  return $result;
 
   }
 

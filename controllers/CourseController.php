@@ -12,7 +12,7 @@ class CourseController extends Controller implements ControllerInterface{
   public function fresh(){
     $dept = new Department();
     $departments = $dept->select();
-    $this->loadPage($user = null, "new_course", $departments);
+    $this->loadPage($this->user, "new_course", $departments);
   }
 
   public function create($params){
@@ -48,21 +48,19 @@ class CourseController extends Controller implements ControllerInterface{
       $data['dates'][$key]['notes'] 
 	= $this->model->getNotesForDate($params['section'], $date);
     }
-
-
-    $this->loadPage($user = null, "show_course", $data);
+    $this->loadPage($this->user, "show_course", $data);
   }
 
   public function all(){
     $this->model = new Course();
     $all = $this->model->select();
-    $this->loadPage($user = null, "all_courses", $all);
+    $this->loadPage($this->user, "all_courses", $all);
   }
 
   public function edit($id){
     $this->model = new Course();
     $course = $this->model->select($id);
-    $this->loadPage($user = null, "edit_course", $course);
+    $this->loadPage($this->user, "edit_course", $course);
   }
 
   public function update($updates){

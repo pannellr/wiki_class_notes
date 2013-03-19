@@ -12,7 +12,7 @@ class NoteController extends Controller implements ControllerInterface{
   public function fresh(){
     $course = new Course();
     $courses = $course->select();
-    $this->loadPage($user = null, "new_note", $courses);
+    $this->loadPage($this->user, "new_note", $courses);
   }
 
   public function create($params){
@@ -24,19 +24,19 @@ class NoteController extends Controller implements ControllerInterface{
   public function show($id){
     $this->model = new note();
     $note = $this->model->select($id);
-    $this->loadPage($user = null, "show_note", $note);
+    $this->loadPage($this->user, "show_note", $note);
   }
 
   public function all(){
     $this->model = new note();
     $all = $this->model->select();
-    $this->loadPage($user = null, "all_notes", $all);
+    $this->loadPage($this->user, "all_notes", $all);
   }
 
   public function edit($id){
     $this->model = new note();
     $note = $this->model->select($id);
-    $this->loadPage($user = null, "edit_note", $note);
+    $this->loadPage($this->user, "edit_note", $note);
   }
 
   public function update($updates){

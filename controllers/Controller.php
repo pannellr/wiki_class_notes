@@ -8,12 +8,20 @@ class Controller{
 
   //Every Controller will have a corresponding model
   public $model;
+  //Create a User object to pass to every page
+  public $user;
+
 
   //constructor called by all controller subclasses
   //@param $method is the method from the url
   //@param $data is everything that was in the
   //query string
   function __construct($method, $data = null){
+
+    //create the UserAuth object
+    $userAuth = new UserAuth();
+    $this->user = $userAuth->checkAuth();
+
     //first make sure that the method exists
     if (method_exists($this, $method)){
       //Call the method passing along the data if any
@@ -23,8 +31,7 @@ class Controller{
     } else {
       //if the method doesn't exist go to an error page
       echo "Method does not exist: ";
-      print_r($method);
-      //$this->redirect("errors/404");
+      $this->redirect("errors/404");
     }
   }
 
@@ -39,22 +46,25 @@ class Controller{
 
   public function loadPage($user, $view, $data = null, $flash = false){
     //the sendData array contains user key and other keys in data
-    if(!empty($data)){
-      $sendData = array_merge(array('user' => $user), $data);
-    } else {
-      $sendData = array('user' => $user);
-    }
+    //From Rickey: rolling back these changes because
+    //1. php will make $data an array as soon as we try to make it on
+    //2. It will exist no matter what gets passed because of $data = null
+    //   in the method header
+    //if(!empty($data)){
+    //  $sendData = array_merge(array('user' => $user), $data);
+    //} else {
+    //  $sendData = array('user' => $user);
+    //}
+
+
+    //add user to $data array
+    $data['user'] = $user;
 
     //load the header and pass it the $user object
-    $this->loadView("header", $sendData);
+    $this->loadView("header", $data);
 
     //The flash class is our way of passing a message to our page
     if ($flash !== false){
-
-      // echo "<pre>FLASH!";
-      // print_r($flash);
-      // echo "</pre>";
-
       foreach ($flash as $key => $value) {
         if( is_object($flash[$key]) ){
           $flash[$key]->display();
@@ -62,8 +72,10 @@ class Controller{
       }
     }
 
-    //load our content
-    $this->loadView($view, $sendData);
+    //load our content or redirect to login
+    empty($this->user) || is_null($this->user) ?
+      $this->loadView("login_user", $data) :
+      $this->loadView($view, $data);
 
     //load the footer
     $this->loadView("footer");
