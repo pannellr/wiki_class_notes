@@ -2,11 +2,18 @@
 
 <?php
 
-foreach ($data as $school){
-  echo "<h3>" . $school['name'] . "</h3>";
-  echo "<p><a href=\"destroy?id=" . $school['id'] . "\">Delete</a></p>"
-    . "<a href=\"edit?id=" . $school['id'] . "\">Edit</a>";
-}
+if ($data['schools']){
 
+  foreach ($data['schools'] as $school){
+    echo "<h3>" . $school['name'] . "</h3>";
+    echo "<p><a href=\"/institution/destroy?id=" 
+      . $school['id'] 
+      . "\">Delete</a></p>";
+    
+    echo "<a href=\"/institution/edit?id=" 
+      . $school['id'] 
+      . "\">Edit</a>";
+  }
+}
 
 ?>

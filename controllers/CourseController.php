@@ -37,10 +37,10 @@ class CourseController extends Controller implements ControllerInterface{
     $this->model = new Course();
     $data = array();
     //add course info
-    $data['course'] = $this->model->getCourseData($params['section']);
+    $data['course'] = $this->model->getCourseData($params['section_id']);
 
     //add dates
-    $data['dates'] = $this->model->getCourseNoteDates($params['section']);
+    $data['dates'] = $this->model->getCourseNoteDates($params['section_id']);
 
     //add notes
     foreach ($data['dates'] as $key => $value) {

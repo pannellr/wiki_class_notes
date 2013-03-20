@@ -48,7 +48,6 @@ class DB{
   // inserts the values into the table
   //@param values
   function insert($values){
-
     $query = "insert into " . $this->tableName . " (";
     $separator = "";
     
@@ -110,9 +109,12 @@ class DB{
 
  function query($q){
    $results = array();
-   $res = $this->dbh->query($q);
-   while ($row = $res->fetch_assoc()){
-     array_push($results, $row);
+   if ($res = $this->dbh->query($q)){
+     while ($row = $res->fetch_assoc()){
+       array_push($results, $row);
+     }
+   } else {
+     throw new Exception("Query could not be completed: " . $q);
    }
    return $results;
  }

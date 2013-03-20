@@ -79,7 +79,7 @@ class UserController extends Controller implements ControllerInterface {
           //$this->loadPage($user[0], "show_me", array("user" => $user[0]));
         } else {
           $flash['no_match'] = new Flash($this->flashArray[16], "error");
-          $this->loadPage($user, "login_user", false, $flash);
+          $this->loadPage($this->user, "login_user", false, $flash);
         }
       }
     }
@@ -98,27 +98,27 @@ class UserController extends Controller implements ControllerInterface {
   //Shows information about logged in user
   public function me(){
     //check cookie for authentication
-    $this->userAuthModel = new UserAuth();
-    $user = $this->userAuthModel->checkAuth();
+    $userAuthModel = new UserAuth();
+    $user = $userAuthModel->checkAuth();
     
     if(!empty($user)){
       $data = array();
 
       //select user data from users table
-      $this->userModel = new User();
+      $userModel = new User();
       $where = array('id' => $user['user_id']);
-      $result = $this->userModel->select($where);
+      $result = $userModel->select($where);
       $data['user_info'] = $result[0];
 
       //select user's classes
-      $this->studentModel = new Student();
+      $studentModel = new Student();
       $where = $user['user_id'];
-      $data['courses'] = $this->studentModel->courses($where);
+      $data['courses'] = $studentModel->courses($where);
 
       //add person_id
       $data['person_id'] = $data['user_info']['person_id'];
 
-      $this->loadPage($user, "user_profile", $data);
+      $this->loadPage($this->user, "user_profile", $data);
 
     } else {
       $this->loadPage(false, "login_user");

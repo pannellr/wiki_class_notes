@@ -12,7 +12,7 @@ class DepartmentController extends Controller implements ControllerInterface{
   public function fresh(){
     $ints = new Institution();
     $institutions = $ints->select();
-    $this->loadPage($user = null, "new_department", $institutions);
+    $this->loadPage($this->user, "new_department", $institutions);
   }
 
   public function create($params){
@@ -24,19 +24,19 @@ class DepartmentController extends Controller implements ControllerInterface{
   public function show($id){
     $this->model = new Department();
     $department = $this->model->select($id);
-    $this->loadPage($user = null, "show_department", $department);
+    $this->loadPage($this->user, "show_department", $department);
   }
 
   public function all(){
     $this->model = new Department();
     $all = $this->model->select();
-    $this->loadPage($user = null, "all_departments", $all);
+    $this->loadPage($this->user, "all_departments", $all);
   }
 
   public function edit($id){
     $this->model = new Department();
     $department = $this->model->select($id);
-    $this->loadPage($user = null, "edit_institution", $department);
+    $this->loadPage($this->user, "edit_institution", $department);
   }
 
   public function update($updates){

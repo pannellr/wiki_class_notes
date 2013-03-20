@@ -10,7 +10,7 @@ class SectionScheduleController extends Controller implements ControllerInterfac
   }
 
   public function fresh(){
-    $this->loadPage($user = null, "new_section_schedule");
+    $this->loadPage($this->user, "new_section_schedule");
   }
 
   public function create($params){
@@ -22,19 +22,19 @@ class SectionScheduleController extends Controller implements ControllerInterfac
   public function show($id){
     $this->model = new SectionSchedule();
     $sectionSchedule = $this->model->select($id);
-    $this->loadPage($user = null, "show_section_schedule", $sectionSchedule);
+    $this->loadPage($this->user, "show_section_schedule", $sectionSchedule);
   }
 
   public function all(){
     $this->model = new SectionSchedule();
     $all = $this->model->select();
-    $this->loadPage($user = null, "all_section_schedules", $all);
+    $this->loadPage($this->user, "all_section_schedules", $all);
   }
 
   public function edit($id){
     $this->model = new SectionSchedule();
     $sectionSchedule = $this->model->select($id);
-    $this->loadPage($user = null, "edit_section_schedule", $sectionSchedule);
+    $this->loadPage($this->user, "edit_section_schedule", $sectionSchedule);
   }
 
   public function update($updates){

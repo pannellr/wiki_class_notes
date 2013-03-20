@@ -9,16 +9,28 @@ class NoteController extends Controller implements ControllerInterface{
     parent::__construct($method, $data);
   }
 
+  //default for new note
+  //will not accept any parameters
+  //according to interface
   public function fresh(){
     $course = new Course();
     $courses = $course->select();
-    $this->loadPage($this->user, "new_note", $courses);
+    $data['courses'] = $courses;
+    $this->loadPage($this->user, "new_note", $data);
+  }
+
+  public function newNote($section_id){
+    //get course info using $section_id
+    $course = new Course;
+    $section = $course->getCourseData($section_id['section_id']);
+    $data['section'] = $section;
+    $this->loadPage($this->user, "new_note", $data);
   }
 
   public function create($params){
     $this->model = new note();
     $insert_id = $this->model->insert($params);
-    $this->redirect("note/all");
+    $this->redirect("course/show?section_id=" . $params['section_id']);
   }
 
   public function show($id){

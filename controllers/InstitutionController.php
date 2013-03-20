@@ -28,7 +28,8 @@ class InstitutionController extends Controller implements ControllerInterface{
   public function all(){
     $this->model = new Institution();
     $all = $this->model->select();
-    $this->loadPage($this->user, "all_institutions", $all);
+    $data['schools'] = $all;
+    $this->loadPage($this->user, "all_institutions", $data);
   }
 
   public function edit($id){
@@ -46,7 +47,7 @@ class InstitutionController extends Controller implements ControllerInterface{
   public function destroy($id){
     $this->model = new Institution();
     $this->model->delete($id);
-    $this->redirect("wiki_class_notes/institution/all");
+    $this->redirect("institution/all");
   }
   
 }

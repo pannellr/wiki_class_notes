@@ -10,7 +10,7 @@ class SemesterController extends Controller implements ControllerInterface{
   }
 
   public function fresh(){
-    $this->loadPage($user = null, "new_semester");
+    $this->loadPage($this->user, "new_semester");
   }
 
   public function create($params){
@@ -22,19 +22,19 @@ class SemesterController extends Controller implements ControllerInterface{
   public function show($id){
     $this->model = new Semester();
     $semester = $this->model->select($id);
-    $this->loadPage($user = null, "show_semester", $semester);
+    $this->loadPage($this->user, "show_semester", $semester);
   }
 
   public function all(){
     $this->model = new Semester();
     $all = $this->model->select();
-    $this->loadPage($user = null, "all_semesters", $all);
+    $this->loadPage($this->user, "all_semesters", $all);
   }
 
   public function edit($id){
     $this->model = new Semester();
     $semester = $this->model->select($id);
-    $this->loadPage($user = null, "edit_semester", $semester);
+    $this->loadPage($this->user, "edit_semester", $semester);
   }
 
   public function update($updates){

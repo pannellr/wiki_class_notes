@@ -10,7 +10,7 @@ class TextbookController extends Controller implements ControllerInterface{
   }
 
   public function fresh(){
-    $this->loadPage($user = null, "new_textbook");
+    $this->loadPage($this->user, "new_textbook");
   }
 
   public function create($params){
@@ -22,19 +22,19 @@ class TextbookController extends Controller implements ControllerInterface{
   public function show($id){
     $this->model = new Textbook();
     $textbook = $this->model->select($id);
-    $this->loadPage($user = null, "show_textbook", $textbook);
+    $this->loadPage($this->user, "show_textbook", $textbook);
   }
 
   public function all(){
     $this->model = new Textbook();
     $all = $this->model->select();
-    $this->loadPage($user = null, "all_textbooks", $all);
+    $this->loadPage($this->user, "all_textbooks", $all);
   }
 
   public function edit($id){
     $this->model = new Textbook();
     $textbook = $this->model->select($id);
-    $this->loadPage($user = null, "edit_textbook", $textbook);
+    $this->loadPage($this->user, "edit_textbook", $textbook);
   }
 
   public function update($updates){
