@@ -53,8 +53,9 @@ class CourseController extends Controller implements ControllerInterface{
 
   public function all(){
     $this->model = new Course();
-    $all = $this->model->select();
-    $this->loadPage($this->user, "all_courses", $all);
+    $courses = $this->model->select();
+    $data['courses'] = $courses;
+    $this->loadPage($this->user, "all_courses", $data);
   }
 
   public function edit($id){

@@ -27,8 +27,9 @@ class TextbookController extends Controller implements ControllerInterface{
 
   public function all(){
     $this->model = new Textbook();
-    $all = $this->model->select();
-    $this->loadPage($this->user, "all_textbooks", $all);
+    $textbooks = $this->model->select();
+    $data['textbooks'] = $textbooks;
+    $this->loadPage($this->user, "all_textbooks", $data);
   }
 
   public function edit($id){
