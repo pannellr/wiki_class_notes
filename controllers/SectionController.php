@@ -10,6 +10,9 @@ class SectionController extends Controller implements ControllerInterface{
   }
 
   public function fresh(){
+
+    $course = new Course();
+    $courses = $course->select();
     
     $schedule = new SectionSchedule();
     $schedules = $schedule->select();
@@ -24,7 +27,8 @@ class SectionController extends Controller implements ControllerInterface{
     //to make it easy to pull the lists out by the key
     $data = array("schedules" => $schedules,
 		  "textbooks" => $textbooks,
-		  "semesters" => $semester
+		  "semesters" => $semesters,
+		  "courses"   => $courses
 		  );
 
     $this->loadPage($this->user, "new_section", $data);

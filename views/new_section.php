@@ -30,10 +30,25 @@
      <select name="section_schedule_id">
    <?php
    foreach ($schedules as $schedule){
+
+       $scheduleString = $schedule['start_time'] 
+       . "-" 
+       . $schedule['end_time']
+       . " ";
+
+       $scheduleString .= $schedule['monday']    ? 'M' : '';
+       $scheduleString .= $schedule['tuesday']   ? 'T' : '';
+       $scheduleString .= $schedule['wednesday'] ? 'W' : '';
+       $scheduleString .= $schedule['thursday']  ? 'R' : '';
+       $scheduleString .= $schedule['friday']    ? 'F' : '';
+       $scheduleString .= $schedule['saturday']  ? 'S' : '';
+       $scheduleString .= $schedule['sudnay']    ? 'S' : '';
+
+
        echo "<option value="
        . $schedule['id']
        . "\">"
-       . $schedule['monday']
+       . $scheduleString
        . "</option>";
      }
        ?>
@@ -58,7 +73,6 @@
      <label for="semester_id">Choose a Semester:</label><br />
      <select name="semester_id">
   <?php
-   print_r($semesters);
 
    foreach ($semesters as $semester){
        echo "<option value="
