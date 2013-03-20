@@ -1,0 +1,365 @@
+CREATE DATABASE  IF NOT EXISTS `sdugas_esarve` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sdugas_esarve`;
+-- MySQL dump 10.13  Distrib 5.5.29, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: sdugas_esarve
+-- ------------------------------------------------------
+-- Server version	5.5.29-0ubuntu0.12.10.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `person_id` int(11) DEFAULT NULL,
+  `user_name` varchar(10) NOT NULL,
+  `password` varchar(64) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,1,'pannellr','Shiwa0k@r','2013-03-06 13:05:02',NULL),(2,2,'eviltoast','Password1!','2013-03-13 18:52:10',NULL),(3,3,'pannell','b0b11ad96fc868deb99a6c66e250949e79c5ceace1a74b0cc752b07d6bf58d8b','2013-03-19 21:09:14',NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `people`
+--
+
+DROP TABLE IF EXISTS `people`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `people` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(20) DEFAULT NULL,
+  `last_name` varchar(20) DEFAULT NULL,
+  `email` varchar(24) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `people`
+--
+
+LOCK TABLES `people` WRITE;
+/*!40000 ALTER TABLE `people` DISABLE KEYS */;
+INSERT INTO `people` VALUES (1,'Richard','Pannell','richard.pannell@gmail.co','1979-10-23','2013-03-06 13:05:02',NULL),(2,'Simon','Dugas','simdugas@gmail.com','1993-12-01','2013-03-13 18:52:10',NULL),(3,'Richard','Pannell','richard.pannell@gmail.co','2013-03-05','2013-03-19 21:09:14',NULL);
+/*!40000 ALTER TABLE `people` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `students`
+--
+
+DROP TABLE IF EXISTS `students`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `students` (
+  `person_id` int(11) NOT NULL,
+  `section_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `students`
+--
+
+LOCK TABLES `students` WRITE;
+/*!40000 ALTER TABLE `students` DISABLE KEYS */;
+INSERT INTO `students` VALUES (1,2),(1,4),(1,6),(0,6),(0,6),(0,6),(0,6),(1,6),(1,6),(1,2),(1,2),(1,12),(1,8),(1,9),(1,11),(1,5),(1,11),(1,0),(1,0),(1,0),(0,2),(0,4),(0,4),(0,4),(0,8),(0,8),(0,8),(3,8),(3,8),(3,10),(3,6),(3,13),(3,15);
+/*!40000 ALTER TABLE `students` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notes`
+--
+
+DROP TABLE IF EXISTS `notes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notes` (
+  `id` int(32) unsigned NOT NULL AUTO_INCREMENT,
+  `date` date DEFAULT NULL,
+  `section_id` int(11) DEFAULT NULL,
+  `person_id` int(11) DEFAULT NULL,
+  `title` varchar(90) DEFAULT NULL,
+  `summary` text,
+  `content` text NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notes`
+--
+
+LOCK TABLES `notes` WRITE;
+/*!40000 ALTER TABLE `notes` DISABLE KEYS */;
+INSERT INTO `notes` VALUES (6,NULL,NULL,NULL,'A test note','Some things about testing and teams','There are a few thing that we need to consider here.\r\n\r\n1. Cacti\r\n2. The Yeti principle\r\n3. The possibility of cowgirls\r\n4. Perfume','2013-03-20 15:37:30',NULL),(5,NULL,NULL,NULL,'A test note','Some things about testing and teams','There are a few thing that we need to consider here.\r\n\r\n1. Cacti\r\n2. The Yeti principle\r\n3. The possibility of cowgirls\r\n4. Perfume','2013-03-20 15:35:37',NULL),(7,NULL,NULL,NULL,'A test note','Some things about testing and teams','There are a few thing that we need to consider here.\r\n\r\n1. Cacti\r\n2. The Yeti principle\r\n3. The possibility of cowgirls\r\n4. Perfume','2013-03-20 15:38:13',NULL),(8,NULL,8,NULL,'','','<p>Test again.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<ul>\r\n	<li>bullet</li>\r\n	<li>bullet</li>\r\n	<li>bang</li>\r\n	<li>bang</li>\r\n	<li>bang</li>\r\n</ul>\r\n\r\n<p><strong>Bid and bold</strong></p>\r\n','2013-03-20 16:17:20',NULL),(9,'2013-03-20',8,NULL,'Test note 1500','A little about this class','<p>Hey this is Rickey. &nbsp;I&#39;m taking notes.</p>\r\n\r\n<p>Important things from today are:</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<ul>\r\n	<li>Databases are cool</li>\r\n	<li>but just sometimes</li>\r\n	<li>data warehouse might be better</li>\r\n</ul>\r\n\r\n<p><b>Don&#39;t forget to do bakcups!</b></p>\r\n\r\n<p>&nbsp;</p>\r\n','2013-03-20 16:21:54',NULL),(10,'2013-03-20',8,NULL,'Test note 1500','A little about this class','<p>Hey this is Rickey. &nbsp;I&#39;m taking notes.</p>\r\n\r\n<p>Important things from today are:</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<ul>\r\n	<li>Databases are cool</li>\r\n	<li>but just sometimes</li>\r\n	<li>data warehouse might be better</li>\r\n</ul>\r\n\r\n<p><b>Don&#39;t forget to do bakcups!</b></p>\r\n\r\n<p>&nbsp;</p>\r\n','2013-03-20 16:22:21',NULL),(11,'0000-00-00',15,NULL,'','','<h2>Databases</h2>\r\n\r\n<h3>SQL Queries</h3>\r\n\r\n<ul>\r\n	<li>sql let&#39;s us interact with the database without knowing how that is going to happen</li>\r\n	<li>parses relational algebra</li>\r\n	<li>query optimizer makes it better</li>\r\n	<li>generates code</li>\r\n</ul>\r\n\r\n<p>Two parts</p>\r\n\r\n<ol>\r\n	<li>DDL - Data definition language</li>\r\n	<li>DML - Data manipulation language</li>\r\n</ol>\r\n\r\n<h3>Query</h3>\r\n\r\n<ul>\r\n	<li>selects some information from the database</li>\r\n	<li>&quot;select&quot; followed by &quot;attributes&quot; &quot;from&quot; &quot;table(s relationship conditions)&quot; &quot;where (conditions)&quot;</li>\r\n	<li>if you want everything use a *</li>\r\n	<li>you can specify the column in top after select or at the end after where</li>\r\n</ul>\r\n\r\n<p>Example for selecting every column for every Gadget:</p>\r\n\r\n<pre>\r\nselect *\r\nfrom Product\r\nwhere category = &#39;Gadget&#39;\r\n</pre>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Example for selecting Pname column for every Gadget:</p>\r\n\r\n<pre>\r\nselect Pname\r\nfrom Products\r\nwhere categoory = &#39;Gadget&#39;\r\n</pre>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Another example:</p>\r\n\r\n<pre>\r\nselect Pname, Price, Manufacturer\r\nfrom Product\r\nwhere Price &gt; 100;\r\n</pre>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Rules for case:</p>\r\n\r\n<ul>\r\n	<li>statements are not usually case sensitive</li>\r\n	<li>velues within the table are case sensitive</li>\r\n</ul>\r\n\r\n<p>NULL values</p>\r\n\r\n<ul>\r\n	<li>Value doesn&#39;t exist</li>\r\n	<li>Value exists but is unkown</li>\r\n	<li>Value is not applicable</li>\r\n	<li>The schema specifies wheter we can have NULL valaues</li>\r\n	<li>If you do math with a NULL value the answer is alwyas NULL</li>\r\n	<li>not true or false, but unkown, numeric value is .5</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Example:</p>\r\n\r\n<pre>\r\nselect *\r\nfrom Person\r\nwhere (age &lt; 25) \r\nand (height &gt; 6 or weight &gt; 190)\r\n</pre>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Two different wildcards: &#39;%&#39; to match any sequence of characters and &quot;_&quot; matches only one</p>\r\n\r\n<p>&nbsp;</p>\r\n','2013-03-20 18:07:07',NULL);
+/*!40000 ALTER TABLE `notes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `section_schedules`
+--
+
+DROP TABLE IF EXISTS `section_schedules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `section_schedules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `monday` tinyint(1) DEFAULT '0',
+  `tuesday` tinyint(1) DEFAULT '0',
+  `wednesday` tinyint(1) DEFAULT '0',
+  `thursday` tinyint(1) DEFAULT '0',
+  `friday` tinyint(1) DEFAULT '0',
+  `saturday` tinyint(1) DEFAULT '0',
+  `sunday` tinyint(1) DEFAULT '0',
+  `start_time` time DEFAULT NULL,
+  `end_time` time DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `section_schedules`
+--
+
+LOCK TABLES `section_schedules` WRITE;
+/*!40000 ALTER TABLE `section_schedules` DISABLE KEYS */;
+INSERT INTO `section_schedules` VALUES (6,1,1,1,1,0,0,0,'21:00:00','12:03:00','2013-03-08 02:14:39',NULL);
+/*!40000 ALTER TABLE `section_schedules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `departments`
+--
+
+DROP TABLE IF EXISTS `departments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `departments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `institution_id` int(11) DEFAULT NULL,
+  `name` varchar(40) DEFAULT NULL,
+  `shortname` varchar(7) DEFAULT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `departments`
+--
+
+LOCK TABLES `departments` WRITE;
+/*!40000 ALTER TABLE `departments` DISABLE KEYS */;
+INSERT INTO `departments` VALUES (7,20,'Sustainability','SUST','2013-03-07 23:03:57',NULL),(8,20,'Computer Science','CSCI','2013-03-18 00:13:41',NULL),(9,20,'Statistics','STAT','2013-03-18 17:53:44',NULL),(10,20,'Informatics','INFX','2013-03-18 17:54:44',NULL),(15,24,'TEST','TEST','2013-03-20 14:49:09',NULL);
+/*!40000 ALTER TABLE `departments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `courses`
+--
+
+DROP TABLE IF EXISTS `courses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `courses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `department_id` int(11) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `number` int(5) DEFAULT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `courses`
+--
+
+LOCK TABLES `courses` WRITE;
+/*!40000 ALTER TABLE `courses` DISABLE KEYS */;
+INSERT INTO `courses` VALUES (7,7,'Intro to Sustainability pt. 2',1001,'2013-03-07 23:04:35',NULL),(8,7,'Intro to Sustainability pt. 2',1001,'2013-03-07 23:08:19',NULL),(9,8,'Java Data Structures',2110,'2013-03-18 00:13:57',NULL),(10,8,'Java Data Structures',2110,'2013-03-18 00:15:43',NULL),(11,8,'Java Data Structures',2110,'2013-03-18 17:26:43',NULL),(12,8,'Java Data Structures',2110,'2013-03-18 17:28:03',NULL),(13,8,'Java Data Structures',2110,'2013-03-18 17:29:04',NULL),(14,8,'Java Data Structures',2110,'2013-03-18 17:31:34',NULL),(15,8,'Java Data Structures',2110,'2013-03-18 17:32:48',NULL),(16,8,'Java Data Structures',2110,'2013-03-18 17:47:36',NULL),(17,7,'The world of computing',1616,'2013-03-18 17:54:56',NULL),(18,11,'Some Class',11,'2013-03-18 17:57:34',NULL),(19,10,'The world of computing 1',1615,'2013-03-18 18:31:51',NULL),(20,10,'The world of computing 1',1615,'2013-03-18 18:33:27',NULL),(21,10,'The world of computing 1',1615,'2013-03-18 18:34:39',NULL),(22,10,'The world of computing 1',1615,'2013-03-18 18:36:24',NULL),(23,10,'The world of computing 1',1615,'2013-03-18 18:37:18',NULL),(24,10,'The world of computing 1',1615,'2013-03-18 18:37:55',NULL),(25,13,'TESTCourse',1234,'2013-03-18 18:45:44',NULL),(26,15,'TEST',1000,'2013-03-20 14:49:27',NULL),(27,10,'The world of computing',1616,'2013-03-20 17:31:50',NULL),(28,10,'The world of computing',1616,'2013-03-20 17:31:58',NULL);
+/*!40000 ALTER TABLE `courses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `semester`
+--
+
+DROP TABLE IF EXISTS `semester`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `semester` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `semester`
+--
+
+LOCK TABLES `semester` WRITE;
+/*!40000 ALTER TABLE `semester` DISABLE KEYS */;
+INSERT INTO `semester` VALUES (1,'Fall 2013','2013-03-13','2013-03-31','2013-03-08 02:18:37',NULL);
+/*!40000 ALTER TABLE `semester` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `userAuth`
+--
+
+DROP TABLE IF EXISTS `userAuth`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `userAuth` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned DEFAULT NULL,
+  `user_name` varchar(10) DEFAULT NULL,
+  `hash` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `userAuth`
+--
+
+LOCK TABLES `userAuth` WRITE;
+/*!40000 ALTER TABLE `userAuth` DISABLE KEYS */;
+INSERT INTO `userAuth` VALUES (6,3,'pannell','7a784283feb3261f862eae5e4abee7dc142423d4ZwzzPvstP2Ge'),(4,1,'pannellr','0e3deed07dd58f488578f41df95f9c91098b8a6eQDGiybnFXROV'),(8,3,'pannell','7a784283feb3261f862eae5e4abee7dc142423d41c6dAUDCdKwD'),(9,3,'pannell','7a784283feb3261f862eae5e4abee7dc142423d4voAyt8DE6ufg'),(10,3,'pannell','7a784283feb3261f862eae5e4abee7dc142423d4DZETj4czuF9h'),(11,3,'pannell','7a784283feb3261f862eae5e4abee7dc142423d4eBXoWIk3zPOj'),(12,3,'pannell','7a784283feb3261f862eae5e4abee7dc142423d459ixyWAZGH28');
+/*!40000 ALTER TABLE `userAuth` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `textbooks`
+--
+
+DROP TABLE IF EXISTS `textbooks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `textbooks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(90) DEFAULT NULL,
+  `author` varchar(90) DEFAULT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `textbooks`
+--
+
+LOCK TABLES `textbooks` WRITE;
+/*!40000 ALTER TABLE `textbooks` DISABLE KEYS */;
+INSERT INTO `textbooks` VALUES (1,'None','Nobody','2013-03-07 23:08:32',NULL),(2,'Learning Java','Tony Gaddis','2013-03-08 02:16:13',NULL);
+/*!40000 ALTER TABLE `textbooks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sections`
+--
+
+DROP TABLE IF EXISTS `sections`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sections` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `section_number` int(3) NOT NULL,
+  `section_schedule_id` int(11) NOT NULL,
+  `text_id` int(11) NOT NULL,
+  `semester_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sections`
+--
+
+LOCK TABLES `sections` WRITE;
+/*!40000 ALTER TABLE `sections` DISABLE KEYS */;
+INSERT INTO `sections` VALUES (2,0,0,0,0,7),(3,0,0,0,0,8),(4,0,0,0,0,16),(5,0,0,0,0,17),(6,0,0,0,0,18),(7,0,0,0,0,19),(8,0,0,0,0,20),(9,0,0,0,0,22),(10,0,0,0,0,23),(11,0,0,0,0,24),(12,0,0,0,0,25),(13,0,0,0,0,26),(14,0,0,0,0,27),(15,0,0,0,0,28);
+/*!40000 ALTER TABLE `sections` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `institutions`
+--
+
+DROP TABLE IF EXISTS `institutions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `institutions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `institutions`
+--
+
+LOCK TABLES `institutions` WRITE;
+/*!40000 ALTER TABLE `institutions` DISABLE KEYS */;
+INSERT INTO `institutions` VALUES (23,'Dalhousie2','2013-03-20 14:48:27',NULL),(24,'Dalhousie','2013-03-20 14:48:36',NULL);
+/*!40000 ALTER TABLE `institutions` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-03-20 15:08:21
