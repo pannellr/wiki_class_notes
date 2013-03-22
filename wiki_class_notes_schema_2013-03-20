@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,1,'pannellr','Shiwa0k@r','2013-03-06 13:05:02',NULL),(2,2,'eviltoast','Password1!','2013-03-13 18:52:10',NULL),(3,3,'pannell','b0b11ad96fc868deb99a6c66e250949e79c5ceace1a74b0cc752b07d6bf58d8b','2013-03-19 21:09:14',NULL);
+INSERT INTO `users` VALUES (1,1,'pannellr','','2013-03-06 13:05:02',NULL),(2,2,'eviltoast','Password1!','2013-03-13 18:52:10',NULL),(3,3,'pannell','b0b11ad96fc868deb99a6c66e250949e79c5ceace1a74b0cc752b07d6bf58d8b','2013-03-19 21:09:14',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
