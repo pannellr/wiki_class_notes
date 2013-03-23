@@ -29,8 +29,14 @@ class NoteController extends Controller implements ControllerInterface{
 
   public function create($params){
     $this->model = new note();
+    
+    $u = new User;
+    $person_id = $u->select(array('id' => $this->user['user_id']));
+   
+    $params['person_id'] = $person_id[0]['person_id'];
     $insert_id = $this->model->insert($params);
     $this->redirect("course/show?section_id=" . $params['section_id']);
+  
   }
 
   public function show($id){
