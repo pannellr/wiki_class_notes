@@ -46,7 +46,7 @@ class CourseController extends Controller implements ControllerInterface{
     foreach ($data['dates'] as $key => $value) {
       $date = $data['dates'][$key]['date'];
       $data['dates'][$key]['notes'] 
-	= $this->model->getNotesForDate($params['section'], $date);
+	= $this->model->getNotesForDate($params['section_id'], $date);
     }
     $this->loadPage($this->user, "show_course", $data);
   }
