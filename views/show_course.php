@@ -12,7 +12,9 @@ if( !empty($data['course']) ){ ?>
       ;
     ?>
   </h3>
-   <h4>Notes</h4>
+  <a href="/note/newNote?section_id=<?php echo $data['course']['section_id']; ?>">New Note</a>
+   
+  <h4>Notes</h4>
    
    <?php
      foreach ($data['dates']as $key => $note_date) {
@@ -25,7 +27,11 @@ if( !empty($data['course']) ){ ?>
        		.$note_info['user_name']
        		."<ul>"
        		."<li>"
+                  ."<a href=\"/note/show?id="
+                  .$note_info['note_id']
+                  ."\">"
        		.$note_info['title']
+                  ."</a>"
        		."</li>"
        		."<li>"
        		.$note_info['summary']
