@@ -45,18 +45,6 @@ class Controller{
   }
 
   public function loadPage($user, $view, $data = null, $flash = false){
-    //the sendData array contains user key and other keys in data
-    //From Rickey: rolling back these changes because
-    //1. php will make $data an array as soon as we try to make it on
-    //2. It will exist no matter what gets passed because of $data = null
-    //   in the method header
-    //if(!empty($data)){
-    //  $sendData = array_merge(array('user' => $user), $data);
-    //} else {
-    //  $sendData = array('user' => $user);
-    //}
-
-
     //add user to $data array
     $data['user'] = $user;
 
