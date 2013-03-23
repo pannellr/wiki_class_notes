@@ -73,12 +73,12 @@ SQL;
 		title,
 		summary,
 		content,
-		person_id, 
+		people.id as person_id,
 		users.id as user_id,
 		user_name
 	from notes
 	join people
-	  on created_by_person=people.id
+	  on notes.person_id=people.id
 	join users
 	  on users.person_id=people.id
         	where section_id='$section_id'
