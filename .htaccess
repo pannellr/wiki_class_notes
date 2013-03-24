@@ -13,6 +13,7 @@
 
 ##rickey's configuration
 RewriteEngine On
+RewriteBase /~esarve/wiki_class_notes
 RewriteCond %{REQUEST_URI} !/css
 RewriteCond %{REQUEST_URI} !/js
 RewriteCond %{REQUEST_URI} !/img
