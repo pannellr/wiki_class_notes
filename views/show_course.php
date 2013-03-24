@@ -1,5 +1,4 @@
 <?php
-
 if( !empty($data['course']) ){ ?>
   <h3>
     <?php

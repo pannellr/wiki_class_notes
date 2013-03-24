@@ -1,3 +1,5 @@
 config
 .htacess
 models/DB.php
+css/custom.css
+config/config.php
