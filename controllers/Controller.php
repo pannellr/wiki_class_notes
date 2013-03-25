@@ -11,7 +11,7 @@ class Controller{
   //Create a User object to pass to every page
   public $user;
   //link prefix for servers with strange configurations
-  public $linkPrefix = '/~pannell/wiki_class_notes';
+  public $linkPrefix = '';
 
   //constructor called by all controller subclasses
   //@param $method is the method from the url
@@ -42,7 +42,10 @@ class Controller{
   }
 
   public function loadView($view, $data = null){
-    extract($data);
+    if (!is_null($data)){
+      extract($data);
+    }
+
     require("../views/" . $view . ".php");
   }
 
