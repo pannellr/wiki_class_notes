@@ -6,7 +6,7 @@ if (!empty($data['courses'])){ ?>
   <?php
   foreach ($data['courses'] as $course){
     echo "<li>";
-    echo "<a class=\"class_link\" href=\"/course/show?section_id="
+    echo "<a class=\"class_link\" href=\"" . $link_prefix . "/course/show?section_id="
       . $course['section_id']
       . "\">"
       . $course['shortname']
@@ -24,5 +24,5 @@ if (!empty($data['courses'])){ ?>
 <?php 
 }
 ?>
-<a href="/student/fresh?person_id=<?php echo $data['person_id']; ?>">Join a course</a>
-<a href="/course/fresh">Create a course</a>
+<a href="<?php echo $link_prefix; ?>/student/fresh?person_id=<?php echo $data['person_id']; ?>">Join a course</a>
+<a href="<?php echo $link_prefix; ?>/course/fresh">Create a course</a>
