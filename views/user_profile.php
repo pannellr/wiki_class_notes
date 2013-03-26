@@ -6,8 +6,22 @@
 	if(!empty($data['courses'])) {
 		require_once("student_classes.php");
 	} else { ?>
-		<a href="/student/add_course?person_id=<?php echo $data['person_id']; ?>">Join a course</a>
-		<a href="/course/fresh">Create a course</a>
+	  <a href="
+	  <?php
+	    $link  = $link_prefix . "/student/add_course?person_id=";
+	    $link .= $data['person_id'];
+	    
+	    echo $link;
+	  ?>
+	  ">Join a course</a>
+	  <a href="
+	  <?php
+	    $link  = $link_prefix . "/course/fresh";
+	    $link .= $data['person_id'];
+	    
+	    echo $link;
+	   ?>
+	   ">Create a course</a>
 	<?php
 	}
 	?>
