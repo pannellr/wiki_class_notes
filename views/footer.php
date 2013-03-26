@@ -5,7 +5,7 @@
         <script src="../js/plugins.js"></script>
         <script src="../js/main.js"></script>
         <script src="../js/ckeditor/ckeditor.js"></script>
-	<script src="../js/advanced.js"></script>
+	<script src="<?php echo $data['link_prefix']; ?>/js/advanced.js"></script>
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

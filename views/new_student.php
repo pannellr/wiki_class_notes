@@ -18,7 +18,7 @@ foreach ($data['courses'] as $course){
 ?>
 
         </select><br />
-	<a href="/course/fresh">Create a new course</a>
+	<a href="<?php echo $data['link_prefix']; ?>/course/fresh">Create a new course</a>
     </p>
     <input type="submit" value="Join">
 

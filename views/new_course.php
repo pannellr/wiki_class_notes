@@ -6,8 +6,8 @@
     <select name="department_id">
 
       <?php
-   
-   foreach ($data as $department){
+    
+   foreach ($departments as $department){
      echo "<option value=\"" 
          . $department['id'] 
          . "\">" 
@@ -18,7 +18,7 @@
 
     </select>
     <br />
-    <a href="/department/fresh">Create a department</a>
+    <a href="<?php echo $link_prefix; ?>/department/fresh">Create a department</a>
   <p>
     <label for="name">Course Name</label><br />
     <input name="name" />

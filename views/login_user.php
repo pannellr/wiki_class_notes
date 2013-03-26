@@ -1,6 +1,6 @@
 <h3>Login</h3>
 
-<form method="POST" action ="/user/authenticate">
+<form method="POST" action ="<?php echo $data['link_prefix']; ?>/user/authenticate">
 
    <p>
      <label for="user_name">Username:</label><br />
@@ -20,4 +20,4 @@
 <a href="#">forgot password</a>
 
 <div>New User?</div>
-<a href="/user/fresh">sign up</a>
+<a href="<?php echo $data['link_prefix']; ?>/user/fresh">sign up</a>

@@ -12,19 +12,20 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="/css/normalize.css">
-        <link rel="stylesheet" href="/css/main.css">
-        <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+        <link rel="stylesheet" href="<?php echo $data['link_prefix']; ?>/css/normalize.css">
+        <link rel="stylesheet" href="<?php echo $data['link_prefix']; ?>/css/main.css">
+        <script src="<?php echo $data['link_prefix']; ?>/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
+
    <?php require_once("session_info.php"); ?>
    
    <header class="banner">
 
-   <img src="/img/PaperPlane.png" width="215" height="120" >
+   <img src="<?php echo $data['link_prefix']; ?>/img/PaperPlane.png" width="215" height="120" >
 
    </header>
 

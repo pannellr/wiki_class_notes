@@ -10,7 +10,8 @@ class Controller{
   public $model;
   //Create a User object to pass to every page
   public $user;
-
+  //link prefix for servers with strange configurations
+  public $linkPrefix = '';
 
   //constructor called by all controller subclasses
   //@param $method is the method from the url
@@ -37,10 +38,14 @@ class Controller{
 
 
   public function redirect($url){
-    header("Location: /" . $url);
+    header("Location: " . $this->linkPrefix . "/" . $url);
   }
 
   public function loadView($view, $data = null){
+    if (!is_null($data)){
+      extract($data);
+    }
+
     require("../views/" . $view . ".php");
   }
 
@@ -48,7 +53,11 @@ class Controller{
     //add user to $data array
     $data['user'] = $user;
 
+    $data['link_prefix'] = $this->linkPrefix;
+
     //load the header and pass it the $user object
+    
+
     $this->loadView("header", $data);
 
     //The flash class is our way of passing a message to our page
@@ -60,9 +69,13 @@ class Controller{
       }
     }
 
+
+    //allow user to sign up if they are not logged in
+    $notLoggedInUrl = ($view == 'new_user') ? 'new_user' : 'login_user';
+
     //load our content or redirect to login
     empty($this->user) || is_null($this->user) ?
-      $this->loadView("login_user", $data) :
+      $this->loadView($notLoggedInUrl, $data) :
       $this->loadView($view, $data);
 
     //load the footer
