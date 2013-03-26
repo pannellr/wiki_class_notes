@@ -8,7 +8,7 @@
 	} else { ?>
 	  <a href="
 	  <?php
-	    $link  = $link_prefix . "/student/add_course?person_id=";
+	    $link  = $link_prefix . "/student/fresh?person_id=";
 	    $link .= $data['person_id'];
 	    
 	    echo $link;
