@@ -5,7 +5,7 @@
     <label for="institution_id">Choose Institution:</label><br />
     <select name="institution_id">
     <?php 
-       foreach ($data as $key => $value) {
+       foreach ($data as $value) {
            echo "<option value=\"" 
 	       . $value['id']
 	       . "\">"
