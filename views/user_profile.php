@@ -6,6 +6,7 @@
 	if(!empty($data['courses'])) {
 		require_once("student_classes.php");
 	} else { ?>
+	  <h3>You have not yet joined a course!</h3>
 	  <a href="
 	  <?php
 	    $link  = $link_prefix . "/student/fresh?person_id=";
