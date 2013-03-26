@@ -12,7 +12,12 @@ class DepartmentController extends Controller implements ControllerInterface{
   public function fresh(){
     $ints = new Institution();
     $institutions = $ints->select();
-    $this->loadPage($this->user, "new_department", $institutions);
+    
+    $this->loadPage(
+		    $this->user, 
+		    "new_department", 
+		    array('institutions' => $institutions)
+		    );
   }
 
   public function create($params){

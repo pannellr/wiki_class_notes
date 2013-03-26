@@ -5,11 +5,11 @@
     <label for="institution_id">Choose Institution:</label><br />
     <select name="institution_id">
     <?php 
-       foreach ($data as $value) {
+       foreach ($institutions as $institution) {
            echo "<option value=\"" 
-	       . $value['id']
+	       . $institution['id']
 	       . "\">"
-	       . $value['name']
+	       . $institution['name']
 	       . "</option>";
       }
     ?>
