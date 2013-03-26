@@ -17,8 +17,6 @@
 	  <a href="
 	  <?php
 	    $link  = $link_prefix . "/course/fresh";
-	    $link .= $data['person_id'];
-	    
 	    echo $link;
 	   ?>
 	   ">Create a course</a>
