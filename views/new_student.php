@@ -7,12 +7,16 @@
 
 <?php
 
-foreach ($data['courses'] as $course){
+foreach ($courses as $course){
   echo "<option value="
-    .  $course['section_id']
-    . "\">"
-    . $course['name']
-    . "</option>";
+  .  $course['section_id']
+  . "\">"
+  . $course['shortname'] 
+  . "-" 
+  . $course['number'] 
+  . " " 
+  . $course['name']
+  . "</option>";
  }
 
 ?>
