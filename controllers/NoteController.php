@@ -65,8 +65,11 @@ class NoteController extends Controller implements ControllerInterface{
 
   public function destroy($id){
     $this->model = new note();
+    //get the data before you delete it(best practice for delete?
+    $noteData = $this->model->select($id);
+
     $this->model->delete($id);
-    $this->redirect("note/all");
+    $this->redirect("course/show?section_id=" . $noteData[0]['section_id']);
   }
   
 }

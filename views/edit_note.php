@@ -13,8 +13,13 @@
   </p>
   
   <p>
-    <label for="content">Author</label><br />
-    <input name="content" value="<?php echo $data[0]['content']; ?>" />
+    <label for="content">Note</label><br />
+    <input name="content" value="<?php echo $data[0]['summary']; ?>" />
+  </p>
+
+  <p>
+    <label for="content">Note</label><br />
+    <textarea class="ckeditor" name="content"><?php echo $data[0]['summary']; ?></textarea>
   </p>
 
   <input type="submit" value="Update" />
