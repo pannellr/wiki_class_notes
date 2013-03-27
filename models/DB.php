@@ -8,19 +8,19 @@ class DB{
   private $tableName;
   
   function __construct(){
-
-	 $config=new Config();
-     $this->dbh = new mysqli(
-			     $config->getHost(), 
-			     $config->getUsername(), 
-			     $config->getPassword(), 
-			     $config->getDBname()
-			     );
-
+    
+    $config=new Config();
+    $this->dbh = new mysqli(
+			    $config->getHost(), 
+			    $config->getUsername(), 
+			    $config->getPassword(), 
+			    $config->getDBname()
+			    );
+    
     if (mysqli_connect_errno($this->dbh)) {
-	throw new CouldNotEstablishConnectionException("Could not connect to Database");
+      throw new CouldNotEstablishConnectionException("Could not connect to Database");
     }
-   
+    
   }
   
   //selects everything within where parameter and then put them in an array
@@ -36,7 +36,7 @@ class DB{
       }
     }
     $query .= ";";
-
+    
     $results = array();
     $res = $this->dbh->query($query);
     while ($row = $res->fetch_assoc()){
@@ -109,9 +109,13 @@ class DB{
 
  function query($q){
    $results = array();
+   //if success
    if ($res = $this->dbh->query($q)){
-     while ($row = $res->fetch_assoc()){
-       array_push($results, $row);
+     //if there was some result
+     if ($this->dbh->field_count > 0){
+       while ($row = $res->fetch_assoc()){
+	 array_push($results, $row);
+       }
      }
    } else {
      throw new Exception("Query could not be completed: " . $q);

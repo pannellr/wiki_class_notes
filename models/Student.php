@@ -35,4 +35,17 @@ SQL;
 
   }
 
+  //dropCourse removes record for person_id, section_id 
+  //@param $person_id
+  //@param $section_id
+  public function dropCourse($personId, $sectionId){
+    $query = "delete from students "
+      . " where person_id = "
+      . $personId
+      . " and section_id = "
+      . $sectionId;
+
+    return $this->query($query);
+
+  }
 }

@@ -42,6 +42,12 @@ class StudentController extends Controller implements ControllerInterface{
   }
 
   public function destroy($id){
+    //Get person_id from user object
+     $user = new User();
+     $person_id = $user->select(array('id' => $this->user['user_id']));
+     $this->model = new Student;
+     $this->model->dropCourse($person_id[0]['person_id'], $id['section_id']);
+     $this->redirect("student/courses");
   }
   
   public function courses(){
