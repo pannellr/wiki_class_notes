@@ -34,8 +34,26 @@ if( !empty($data['course']) ){ ?>
               . "</li>"
               . "<li>"
               . $note_info['summary']
-              . "</li>"
-              . "</ul>"
+              . "</li>";
+	      
+	      if($note_info['user_id'] == $user['user_id']){
+		  echo "<li>
+                <a href=\"" . $data['link_prefix'] . "/note/edit?id="
+                  . $note_info['note_id']
+                  . "\">"
+                  ."edit"
+                ."</a>"
+                ."</li>";
+                echo "<li>
+                <a href=\"" . $data['link_prefix'] . "/note/destroy?id="
+                  . $note_info['note_id']
+                  . "\">"
+                  ."delete"
+                ."</a>"
+                ."</li>";
+	      }
+		
+              echo "</ul>"
               . "</li>";
        	}
        	?>
