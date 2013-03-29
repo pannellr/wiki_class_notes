@@ -1,0 +1,11 @@
+Error Report
+
+1 When I log in with an account name which doesn't exist or without a password or with a wrong password, nothing shows up.
+2 I think the sign up page should show the requirements, otherwise users would use inappropriate passwords and fail.
+3 make date field field required when creating a new note?
+4 ability to create new institution?
+5 you can not delete or revise your notes
+6 you can only join a class, but you can not quit a class
+7 when logged in, if you load the login page, it prompts you to logout..
+ if you hit the logout near bottom of page, it redirects to nowhere
+8 the forgetting password button doesn't work
