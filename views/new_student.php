@@ -8,7 +8,7 @@
 <?php
 
 foreach ($courses as $course){
-  echo "<option value="
+  echo "<option value=\""
   .  $course['section_id']
   . "\">"
   . $course['shortname'] 
