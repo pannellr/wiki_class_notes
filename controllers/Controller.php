@@ -71,7 +71,17 @@ class Controller{
 
 
     //allow user to sign up if they are not logged in
-    $notLoggedInUrl = ($view == 'new_user') ? 'new_user' : 'login_user';
+    $notLoggedInUrl = '';
+
+    switch($view) {
+      case 'new_user':
+	$notLoggedInUrl = 'new_user';
+	break;
+      case 'login_user':
+	$notLoggedInUrl = 'login_user';
+	break;
+    }
+
 
     //load our content or redirect to login
     empty($this->user) || is_null($this->user) ?
