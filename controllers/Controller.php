@@ -11,7 +11,8 @@ class Controller{
   //Create a User object to pass to every page
   public $user;
   //link prefix for servers with strange configurations
-  public $linkPrefix = '';
+  //LIVE CONFIGURATION
+  public $linkPrefix = '/~esarve/wiki_class_notes';
 
   //constructor called by all controller subclasses
   //@param $method is the method from the url
