@@ -6,12 +6,14 @@ class Config{
 	private $username;
 	private $password;
 	private $DBname;
+	private $linkPrefix;
 	
 	function __construct(){
 	 $this->host="localhost";
 	 $this->username="root";
 	 $this->password="root";
 	 $this->DBname="sdugas_esarve";
+	 $this->linkPrefix="/wiki_class_notes";
 	}
 	
 	function getHost(){
@@ -28,6 +30,9 @@ class Config{
 	
 	function getDBname(){
 	return $this->DBname;
+	}
+	function getLinkPrefix(){
+	return $this->linkPrefix;
 	}
 	
 	}
