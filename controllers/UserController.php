@@ -241,8 +241,10 @@ class UserController extends Controller implements ControllerInterface {
         $this->userAuthModel = new UserAuth();
         $hash = $this->userAuthModel->authorizeUser($user);
 
-        
-        $this->loadPage($user, "user_profile", array("user" => $user));
+        $this->redirect("home/home");
+        //The line below does not work because of the way we are 
+        //checking to see if the user is authenticated upon creation
+        //$this->loadPage($user, "user_profile", array("user" => $user));
 
       }//end if validated, insert into database
 
