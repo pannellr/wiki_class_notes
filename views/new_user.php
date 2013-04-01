@@ -81,4 +81,4 @@ Database validations:
 </form>
 </div>
 <div>Already singed up?</div>
-<a href="/user/login">login</a>
+<a href="<?php echo $this->linkPrefix; ?>/user/login">login</a>
