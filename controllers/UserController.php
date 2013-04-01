@@ -12,9 +12,13 @@ class UserController extends Controller implements ControllerInterface {
       "4" => "Please enter a valid email address.",
       "5" => "Invalid username. Characters allowed: alpha-numeric, '_'. 
         Max length is 10 characters.",
-      "6" => "Invalid password. Please enter 6 - 32 characters. Include one letter, 
+      //Strict password
+      /* "6" => "Invalid password. Please enter 6 - 32 characters. Include one letter, 
         one number and character that is not alpha-numeric. 
-          Spaces are not allowed.",
+          Spaces are not allowed.", */
+      //Flexible password
+      "6" => "Invalid password. Please enter 6 - 32 characters. 
+          Spaces are not permitted.",
       "7" => "Invalid first or last name. Only characters allowed are alpha, 
         [ - ], [ ' ] and spaces.",
       "8" => "Invalid email address. Please enter a valid email address",
@@ -154,16 +158,15 @@ class UserController extends Controller implements ControllerInterface {
       "email" => ""
       );
 
-    //DEBUG!!
-    // echo "<pre>";
-    // print_r($_POST);
-    // echo "</pre>";
-
     //Validate the username
     $flash['user_name'] = $this->validate($_POST['user_name'], $output, "user_name", 5, 0, "/^[a-zA-Z0-9_]{1,10}$/");
     
     //Validate the password
-    $flash['password'] = $this->validate($_POST['password'], $output, "password", 6, 1, "/^(?=.*\d)(?=.*[^a-zA-Z0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/");
+    //Strict Password, length 6 to 32 include one alpha, one number and one symbol
+    //$flash['password'] = $this->validate($_POST['password'], $output, "password", 6, 1, "/^(?=.*\d)(?=.*[^a-zA-Z0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/");
+    //More flexible password requirements
+    $flash['password'] = $this->validate($_POST['password'], $output, "password", 6, 1, "/^[a-zA-Z0-9\S]{6,32}$/");
+
     if( $_POST['password'] !== $_POST['confirm_password']  ) {
       $flash['password'] = new Flash($this->flashArray[9], "error");
     }
@@ -189,24 +192,8 @@ class UserController extends Controller implements ControllerInterface {
       }
     }
 
-    //DEBUG!!
-    // echo "<pre>";
-    // echo "Are there flashes? ";
-    // if( !$flash_is_empty ){
-    //   echo "Yes!\n";
-    // } else {
-    //   echo "No!\n";
-    // }
-    // print_r($flash);
-    // echo "</pre>";
-
-
     //If no flashes, check database
     if( $flash_is_empty ) {
-      //DEBUG!!
-      // echo "<pre>\n";
-      // echo " - - Checking the database - - \n";
-      // echo "</pre>";
 
       //Create a model for the people table and user table
       $this->personModel = new People();
@@ -220,17 +207,6 @@ class UserController extends Controller implements ControllerInterface {
       if( !empty($peopleResult) ) {
         $flash['email'] = new Flash($this->flashArray[12], "error");
       }
-      //DEBUG!!
-      // echo "<pre>\n";
-      // echo " Does person exist? \n";
-      // if( empty($peopleResult) ){
-      //   echo "no\n";
-      // } else {
-      //   echo "yes\n";
-      //   print_r($peopleResult);
-      // }
-      // echo "</pre>";
-
 
       //Check database for user_name already used
       $where = array(
@@ -240,23 +216,9 @@ class UserController extends Controller implements ControllerInterface {
       if( !empty($userResult) ) {
         $flash['user_name'] = new Flash($this->flashArray[11], "error");
       }
-      //DEBUG!!
-      // echo "<pre>\n";
-      // echo " Does user exist? \n";
-      // if( empty($userResult) ){
-      //   echo "no\n";
-      // } else {
-      //   echo "yes\n";
-      //   print_r($userResult);
-      // }
-      // echo "</pre>";
 
       //Insert user into database
       if( empty($peopleResult) && empty($userResult) ){
-        //DEBUG!!
-        // echo "<pre>\n";
-        // echo " - - - READY to enter values in database - - \n";
-        // echo "</pre>";
 
         //Enter values into people database
         $personInfo = array(
@@ -278,12 +240,6 @@ class UserController extends Controller implements ControllerInterface {
         $user_id = $this->userModel->insert($userInfo);
         $user = $this->userModel->select(array("id"=>$user_id));
         $user = $user[0];
-
-        //DEBUG!!
-        // echo "<pre>\n";
-        // echo " - - - USER CREATED - - \n";
-        // print_r($user);
-        // echo "</pre>";
 
         //Create authentication hash for user
         $this->userAuthModel = new UserAuth();
