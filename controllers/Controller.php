@@ -84,7 +84,7 @@ class Controller{
 	break;
       case 'login_user':
 	$notLoggedInUrl = 'login_user';
-	break;
+	break;    
     }
 
 
