@@ -16,7 +16,7 @@ Validations:
 		alpha-numeric and underscore
 	password - min 6 characters, max of 32
 		one letter, one number, one non-alphanumeric character
-		passwords must match
+		passwords must match (strict)
 	first name - not blank, alpha, space, ['-] only
 	Last name  - not blank, alpha, space, ['-] only
 	Date of birth - selection from list
@@ -70,6 +70,8 @@ Database validations:
   </p>
 
   <p>
+     <em id="password_requirements" style="font-size: 0.7em;">Enter at least 6 characters<em>
+     <br />
      <label for="password">Password:</label>
      <input class="field" type="password" name="password" /><br /><br />
      <label for="confirm_password">Confirm Password:</label> 
