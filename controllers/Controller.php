@@ -3,6 +3,8 @@
 require_once("../models/classes.php");
 require_once("ControllerInterface.php");
 require_once("Flash.php");
+//Server configuration file
+require_once("../config/Config.php");
 
 class Controller{
 
@@ -11,16 +13,16 @@ class Controller{
   //Create a User object to pass to every page
   public $user;
   //link prefix for servers with strange configurations
-  //public $linkPrefix = '';
-
-  //Simon's configuration
-  // public $linkPrefix = '/wiki_class_notes';
+  //it is now retreived from the config/Config.php file
+  public $linkPrefix;
 
   //constructor called by all controller subclasses
   //@param $method is the method from the url
   //@param $data is everything that was in the
   //query string
   function __construct($method, $data = null){
+    $config=new Config();
+    $this->linkPrefix = $config->getLinkPrefix();
 
     //create the UserAuth object
     $userAuth = new UserAuth();
