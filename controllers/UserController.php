@@ -12,11 +12,6 @@ class UserController extends Controller implements ControllerInterface {
       "4" => "Please enter a valid email address.",
       "5" => "Invalid username. Characters allowed: alpha-numeric, '_'. 
         Max length is 10 characters.",
-      //Strict password
-      /* "6" => "Invalid password. Please enter 6 - 32 characters. Include one letter, 
-        one number and character that is not alpha-numeric. 
-          Spaces are not allowed.", */
-      //Flexible password
       "6" => "Invalid password. Please enter 6 - 32 characters. 
           Spaces are not permitted.",
       "7" => "Invalid first or last name. Only characters allowed are alpha, 
@@ -64,7 +59,7 @@ class UserController extends Controller implements ControllerInterface {
       $flash['user_name'] = $this->validate($_POST['user_name'], $output, "user_name", 17, 17, "/^[a-zA-Z0-9_]{1,10}$/");
 
       //Validate the password
-      $flash['password'] = $this->validate($_POST['password'], $output, "password", 18, 18, "/^(?=.*\d)(?=.*[^a-zA-Z0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/");
+      $flash['password'] = $this->validate($_POST['password'], $output, "password", 18, 18, "/^[a-zA-Z0-9\S]{6,32}$/");
 
       $flash_is_empty = true;
       
@@ -80,11 +75,12 @@ class UserController extends Controller implements ControllerInterface {
         if( !empty($user) ) {
           $this->model->authorizeUser($user[0]);
           $this->redirect("home/home");
-          //$this->loadPage($user[0], "show_me", array("user" => $user[0]));
         } else {
           $flash['no_match'] = new Flash($this->flashArray[16], "error");
           $this->loadPage($this->user, "login_user", false, $flash);
         }
+      } else {
+        $this->loadPage($this->user, "login_user", false, $flash);
       }
     }
   }
@@ -136,12 +132,12 @@ class UserController extends Controller implements ControllerInterface {
         //Validation passed!
         $output[$key] = $post;
       } else {
-        $flash[$name] = new Flash($this->flashArray[$on_no_match], "error");
-        return $flash[$name];
+        $flash[$key] = new Flash($this->flashArray[$on_no_match], "error");
+        return $flash[$key];
       }
     } else {
-      $flash[$name] = new Flash($this->flashArray[$on_empty], "error");
-      return $flash[$name];
+      $flash[$key] = new Flash($this->flashArray[$on_empty], "error");
+      return $flash[$key];
     }
   }
   public function create($params) {
